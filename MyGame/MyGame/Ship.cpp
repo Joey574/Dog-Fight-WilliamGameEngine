@@ -28,10 +28,26 @@ void Ship::update(sf::Time& elapsed)
 
 	int msElapsed = elapsed.asMilliseconds();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pos.y > 5) y -= SPEED * msElapsed;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pos.y < WINDOW_HEIGHT - 125) y += SPEED * msElapsed;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pos.x > 0) x -= SPEED * msElapsed;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pos.x < WINDOW_WIDTH - 100) x += SPEED * msElapsed;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		y -= SPEED * msElapsed;
+		sprite_.setRotation(270);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		y += SPEED * msElapsed;
+		sprite_.setRotation(90);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		x -= SPEED * msElapsed;
+		sprite_.setRotation(180);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		x += SPEED * msElapsed;
+		sprite_.setRotation(0);
+	}
 
 	sprite_.setPosition(sf::Vector2f(x, y));
 
