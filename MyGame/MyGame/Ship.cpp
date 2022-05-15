@@ -28,7 +28,7 @@ void Ship::update(sf::Time& elapsed)
 
 	int msElapsed = elapsed.asMilliseconds();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pos.y > sprite_.getGlobalBounds().height + 3)
 	{
 		y -= SPEED * msElapsed;
 		sprite_.setRotation(270);
@@ -38,7 +38,7 @@ void Ship::update(sf::Time& elapsed)
 		y += SPEED * msElapsed;
 		sprite_.setRotation(90);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pos.x > sprite_.getGlobalBounds().width + 4)
 	{
 		x -= SPEED * msElapsed;
 		sprite_.setRotation(180);
