@@ -1,6 +1,6 @@
 #include "Laser.h"
 
-const float SPEED = 1.5f;
+const float SPEED = 1.0f;
 
 Laser::Laser(sf::Vector2f pos, int rot)
 {
@@ -20,7 +20,7 @@ void Laser::update(sf::Time& elapsed)
 	int msElapsed = elapsed.asMilliseconds();
 	sf::Vector2f pos = sprite_.getPosition();
 
-	if (pos.x > GAME.getRenderWindow().getSize().x)
+	if (pos.x > GAME.getRenderWindow().getSize().x || pos.y > GAME.getRenderWindow().getSize().y || pos.x < 0 || pos.y < 0)
 	{
 		makeDead();
 	}
@@ -45,4 +45,19 @@ void Laser::update(sf::Time& elapsed)
 sf::FloatRect Laser::getCollisionRect()
 {
 	return sprite_.getGlobalBounds();
+}
+
+void Laser::handleCollision(GameObject& otherGameObject)
+{
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
+	sf::Vector2f pos = sprite_.getPosition();
+
+	ExplosionPtr explosion = std::make_shared<Explosion>(sprite_.getPosition());
+
+	if (otherGameObject.hasTag("ship"))
+	{
+		makeDead();
+		GAME.getCurrentScene().addGameObject(explosion);
+	}
 }

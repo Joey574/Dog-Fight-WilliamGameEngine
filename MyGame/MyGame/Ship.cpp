@@ -51,6 +51,23 @@ void Ship::update(sf::Time& elapsed)
 		sprite_.setRotation(0);
 	}
 
+	if (x - 50 > GAME.getRenderWindow().getSize().x)
+	{
+		x -= GAME.getRenderWindow().getSize().x + 50;
+	}
+	if (x + 50 < 0)
+	{
+		x += GAME.getRenderWindow().getSize().x + 50;
+	}
+	if (y - 50 > GAME.getRenderWindow().getSize().y)
+	{
+		y -= GAME.getRenderWindow().getSize().y + 50;
+	}
+	if (y + 50 < 0)
+	{
+		y += GAME.getRenderWindow().getSize().y + 50;
+	}
+
 	sprite_.setPosition(sf::Vector2f(x, y));
 
 	if (fireTimer_ > 0)

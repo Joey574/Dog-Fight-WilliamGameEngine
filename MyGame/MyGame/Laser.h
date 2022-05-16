@@ -2,6 +2,9 @@
 
 #include "Engine//GameEngine.h"
 
+#include "GameScene.h"
+#include "Explosion.h"
+
 class Laser : public GameObject
 {
 public:
@@ -10,6 +13,7 @@ public:
 	void draw();
 	void update(sf::Time& elapsed);
 	sf::FloatRect getCollisionRect();
+	void handleCollision(GameObject& otherGameObject);
 
 private:
 	sf::Sprite sprite_;
