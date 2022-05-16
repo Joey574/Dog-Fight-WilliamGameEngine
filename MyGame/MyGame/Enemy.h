@@ -2,11 +2,11 @@
 
 #include "Engine//GameEngine.h"
 
-class Ship : public GameObject
+class Enemy : public GameObject
 {
 public:
 
-	Ship();
+	Enemy();
 
 	void draw();
 	void update(sf::Time& elapsed);
@@ -17,4 +17,4 @@ private:
 	int fireTimer_ = 0;
 };
 
-typedef std::shared_ptr<Ship> ShipPtr;
+typedef std::shared_ptr<Enemy> EnemyPtr;
