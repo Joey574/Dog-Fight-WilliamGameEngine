@@ -2,10 +2,11 @@
 
 const float SPEED = 1.2f;
 
-Laser::Laser(sf::Vector2f pos)
+Laser::Laser(sf::Vector2f pos, int rot)
 {
 	sprite_.setTexture(GAME.getTexture("Resources/laser.png"));
 	sprite_.setPosition(pos);
+	sprite_.setRotation(rot);
 	assignTag("laser");
 }
 
