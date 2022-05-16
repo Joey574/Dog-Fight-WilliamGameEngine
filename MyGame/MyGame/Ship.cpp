@@ -69,7 +69,7 @@ void Ship::update(sf::Time& elapsed)
 		if (sprite_.getRotation() == 0 || sprite_.getRotation() == 180)
 		{
 			laserX = x + (bounds.width / 3.5f);
-			laserY = y + (bounds.height / 3.5f);
+			laserY = y + (bounds.height / 3.5f) - 5;
 		}
 		else
 		{
@@ -83,11 +83,11 @@ void Ship::update(sf::Time& elapsed)
 		if (sprite_.getRotation() == 0 || sprite_.getRotation() == 180)
 		{
 			laserX = x + (bounds.width / 3.5f);
-			laserY = y - (bounds.height / 3.5f);
+			laserY = y - (bounds.height / 3.5f) + 8;
 		}
 		else
 		{
-			laserX = x + (bounds.width / 3.5f);
+			laserX = x - (bounds.width / 3.5f);
 			laserY = y + (bounds.height / 3.5f);
 		}
 
