@@ -63,10 +63,16 @@ void Ship::update(sf::Time& elapsed)
 
 		sf::FloatRect bounds = sprite_.getGlobalBounds();
 
-		float laserX = x + bounds.width;
-		float laserY = y + (bounds.height / 2.0f);
+		float laserX = x + (bounds.width / 3.5f);
+		float laserY = y + (bounds.height / 3.5f);
 
-		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY));
+		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
+		GAME.getCurrentScene().addGameObject(laser);
+
+		laserX = x + (bounds.width / 3.5f);
+		laserY = y - (bounds.height / 3.5f);
+
+		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
 		GAME.getCurrentScene().addGameObject(laser);
 	}
 }
