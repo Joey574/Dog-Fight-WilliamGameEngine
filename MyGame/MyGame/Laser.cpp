@@ -24,9 +24,21 @@ void Laser::update(sf::Time& elapsed)
 	{
 		makeDead();
 	}
-	else
+	else if (sprite_.getRotation() == 0)
 	{
 		sprite_.setPosition(sf::Vector2f(pos.x + SPEED * msElapsed, pos.y));
+	}
+	else if (sprite_.getRotation() == 90)
+	{
+		sprite_.setPosition(sf::Vector2f(pos.x, pos.y + SPEED * msElapsed));
+	}
+	else if (sprite_.getRotation() == 180)
+	{
+		sprite_.setPosition(sf::Vector2f(pos.x - SPEED * msElapsed, pos.y));
+	}
+	else if (sprite_.getRotation() == 270)
+	{
+		sprite_.setPosition(sf::Vector2f(pos.x, pos.y - SPEED * msElapsed));
 	}
 }
 
