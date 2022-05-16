@@ -11,9 +11,10 @@ const int WINDOW_HEIGHT = 600;
 
 Ship::Ship()
 {
+	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
 	sprite_.setTexture(GAME.getTexture("Resources/ship.png"));
 	sprite_.setPosition(sf::Vector2f(100, 100));
-	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
+
 }
 
 void Ship::draw()
