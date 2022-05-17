@@ -112,6 +112,7 @@
     <Image Include="Resources\explosion-spritesheet.png" />
     <Image Include="Resources\laser.png" />
     <Image Include="Resources\meteor.png" />
+    <Image Include="Resources\enemy.png" />
     <Image Include="Resources\ship.png" />
   </ItemGroup>
   <ItemGroup>
