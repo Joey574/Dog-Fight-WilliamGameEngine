@@ -13,9 +13,9 @@ Enemy::Enemy()
 {
 	sprite_.setRotation(180);
 	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
-	sprite_.setTexture(GAME.getTexture("Resources/ship.png"));
+	sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
 	sprite_.setPosition(sf::Vector2f(730, 530));
-
+	assignTag("ship");
 }
 
 void Enemy::draw()
@@ -84,29 +84,49 @@ void Enemy::update(sf::Time& elapsed)
 		float laserX;
 		float laserY;
 
-		if (sprite_.getRotation() == 0 || sprite_.getRotation() == 180)
+		if (sprite_.getRotation() == 0)
 		{
-			laserX = x + (bounds.width / 3.5f);
+			laserX = x + (bounds.width / 3.5f) + 5;
 			laserY = y + (bounds.height / 3.5f) - 5;
 		}
-		else
+		else if (sprite_.getRotation() == 180)
 		{
-			laserX = x + (bounds.width / 3.5f);
-			laserY = y + (bounds.height / 3.5f);
+			laserX = x + (bounds.width / 3.5f) - 55;
+			laserY = y + (bounds.height / 3.5f) - 6;
+		}
+		else if (sprite_.getRotation() == 90)
+		{
+			laserX = x + (bounds.width / 3.5f) - 5;
+			laserY = y + (bounds.height / 3.5f) + 10;
+		}
+		else if (sprite_.getRotation() == 270)
+		{
+			laserX = x + (bounds.width / 3.5f) - 6;
+			laserY = y + (bounds.height / 3.5f) - 60;
 		}
 
 		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
 		GAME.getCurrentScene().addGameObject(laser);
 
-		if (sprite_.getRotation() == 0 || sprite_.getRotation() == 180)
+		if (sprite_.getRotation() == 0)
 		{
-			laserX = x + (bounds.width / 3.5f);
+			laserX = x + (bounds.width / 3.5f) + 5;
 			laserY = y - (bounds.height / 3.5f) + 8;
 		}
-		else
+		else if (sprite_.getRotation() == 180)
 		{
-			laserX = x - (bounds.width / 3.5f);
-			laserY = y + (bounds.height / 3.5f);
+			laserX = x + (bounds.width / 3.5f) - 55;
+			laserY = y - (bounds.height / 3.5f) + 7;
+		}
+		else if (sprite_.getRotation() == 90)
+		{
+			laserX = x - (bounds.width / 3.5f) + 5;
+			laserY = y + (bounds.height / 3.5f) + 10;
+		}
+		else if (sprite_.getRotation() == 270)
+		{
+			laserX = x - (bounds.width / 3.5f) + 8;
+			laserY = y + (bounds.height / 3.5f) - 60;
 		}
 
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());

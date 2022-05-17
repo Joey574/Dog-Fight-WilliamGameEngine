@@ -58,7 +58,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\ship.png">
+    <Image Include="Resources\enemy.png">
       <Filter>Resources</Filter>
     </Image>
     <Image Include="Resources\laser.png">
@@ -68,6 +68,9 @@
       <Filter>Resources</Filter>
     </Image>
     <Image Include="Resources\explosion-spritesheet.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\ship.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
