@@ -9,7 +9,7 @@ class GameScene : public Scene {
 
   int getAmmo();
 
-  void decreaseAmmo();
+  void decreaseAmmo(int a);
 private:
 	int ammo_ = 5;
 };

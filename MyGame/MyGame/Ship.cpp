@@ -82,7 +82,8 @@ void Ship::update(sf::Time& elapsed)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && fireTimer_ <= 0 && scene.getAmmo() > 0)
 	{
-		scene.decreaseAmmo();
+		int shotsf = 2;
+		scene.decreaseAmmo(shotsf);
 		fireTimer_ = FIRE_DELAY;
 
 		sf::FloatRect bounds = sprite_.getGlobalBounds();

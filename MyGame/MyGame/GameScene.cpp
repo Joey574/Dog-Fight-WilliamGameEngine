@@ -16,7 +16,7 @@ int GameScene::getAmmo()
 	return ammo_;
 }
 
-void GameScene::decreaseAmmo()
+void GameScene::decreaseAmmo(int a)
 {
-	ammo_--;
+	ammo_ -= a;
 }
