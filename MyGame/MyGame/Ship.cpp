@@ -2,6 +2,9 @@
 
 #include <memory>
 #include "Laser.h"
+#include "Ammo.h"
+#include "GameScene.h"
+#include <sstream>
 
 const float SPEED = 0.4f;
 const int FIRE_DELAY = 200;
@@ -24,11 +27,14 @@ void Ship::draw()
 
 void Ship::update(sf::Time& elapsed)
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();
 	float x = pos.x;
 	float y = pos.y;
 
 	int msElapsed = elapsed.asMilliseconds();
+
+	int ammo = scene.getAmmo();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -74,8 +80,9 @@ void Ship::update(sf::Time& elapsed)
 	{
 		fireTimer_ -= msElapsed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && fireTimer_ <= 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && fireTimer_ <= 0 && scene.getAmmo() > 0)
 	{
+		scene.decreaseAmmo();
 		fireTimer_ = FIRE_DELAY;
 
 		sf::FloatRect bounds = sprite_.getGlobalBounds();

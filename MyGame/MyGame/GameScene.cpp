@@ -11,12 +11,12 @@ GameScene::GameScene()
 	addGameObject(enemy);
 }
 
-int GameScene::getScore()
+int GameScene::getAmmo()
 {
-	return score_;
+	return ammo_;
 }
 
-void GameScene::increaseScore()
+void GameScene::decreaseAmmo()
 {
-	score_++;
+	ammo_--;
 }
