@@ -21,6 +21,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Ammo2.cpp" />
+    <ClCompile Include="Background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -45,6 +46,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Ammo.h" />
     <ClInclude Include="Ammo2.h" />
+    <ClInclude Include="Background.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
