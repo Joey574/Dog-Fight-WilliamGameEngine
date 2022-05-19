@@ -79,7 +79,7 @@ void Ship::update(sf::Time& elapsed)
 	{
 		fireTimer_ -= msElapsed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
 	{
 		int shotsf = 2;
 		scene.decreaseAmmo1(shotsf);

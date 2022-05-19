@@ -80,7 +80,7 @@ void Enemy::update(sf::Time& elapsed)
 	{
 		fireTimer_ -= msElapsed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 	{
 		int shotsf = 2;
 		scene.decreaseAmmo2(shotsf);
