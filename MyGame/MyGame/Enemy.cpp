@@ -36,22 +36,22 @@ void Enemy::update(sf::Time& elapsed)
 	int msElapsed = elapsed.asMilliseconds();
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		y -= SPEED * msElapsed;
 		sprite_.setRotation(270);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		y += SPEED * msElapsed;
 		sprite_.setRotation(90);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		x -= SPEED * msElapsed;
 		sprite_.setRotation(180);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		x += SPEED * msElapsed;
 		sprite_.setRotation(0);

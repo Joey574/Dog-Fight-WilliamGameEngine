@@ -7,7 +7,7 @@ Ammo2::Ammo2()
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
 	text_.setPosition(670, 5);
 	text_.setCharacterSize(24);
-	text_.setFillColor(sf::Color::White);
+	text_.setFillColor(sf::Color::Red);
 	assignTag("ammo2");
 }
 
