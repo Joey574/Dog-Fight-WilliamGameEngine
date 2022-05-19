@@ -20,6 +20,7 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Ammo.cpp" />
+    <ClCompile Include="Ammo2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -43,6 +44,7 @@
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Ammo.h" />
+    <ClInclude Include="Ammo2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
