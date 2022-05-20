@@ -58,13 +58,13 @@ void Laser::handleCollision(GameObject& otherGameObject)
 	if (otherGameObject.hasTag("ship"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		otherGameObject.makeDead();
+		scene.decreaseHealth1();
 	}
 
 	if (otherGameObject.hasTag("enemy"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		otherGameObject.makeDead();
+		scene.decreaseHealth2();
 	}
 
 	makeDead();

@@ -28,12 +28,18 @@ void Enemy::draw()
 
 void Enemy::update(sf::Time& elapsed)
 {
+	
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();
 	float x = pos.x;
 	float y = pos.y;
 
 	int msElapsed = elapsed.asMilliseconds();
+
+	if (scene.getHealth2() < 1)
+	{
+		makeDead();
+	}
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

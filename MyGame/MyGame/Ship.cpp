@@ -34,6 +34,10 @@ void Ship::update(sf::Time& elapsed)
 
 	int msElapsed = elapsed.asMilliseconds();
 
+	if (scene.getHealth1() < 1)
+	{
+		makeDead();
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{

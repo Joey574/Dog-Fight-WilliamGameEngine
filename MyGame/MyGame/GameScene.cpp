@@ -4,6 +4,8 @@
 #include "Ammo.h"
 #include "Ammo2.h"
 #include "Background.h"
+#include "Health1.h"
+#include "Health2.h"
 
 GameScene::GameScene()
 {
@@ -21,6 +23,12 @@ GameScene::GameScene()
 
 	Ammo2Ptr ammo2 = std::make_shared<Ammo2>();
 	addGameObject(ammo2);
+
+	Health1Ptr health1 = std::make_shared<Health1>();
+	addGameObject(health1);
+
+	Health2Ptr health2 = std::make_shared<Health2>();
+	addGameObject(health2);
 }
 
 int GameScene::getAmmo1()
@@ -48,9 +56,9 @@ int GameScene::getHealth1()
 	return health1_;
 }
 
-void GameScene::decreaseHealth1(int a)
+void GameScene::decreaseHealth1()
 {
-	health1_ -= a;
+	health1_ --;
 }
 
 int GameScene::getHealth2()
@@ -58,7 +66,7 @@ int GameScene::getHealth2()
 	return health2_;
 }
 
-void GameScene::decreaseHealth2(int a)
+void GameScene::decreaseHealth2()
 {
-	health2_ -= a;
+	health2_ --;
 }

@@ -19,9 +19,9 @@ class GameScene : public Scene {
 
   int getHealth2();
 
-  void decreaseHealth1(int a);
+  void decreaseHealth1();
 
-  void decreaseHealth2(int a);
+  void decreaseHealth2();
 private:
 	int ammo1_ = 200;
 	int ammo2_ = 200;

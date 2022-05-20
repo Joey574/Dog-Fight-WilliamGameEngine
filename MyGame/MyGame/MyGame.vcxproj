@@ -92,6 +92,8 @@
     <ClCompile Include="Engine\Scene.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Health1.cpp" />
+    <ClCompile Include="Health2.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -108,6 +110,8 @@
     <ClInclude Include="Engine\Scene.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Health1.h" />
+    <ClInclude Include="Health2.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>

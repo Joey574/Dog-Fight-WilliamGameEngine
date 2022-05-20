@@ -22,6 +22,8 @@
     <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Ammo2.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Health1.cpp" />
+    <ClCompile Include="Health2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -47,6 +49,8 @@
     <ClInclude Include="Ammo.h" />
     <ClInclude Include="Ammo2.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Health1.h" />
+    <ClInclude Include="Health2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
