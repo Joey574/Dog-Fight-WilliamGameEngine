@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "Ship.h"
 #include "Enemy.h"
+#include "AI.h"
 #include "Ammo.h"
 #include "Ammo2.h"
 #include "Background.h"
@@ -17,6 +18,9 @@ GameScene::GameScene()
 
 	EnemyPtr enemy = std::make_shared<Enemy>();
 	addGameObject(enemy);
+
+	/*AIPtr ai = std::make_shared<AI>();
+	addGameObject(ai);*/
 
 	AmmoPtr ammo = std::make_shared<Ammo>();
 	addGameObject(ammo);
@@ -70,3 +74,8 @@ void GameScene::decreaseHealth2()
 {
 	health2_ --;
 }
+
+//sf::Vector2f getShipCords()
+//{
+//	Ship::
+//}

@@ -69,3 +69,4 @@ void Laser::handleCollision(GameObject& otherGameObject)
 
 	makeDead();
 }
+

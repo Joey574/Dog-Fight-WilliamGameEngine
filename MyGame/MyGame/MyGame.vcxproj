@@ -82,6 +82,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Ammo2.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -99,6 +100,7 @@
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Ammo.h" />
     <ClInclude Include="Ammo2.h" />
     <ClInclude Include="Background.h" />

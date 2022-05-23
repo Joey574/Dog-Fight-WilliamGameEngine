@@ -24,6 +24,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
+    <ClCompile Include="AI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -51,6 +52,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
+    <ClInclude Include="AI.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
