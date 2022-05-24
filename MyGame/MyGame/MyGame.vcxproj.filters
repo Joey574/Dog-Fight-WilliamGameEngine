@@ -25,6 +25,7 @@
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="Buff.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -53,6 +54,7 @@
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Buff.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

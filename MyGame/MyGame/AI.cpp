@@ -29,7 +29,8 @@ void AI::draw()
 
 void AI::update(sf::Time& elapsed)
 {
-	sf::Vector2f ship = shipPos();
+
+	//sf::Vector2f ship = shipPos();
 
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();

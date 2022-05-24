@@ -15,6 +15,10 @@ class GameScene : public Scene {
 
   void decreaseAmmo2(int a);
 
+  void increaseAmmo1();
+
+  void increaseAmmo2();
+
   int getHealth1();
 
   int getHealth2();
@@ -22,6 +26,10 @@ class GameScene : public Scene {
   void decreaseHealth1();
 
   void decreaseHealth2();
+  
+  void increaseHealth1();
+
+  void increaseHealth2();
 
   sf::Vector2f getShipCords();
 

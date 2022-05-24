@@ -86,6 +86,7 @@
     <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Ammo2.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Buff.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine\AnimatedSprite.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="Ammo.h" />
     <ClInclude Include="Ammo2.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Buff.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine\AnimatedSprite.h" />
     <ClInclude Include="Engine\Game.h" />
