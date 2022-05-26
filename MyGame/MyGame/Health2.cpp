@@ -1,27 +1,27 @@
-#include "Ammo.h"
+#include "Health2.h"
 #include "GameScene.h"
 #include <sstream>
 
-Ammo::Ammo()
+Health2::Health2()
 {
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
-	text_.setPosition(10, 25);
+	text_.setPosition(670, 5);
 	text_.setCharacterSize(24);
-	text_.setFillColor(sf::Color::Blue);
-	assignTag("ammo");
+	text_.setFillColor(sf::Color::Red);
+	assignTag("health2");
 }
 
-void Ammo::draw()
+void Health2::draw()
 {
 	GAME.getRenderWindow().draw(text_);
 }
 
-void Ammo::update(sf::Time& elapsed)
+void Health2::update(sf::Time& elapsed)
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 
 	std::stringstream stream;
-	stream << "Ammo: " << scene.getAmmo1();
+	stream << "HP: " << scene.getHealth2();
 
 	text_.setString(stream.str());
 }

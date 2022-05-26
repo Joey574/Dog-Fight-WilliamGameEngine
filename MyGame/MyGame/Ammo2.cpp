@@ -1,27 +1,27 @@
-#include "Ammo.h"
+#include "Ammo2.h"
 #include "GameScene.h"
 #include <sstream>
 
-Ammo::Ammo()
+Ammo2::Ammo2()
 {
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
-	text_.setPosition(10, 25);
+	text_.setPosition(670, 25);
 	text_.setCharacterSize(24);
-	text_.setFillColor(sf::Color::Blue);
-	assignTag("ammo");
+	text_.setFillColor(sf::Color::Red);
+	assignTag("ammo2");
 }
 
-void Ammo::draw()
+void Ammo2::draw()
 {
 	GAME.getRenderWindow().draw(text_);
 }
 
-void Ammo::update(sf::Time& elapsed)
+void Ammo2::update(sf::Time& elapsed)
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 
 	std::stringstream stream;
-	stream << "Ammo: " << scene.getAmmo1();
+	stream << "Ammo: " << scene.getAmmo2();
 
 	text_.setString(stream.str());
 }

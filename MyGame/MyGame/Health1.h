@@ -2,11 +2,11 @@
 
 #include "Engine/GameEngine.h"
 
-class Ammo : public GameObject
+class Health1 : public GameObject
 {
 public:
-	// Creates the Ammo instance.
-	Ammo();
+	// Creates the Health instance.
+	Health1();
 
 	// Functions overrid from GameObject:
 	void draw();
@@ -15,4 +15,4 @@ private:
 	sf::Text text_;
 };
 
-typedef std::shared_ptr<Ammo> AmmoPtr;
+typedef std::shared_ptr<Health1>Health1Ptr;

@@ -1,10 +1,11 @@
-#include "Ship.h"
+#include "AI.h"
 
 #include <memory>
 #include "Laser.h"
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
+#include "Ship.h"
 
 const float SPEED = 0.4f;
 const int FIRE_DELAY = 200;
@@ -12,21 +13,25 @@ const int FIRE_DELAY = 200;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-Ship::Ship()
+AI::AI()
 {
+	sprite_.setRotation(180);
 	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
-	sprite_.setTexture(GAME.getTexture("Resources/ship.png"));
-	sprite_.setPosition(sf::Vector2f(100, 100));
-	assignTag("ship");
+	sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
+	sprite_.setPosition(sf::Vector2f(730, 530));
+	assignTag("enemy");
 }
 
-void Ship::draw()
+void AI::draw()
 {
 	GAME.getRenderWindow().draw(sprite_);
 }
 
-void Ship::update(sf::Time& elapsed)
+void AI::update(sf::Time& elapsed)
 {
+
+	//sf::Vector2f ship = shipPos();
+
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();
 	float x = pos.x;
@@ -34,27 +39,28 @@ void Ship::update(sf::Time& elapsed)
 
 	int msElapsed = elapsed.asMilliseconds();
 
-	if (scene.getHealth1() < 1)
+	if (scene.getHealth2() < 1)
 	{
 		makeDead();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		y -= SPEED * msElapsed;
 		sprite_.setRotation(270);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		y += SPEED * msElapsed;
 		sprite_.setRotation(90);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		x -= SPEED * msElapsed;
 		sprite_.setRotation(180);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		x += SPEED * msElapsed;
 		sprite_.setRotation(0);
@@ -83,10 +89,10 @@ void Ship::update(sf::Time& elapsed)
 	{
 		fireTimer_ -= msElapsed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 	{
 		int shotsf = 2;
-		scene.decreaseAmmo1(shotsf);
+		scene.decreaseAmmo2(shotsf);
 		fireTimer_ = FIRE_DELAY;
 
 		sf::FloatRect bounds = sprite_.getGlobalBounds();
@@ -144,12 +150,7 @@ void Ship::update(sf::Time& elapsed)
 	}
 }
 
-sf::FloatRect Ship::getCollisionRect()
+sf::FloatRect AI::getCollisionRect()
 {
 	return sprite_.getGlobalBounds();
-}
-
-sf::Vector2f Ship::shipPos()
-{
-	return sprite_.getPosition();
 }

@@ -20,7 +20,12 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Ammo.cpp" />
-    <ClCompile Include="AwesomeMusic.cpp" />
+    <ClCompile Include="Ammo2.cpp" />
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Health1.cpp" />
+    <ClCompile Include="Health2.cpp" />
+    <ClCompile Include="AI.cpp" />
+    <ClCompile Include="Buff.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -44,7 +49,12 @@
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Ammo.h" />
-    <ClInclude Include="AwesomeMusic.h" />
+    <ClInclude Include="Ammo2.h" />
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="Health1.h" />
+    <ClInclude Include="Health2.h" />
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="Buff.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
