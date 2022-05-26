@@ -34,8 +34,8 @@ class GameScene : public Scene {
   sf::Vector2f getShipCords();
 
 private:
-	int ammo1_ = 200;
-	int ammo2_ = 200;
+	int ammo1_ = 100;
+	int ammo2_ = 100;
 	int health1_ = 10;
 	int health2_ = 10;
 };
