@@ -7,10 +7,9 @@
 class Buff : public GameObject
 {
 public:
-	Buff(sf::Vector2f pos);
+	Buff();
 
 	void draw();
-	void update(sf::Time& elapsed);
 	sf::FloatRect getCollisionRect();
 	void handleCollision(GameObject& otherGameObject);
 
@@ -19,4 +18,4 @@ private:
 	int type;
 };
 
-typedef std::shared_ptr<Buff> LaserPtr;
+typedef std::shared_ptr<Buff> BuffPtr;

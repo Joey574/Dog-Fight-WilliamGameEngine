@@ -26,6 +26,7 @@
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Buff.cpp" />
+    <ClCompile Include="BuffSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -55,6 +56,7 @@
     <ClInclude Include="Health2.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Buff.h" />
+    <ClInclude Include="BuffSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -83,6 +85,12 @@
       <Filter>Resources</Filter>
     </Image>
     <Image Include="Resources\ship.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\Ammo.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\Health.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "Background.h"
 #include "Health1.h"
 #include "Health2.h"
+#include "BuffSpawner.h"
 
 GameScene::GameScene()
 {
@@ -33,6 +34,9 @@ GameScene::GameScene()
 
 	Health2Ptr health2 = std::make_shared<Health2>();
 	addGameObject(health2);
+
+	BuffSpawnerPtr buffspawner = std::make_shared<BuffSpawner>();
+	addGameObject(buffspawner);
 }
 
 int GameScene::getAmmo1()
