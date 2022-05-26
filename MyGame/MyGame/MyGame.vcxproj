@@ -87,6 +87,7 @@
     <ClCompile Include="Ammo2.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Buff.cpp" />
+    <ClCompile Include="BuffSpawner.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine\AnimatedSprite.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Ammo2.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Buff.h" />
+    <ClInclude Include="BuffSpawner.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine\AnimatedSprite.h" />
     <ClInclude Include="Engine\Game.h" />
@@ -123,7 +125,9 @@
     <None Include="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Ammo.png" />
     <Image Include="Resources\explosion-spritesheet.png" />
+    <Image Include="Resources\Health.png" />
     <Image Include="Resources\laser.png" />
     <Image Include="Resources\meteor.png" />
     <Image Include="Resources\enemy.png" />
