@@ -98,6 +98,7 @@
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
@@ -119,9 +120,11 @@
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
     <ClInclude Include="Laser.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Awesome Music.aif" />
     <None Include="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
