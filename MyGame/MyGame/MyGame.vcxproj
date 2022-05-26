@@ -83,6 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ammo.cpp" />
+    <ClCompile Include="AwesomeMusic.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine\AnimatedSprite.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ammo.h" />
+    <ClInclude Include="AwesomeMusic.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine\AnimatedSprite.h" />
     <ClInclude Include="Engine\Game.h" />
