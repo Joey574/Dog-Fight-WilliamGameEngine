@@ -27,6 +27,7 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffSpawner.cpp" />
+    <ClCompile Include="Music.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -57,6 +58,7 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffSpawner.h" />
+    <ClInclude Include="Music.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -68,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\README.md">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\Awesome Music.aif">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>
