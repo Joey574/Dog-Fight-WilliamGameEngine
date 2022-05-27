@@ -22,6 +22,21 @@ Buff::Buff()
 		assignTag("ammo+");
 		sprite_.setTexture(GAME.getTexture("Resources/Ammo.png"));
 	}
+	else if (type == 3)
+	{
+		assignTag("flak+");
+		sprite_.setTexture(GAME.getTexture("Resources/Ammo.png"));
+	}
+	else if (type == 4)
+	{
+		assignTag("barrels+");
+		sprite_.setTexture(GAME.getTexture("Resources/Ammo.png"));
+	}
+	else if(type == 5)
+	{
+		assignTag("shotgun+");
+		sprite_.setTexture(GAME.getTexture("Resources/Ammo.png"));
+	}
 }
 
 void Buff::draw()

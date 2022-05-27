@@ -1,7 +1,7 @@
 #include "BuffSpawner.h"
 
 
-const int SPAWN_DELAY = 5;
+const int SPAWN_DELAY = 10;
 
 void BuffSpawner::update(sf::Time& elapsed)
 {

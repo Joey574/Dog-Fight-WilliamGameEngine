@@ -57,7 +57,7 @@ void Ship::update(sf::Time& elapsed)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		x += SPEED * msElapsed;
-		sprite_.setRotation(0);
+		sprite_.setRotation(45);
 	}
 
 	if (x - 50 > GAME.getRenderWindow().getSize().x)
