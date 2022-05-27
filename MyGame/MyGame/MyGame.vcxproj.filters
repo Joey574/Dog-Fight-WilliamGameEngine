@@ -72,9 +72,6 @@
     <None Include="Resources\README.md">
       <Filter>Resources</Filter>
     </None>
-    <None Include="Resources\Awesome Music.aif">
-      <Filter>Resources</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\enemy.png">
@@ -101,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\boom.wav">
+      <Filter>Resources</Filter>
+    </Media>
+    <Media Include="Resources\Awesome Music.wav">
       <Filter>Resources</Filter>
     </Media>
   </ItemGroup>

@@ -8,11 +8,15 @@
 #include "Health1.h"
 #include "Health2.h"
 #include "BuffSpawner.h"
+#include "Music.h"
 
 GameScene::GameScene()
 {
 	BackgroundPtr background = std::make_shared<Background>();
 	addGameObject(background);
+
+	MusicPtr music = std::make_shared<Music>();
+	addGameObject(music);
 
 	ShipPtr ship = std::make_shared<Ship>();
 	addGameObject(ship);

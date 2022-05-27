@@ -124,7 +124,6 @@
     <ClInclude Include="Ship.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Awesome Music.aif" />
     <None Include="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +136,7 @@
     <Image Include="Resources\ship.png" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Resources\Awesome Music.wav" />
     <Media Include="Resources\boom.wav" />
   </ItemGroup>
   <ItemGroup>
