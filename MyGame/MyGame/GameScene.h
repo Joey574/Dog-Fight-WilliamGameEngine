@@ -31,7 +31,6 @@ class GameScene : public Scene {
 
   void increaseHealth2();
 
-  sf::Vector2f getShipCords();
 
 private:
 	int ammo1_ = 100;

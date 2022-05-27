@@ -48,38 +48,3 @@ sf::FloatRect Buff::getCollisionRect()
 {
 	return sprite_.getGlobalBounds();
 }
-
-void Buff::handleCollision(GameObject& otherGameObject)
-{
-	GameScene& scene = (GameScene&)GAME.getCurrentScene();
-
-	sf::Vector2f pos = sprite_.getPosition();
-
-	if (otherGameObject.hasTag("ship"))
-	{
-		if (hasTag("health+"))
-		{
-			scene.increaseHealth1();
-		}
-		else if (hasTag("ammo+"))
-		{
-			scene.increaseAmmo1();
-		}
-		makeDead();
-	}
-
-	if (otherGameObject.hasTag("enemy"))
-	{
-		if (hasTag("health+"))
-		{
-			scene.increaseHealth2();
-		}
-		else if (hasTag("ammo+"))
-		{
-			scene.increaseAmmo2();
-		}
-		makeDead();
-	}
-
-	makeDead();
-}

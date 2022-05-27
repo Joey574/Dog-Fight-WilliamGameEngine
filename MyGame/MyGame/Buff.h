@@ -11,7 +11,6 @@ public:
 
 	void draw();
 	sf::FloatRect getCollisionRect();
-	void handleCollision(GameObject& otherGameObject);
 
 private:
 	sf::Sprite sprite_;
