@@ -81,6 +81,10 @@ int GameScene::getHealth1()
 void GameScene::decreaseHealth1()
 {
 	health1_ --;
+	if (health1_ < 0)
+	{
+		health1_ = 0;
+	}
 }
 
 void GameScene::increaseHealth1()
@@ -100,6 +104,10 @@ int GameScene::getHealth2()
 void GameScene::decreaseHealth2()
 {
 	health2_ --;
+	if (health2_ < 0)
+	{
+		health2_ = 0;
+	}
 }
 
 void GameScene::increaseHealth2()
@@ -110,8 +118,3 @@ void GameScene::increaseHealth2()
 		health2_ = 10;
 	}
 }
-
-//sf::Vector2f getShipCords()
-//{
-//	Ship::
-//}
