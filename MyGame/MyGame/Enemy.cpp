@@ -28,6 +28,7 @@ void Enemy::draw()
 
 void Enemy::update(sf::Time& elapsed)
 {
+	int weaptime;
 	
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();
@@ -88,7 +89,23 @@ void Enemy::update(sf::Time& elapsed)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 	{
-		int shotsf = 2;
+		int shotsf;
+		if (weapon_ == 1)
+		{
+			shotsf = 2;
+		}
+		if (weapon_ == 2)
+		{
+			shotsf = 2;
+		}
+		if (weapon_ == 3)
+		{
+			shotsf = 3;
+		}
+		if (weapon_ == 4)
+		{
+			shotsf = 5;
+		}
 		scene.decreaseAmmo2(shotsf);
 		fireTimer_ = FIRE_DELAY;
 
