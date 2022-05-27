@@ -55,7 +55,7 @@ void GameScene::decreaseAmmo1(int a)
 
 void GameScene::increaseAmmo1()
 {
-	ammo1_ = 200;
+	ammo1_ = 100;
 }
 
 int GameScene::getAmmo2()
@@ -70,7 +70,7 @@ void GameScene::decreaseAmmo2(int a)
 
 void GameScene::increaseAmmo2()
 {
-	ammo2_ = 200;
+	ammo2_ = 100;
 }
 
 int GameScene::getHealth1()
@@ -86,6 +86,10 @@ void GameScene::decreaseHealth1()
 void GameScene::increaseHealth1()
 {
 	health1_ += 5;
+	if (health1_ > 10)
+	{
+		health1_ = 10;
+	}
 }
 
 int GameScene::getHealth2()
@@ -101,6 +105,10 @@ void GameScene::decreaseHealth2()
 void GameScene::increaseHealth2()
 {
 	health2_ += 5;
+	if (health2_ > 10)
+	{
+		health2_ = 10;
+	}
 }
 
 //sf::Vector2f getShipCords()
