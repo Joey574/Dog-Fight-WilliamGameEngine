@@ -14,7 +14,7 @@ const int WINDOW_HEIGHT = 600;
 
 Ship::Ship()
 {
-	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
+	sprite_.setOrigin(sf::Vector2f(42, 60));
 	sprite_.setTexture(GAME.getTexture("Resources/ship.png"));
 	sprite_.setPosition(sf::Vector2f(100, 100));
 	assignTag("ship");
@@ -32,6 +32,11 @@ void Ship::update(sf::Time& elapsed)
 	float x = pos.x;
 	float y = pos.y;
 
+	bool up = false;
+	bool down = false;
+	bool left = false;
+	bool right = false;
+
 	int msElapsed = elapsed.asMilliseconds();
 
 	if (scene.getHealth1() < 1)
@@ -42,23 +47,57 @@ void Ship::update(sf::Time& elapsed)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		y -= SPEED * msElapsed;
-		sprite_.setRotation(270);
+		up = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		y += SPEED * msElapsed;
-		sprite_.setRotation(90);
+		down = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		x -= SPEED * msElapsed;
-		sprite_.setRotation(180);
+		left = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		x += SPEED * msElapsed;
+		right = true;
+	}
+
+	if (up && left)
+	{
+		sprite_.setRotation(225);
+	}
+	else if (up && right)
+	{
+		sprite_.setRotation(315);
+	}
+	else if (down && left)
+	{
+		sprite_.setRotation(135);
+	}
+	else if (down && right)
+	{
+		sprite_.setRotation(45);
+	}
+	else if (down)
+	{
+		sprite_.setRotation(90);
+	}
+	else if (up)
+	{
+		sprite_.setRotation(270);
+	}
+	else if (left)
+	{
+		sprite_.setRotation(180);
+	}
+	else if (right)
+	{
 		sprite_.setRotation(0);
 	}
+
 
 	if (x - 50 > GAME.getRenderWindow().getSize().x)
 	{
@@ -94,26 +133,8 @@ void Ship::update(sf::Time& elapsed)
 		float laserX;
 		float laserY;
 
-		if (sprite_.getRotation() == 0)
-		{
-			laserX = x + (bounds.width / 3.5f) + 5;
-			laserY = y + (bounds.height / 3.5f) - 5;
-		}
-		else if (sprite_.getRotation() == 180)
-		{
-			laserX = x + (bounds.width / 3.5f) - 55;
-			laserY = y + (bounds.height / 3.5f) - 6;
-		}
-		else if (sprite_.getRotation() == 90)
-		{
-			laserX = x + (bounds.width / 3.5f) - 5;
-			laserY = y + (bounds.height / 3.5f) + 10;
-		}
-		else if (sprite_.getRotation() == 270)
-		{
-			laserX = x + (bounds.width / 3.5f) - 6;
-			laserY = y + (bounds.height / 3.5f) - 60;
-		}
+		laserX = x + (bounds.width / 3.5f);
+		laserY = y + (bounds.height / 3.5f);
 
 		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
 		GAME.getCurrentScene().addGameObject(laser);
@@ -123,20 +144,40 @@ void Ship::update(sf::Time& elapsed)
 			laserX = x + (bounds.width / 3.5f) + 5;
 			laserY = y - (bounds.height / 3.5f) + 8;
 		}
+		else if (sprite_.getRotation() == 45)
+		{
+			laserX = x + (bounds.width / 3.5f) + 5;
+			laserY = y - (bounds.height / 3.5f) + 8;
+		}
 		else if (sprite_.getRotation() == 180)
 		{
 			laserX = x + (bounds.width / 3.5f) - 55;
 			laserY = y - (bounds.height / 3.5f) + 7;
+		}
+		else if (sprite_.getRotation() == 225)
+		{
+			laserX = x + (bounds.width / 3.5f) + 5;
+			laserY = y - (bounds.height / 3.5f) + 8;
 		}
 		else if (sprite_.getRotation() == 90)
 		{
 			laserX = x - (bounds.width / 3.5f) + 5;
 			laserY = y + (bounds.height / 3.5f) + 10;
 		}
+		else if (sprite_.getRotation() == 135)
+		{
+			laserX = x + (bounds.width / 3.5f) + 5;
+			laserY = y - (bounds.height / 3.5f) + 8;
+		}
 		else if (sprite_.getRotation() == 270)
 		{
 			laserX = x - (bounds.width / 3.5f) + 8;
 			laserY = y + (bounds.height / 3.5f) - 60;
+		}
+		else if (sprite_.getRotation() == 315)
+		{
+			laserX = x + (bounds.width / 3.5f) + 5;
+			laserY = y - (bounds.height / 3.5f) + 8;
 		}
 
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
