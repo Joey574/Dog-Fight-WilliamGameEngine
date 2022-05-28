@@ -9,9 +9,10 @@ Buff::Buff()
 
 	pos.x = rand() % size.x;
 	pos.y = rand() % size.y;
-	sprite_.setTexture(GAME.getTexture("Resources/meteor.png"));
+	
 	sprite_.setPosition(pos);
 	type = (rand() % 2) + 1;
+
 	if (type == 1)
 	{
 		assignTag("health+");
