@@ -236,3 +236,35 @@ sf::Vector2f Ship::shipPos()
 {
 	return sprite_.getPosition();
 }
+
+void Ship::handleCollision(GameObject& otherGameObject)
+{
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
+
+	if (otherGameObject.hasTag("health+"))
+	{
+		scene.increaseHealth2();
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("ammo+"))
+	{
+		scene.increaseAmmo2();
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("flak+"))
+	{
+		weapon_ = 2;
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("barrels+"))
+	{
+		weapon_ = 3;
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("shotgun+"))
+	{
+		weapon_ = 4;
+		otherGameObject.makeDead();
+	}
+}
