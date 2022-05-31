@@ -35,6 +35,11 @@ void Enemy::update(sf::Time& elapsed)
 	float x = pos.x;
 	float y = pos.y;
 
+	bool up = false;
+	bool down = false;
+	bool left = false;
+	bool right = false;
+
 	int msElapsed = elapsed.asMilliseconds();
 
 	if (scene.getHealth2() < 1)
@@ -42,70 +47,39 @@ void Enemy::update(sf::Time& elapsed)
 		makeDead();
 	}
 
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		y -= SPEED * msElapsed;
-		sprite_.setRotation(270);
+		up = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		y += SPEED * msElapsed;
-		sprite_.setRotation(90);
+		down = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		x -= SPEED * msElapsed;
-		sprite_.setRotation(180);
+		left = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		x += SPEED * msElapsed;
-		sprite_.setRotation(0);
+		right = true;
 	}
 
-	if (x - 50 > GAME.getRenderWindow().getSize().x)
-	{
-		x -= GAME.getRenderWindow().getSize().x + 50;
-	}
-	if (x + 50 < 0)
-	{
-		x += GAME.getRenderWindow().getSize().x + 50;
-	}
-	if (y - 50 > GAME.getRenderWindow().getSize().y)
-	{
-		y -= GAME.getRenderWindow().getSize().y + 50;
-	}
-	if (y + 50 < 0)
-	{
-		y += GAME.getRenderWindow().getSize().y + 50;
-	}
+	rotationSet(up, down, left, right);
 
-	sprite_.setPosition(sf::Vector2f(x, y));
+	edgeCheck(x, y);
 
 	if (fireTimer_ > 0)
 	{
 		fireTimer_ -= msElapsed;
 	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 	{
-		int shotsf;
-		if (weapon_ == 1)
-		{
-			shotsf = 2;
-		}
-		if (weapon_ == 2)
-		{
-			shotsf = 2;
-		}
-		if (weapon_ == 3)
-		{
-			shotsf = 3;
-		}
-		if (weapon_ == 4)
-		{
-			shotsf = 5;
-		}
+		int shotsf = 2;
 		scene.decreaseAmmo2(shotsf);
 		fireTimer_ = FIRE_DELAY;
 
@@ -114,52 +88,60 @@ void Enemy::update(sf::Time& elapsed)
 		float laserX;
 		float laserY;
 
-		if (sprite_.getRotation() == 0)
+		int temp = 1;
+		int rotation = sprite_.getRotation();
+
+		float tempH = bounds.height;
+		float tempW = bounds.width;
+
+		rotationCheck(tempW, tempH, rotation);
+
+		if (rotation == 0 || rotation == 180)
 		{
-			laserX = x + (bounds.width / 3.5f) + 5;
-			laserY = y + (bounds.height / 3.5f) - 5;
+			laserX = x + (tempW / 2.0f);
+			laserY = y + (tempH / 3.5f);
 		}
-		else if (sprite_.getRotation() == 180)
+		else if (rotation == 90 || rotation == 270)
 		{
-			laserX = x + (bounds.width / 3.5f) - 55;
-			laserY = y + (bounds.height / 3.5f) - 6;
+			laserX = x + (tempW / 3.5f);
+			laserY = y + (tempH / 2.0f);
 		}
-		else if (sprite_.getRotation() == 90)
+		else if (rotation == 45 || rotation == 225)
 		{
-			laserX = x + (bounds.width / 3.5f) - 5;
-			laserY = y + (bounds.height / 3.5f) + 10;
+			laserX = x + (tempW / 3.5f);
+			laserY = y + (tempH / 2.0f);
 		}
-		else if (sprite_.getRotation() == 270)
+		else if (rotation == 135 || rotation == 315)
 		{
-			laserX = x + (bounds.width / 3.5f) - 6;
-			laserY = y + (bounds.height / 3.5f) - 60;
+			laserX = x + (tempW / 2.0f);
+			laserY = y + (tempH / 3.5f);
 		}
 
-		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
+		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
 
-		if (sprite_.getRotation() == 0)
+		if (rotation == 0 || rotation == 180)
 		{
-			laserX = x + (bounds.width / 3.5f) + 5;
-			laserY = y - (bounds.height / 3.5f) + 8;
+			laserX = x + (tempW / 2.0f);
+			laserY = y - (tempH / 3.5f);
 		}
-		else if (sprite_.getRotation() == 180)
+		else if (rotation == 90 || rotation == 270)
 		{
-			laserX = x + (bounds.width / 3.5f) - 55;
-			laserY = y - (bounds.height / 3.5f) + 7;
+			laserX = x - (tempW / 3.5f);
+			laserY = y + (tempH / 2.0f);
 		}
-		else if (sprite_.getRotation() == 90)
+		else if (rotation == 45 || rotation == 225)
 		{
-			laserX = x - (bounds.width / 3.5f) + 5;
-			laserY = y + (bounds.height / 3.5f) + 10;
+			laserX = x + (tempW / 2.0f);
+			laserY = y + (tempH / 3.5f);
 		}
-		else if (sprite_.getRotation() == 270)
+		else if (rotation == 135 || rotation == 315)
 		{
-			laserX = x - (bounds.width / 3.5f) + 8;
-			laserY = y + (bounds.height / 3.5f) - 60;
+			laserX = x + (tempW / 3.5f);
+			laserY = y + (tempH / 2.0f);
 		}
 
-		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), sprite_.getRotation());
+		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
 	}
 }
@@ -198,5 +180,88 @@ void Enemy::handleCollision(GameObject& otherGameObject)
 	{
 		weapon_ = 4;
 		otherGameObject.makeDead();
+	}
+}
+
+void Enemy::edgeCheck(float x, float y)
+{
+	if (x - 42 > GAME.getRenderWindow().getSize().x)
+	{
+		x -= GAME.getRenderWindow().getSize().x + 42;
+	}
+	if (x + 42 < 0)
+	{
+		x += GAME.getRenderWindow().getSize().x + 42;
+	}
+	if (y - 60 > GAME.getRenderWindow().getSize().y)
+	{
+		y -= GAME.getRenderWindow().getSize().y + 60;
+	}
+	if (y + 60 < 0)
+	{
+		y += GAME.getRenderWindow().getSize().y + 60;
+	}
+
+	sprite_.setPosition(sf::Vector2f(x, y));
+}
+
+void Enemy::rotationCheck(float& tempW, float& tempH, int rotation)
+{
+	if (rotation == 180)
+	{
+		tempW *= -1;
+	}
+	if (rotation == 270)
+	{
+		tempH *= -1;
+	}
+	if (rotation == 135)
+	{
+		tempW *= -1;
+	}
+	if (rotation == 225)
+	{
+		tempW *= -1;
+		tempH *= -1;
+	}
+	if (rotation == 315)
+	{
+		tempH *= -1;
+	}
+}
+
+void Enemy::rotationSet(bool up, bool down, bool left, bool right)
+{
+	if (up && left)
+	{
+		sprite_.setRotation(225);
+	}
+	else if (up && right)
+	{
+		sprite_.setRotation(315);
+	}
+	else if (down && left)
+	{
+		sprite_.setRotation(135);
+	}
+	else if (down && right)
+	{
+		sprite_.setRotation(45);
+	}
+	else if (down)
+	{
+		sprite_.setRotation(90);
+	}
+	else if (up)
+	{
+		sprite_.setRotation(270);
+	}
+	else if (left)
+	{
+		sprite_.setRotation(180);
+	}
+	else if (right)
+	{
+		sprite_.setRotation(0);
 	}
 }

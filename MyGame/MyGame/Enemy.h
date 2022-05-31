@@ -10,8 +10,13 @@ public:
 
 	void draw();
 	void update(sf::Time& elapsed);
+
 	sf::FloatRect getCollisionRect();
 	void handleCollision(GameObject& otherGameObject);
+
+	void edgeCheck(float x, float y);
+	void rotationCheck(float& tempW, float& tempH, int rotation);
+	void rotationSet(bool up, bool down, bool left, bool right);
 
 private:
 	sf::Sprite sprite_;
