@@ -28,6 +28,8 @@
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffSpawner.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Flak.cpp" />
+    <ClCompile Include="Pellet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -59,6 +61,8 @@
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffSpawner.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Flak.h" />
+    <ClInclude Include="Pellet.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -93,6 +97,15 @@
       <Filter>Resources</Filter>
     </Image>
     <Image Include="Resources\Health.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Downloads\Flak.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Downloads\Shotgun.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Downloads\Trishot.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
