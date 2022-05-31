@@ -32,7 +32,6 @@ private:
 	int shotsf = 2;
 	int FIRE_DELAY = 200;
 	int weapon_ = 1;
-	int weaptime_ = 10;
 };
 
 typedef std::shared_ptr<Ship> ShipPtr;
