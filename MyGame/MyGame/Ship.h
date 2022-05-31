@@ -29,6 +29,7 @@ private:
 	int rotation;
 
 	int fireTimer_ = 0;
+	int shotsf = 2;
 	int FIRE_DELAY = 200;
 	int weapon_ = 1;
 	int weaptime_ = 10;
