@@ -94,12 +94,14 @@
     <ClCompile Include="Engine\GameObject.cpp" />
     <ClCompile Include="Engine\Scene.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Flak.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="MyGame.cpp" />
+    <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -116,17 +118,22 @@
     <ClInclude Include="Engine\GameObject.h" />
     <ClInclude Include="Engine\Scene.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Flak.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\Downloads\Flak.png" />
+    <Image Include="..\..\..\..\..\Downloads\Shotgun.png" />
+    <Image Include="..\..\..\..\..\Downloads\Trishot.png" />
     <Image Include="Resources\Ammo.png" />
     <Image Include="Resources\explosion-spritesheet.png" />
     <Image Include="Resources\Health.png" />
