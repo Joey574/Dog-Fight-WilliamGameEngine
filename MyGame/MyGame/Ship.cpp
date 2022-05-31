@@ -78,7 +78,6 @@ void Ship::update(sf::Time& elapsed)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
 	{
-		scene.decreaseAmmo1(shotsf);
 		fireTimer_ = FIRE_DELAY;
 
 		if (weapon_ == 1)
@@ -137,8 +136,13 @@ void Ship::laserShoot()
 		laserY = y + (tempH / 3.5f);
 	}
 
-	LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
-	GAME.getCurrentScene().addGameObject(laser);
+	if (scene.getAmmo1 > 0)
+	{
+		LaserPtr laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
+		GAME.getCurrentScene().addGameObject(laser);
+		scene.decreaseAmmo1(1);
+	}
+
 
 	if (rotation == 0 || rotation == 180)
 	{
@@ -373,16 +377,19 @@ void Ship::handleCollision(GameObject& otherGameObject)
 	}
 	if (otherGameObject.hasTag("flak+"))
 	{
+		shotsf = 1;
 		weapon_ = 2;
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("barrels+"))
 	{
+		shotsf = 3;
 		weapon_ = 3;
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("shotgun+"))
 	{
+		shotsf = 5;
 		weapon_ = 4;
 		otherGameObject.makeDead();
 	}
