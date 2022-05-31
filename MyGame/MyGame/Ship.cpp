@@ -363,12 +363,12 @@ void Ship::handleCollision(GameObject& otherGameObject)
 
 	if (otherGameObject.hasTag("health+"))
 	{
-		scene.increaseHealth2();
+		scene.increaseHealth1();
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("ammo+"))
 	{
-		scene.increaseAmmo2();
+		scene.increaseAmmo1();
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("flak+"))
