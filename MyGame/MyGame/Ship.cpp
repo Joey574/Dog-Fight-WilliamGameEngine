@@ -8,7 +8,6 @@
 #include <iostream>
 
 const float SPEED = 0.4f;
-const int FIRE_DELAY = 200;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
@@ -142,6 +141,26 @@ void Ship::update(sf::Time& elapsed)
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
 	}
+}
+
+void Ship::laserShoot()
+{
+
+}
+
+void Ship::triLaserShoot()
+{
+
+}
+
+void Ship::flakShoot()
+{
+
+}
+
+void Ship::shotgunShoot()
+{
+
 }
 
 void Ship::edgeCheck(float x, float y)

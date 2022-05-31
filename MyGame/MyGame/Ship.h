@@ -18,9 +18,18 @@ public:
 	void rotationSet(bool up, bool down, bool left, bool right);
 	void handleCollision(GameObject& otherGameObject);
 
+	void laserShoot(); // weapon type 1
+	void shotgunShoot(); // weapon type = 4
+	void triLaserShoot(); // weapon type = 3
+	void flakShoot(); // weapon type = 2
+
 private:
 	sf::Sprite sprite_;
+
+	int rotation;
+
 	int fireTimer_ = 0;
+	int FIRE_DELAY = 200;
 	int weapon_ = 1;
 	int weaptime_ = 10;
 };
