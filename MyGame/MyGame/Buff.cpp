@@ -7,8 +7,8 @@ Buff::Buff()
 	sf::Vector2f pos;
 	sf::Vector2u size = GAME.getRenderWindow().getSize();
 
-	pos.x = rand() % size.x;
-	pos.y = rand() % size.y;
+	pos.x = 20 + rand() % size.x - 60;
+	pos.y = 20 + rand() % size.y - 60;
 	
 	sprite_.setPosition(pos);
 	type = (rand() % 5) + 1;
