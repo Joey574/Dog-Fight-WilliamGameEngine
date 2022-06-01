@@ -318,11 +318,20 @@ int Ship::flakShoot(int ammo)
 
 	if (temp == 0)
 	{
-		rotation += 45;
+		rotation += 15;
 	}
 	else if (temp == 1)
 	{
-		rotation -= 45;
+		rotation -= 15;
+	}
+
+	if (rotation == 360)
+	{
+		rotation = 0;
+	}
+	if (rotation == -15)
+	{
+		rotation == 345;
 	}
 
 	rotationCheck(tempW, tempH, rotation);
@@ -337,7 +346,7 @@ int Ship::flakShoot(int ammo)
 		laserX = x;
 		laserY = y + (tempH / 2.0f);
 	}
-	else if (rotation == 45 || rotation == 225)
+	else if (rotation == 15 || rotation == 345)
 	{
 		laserX = x + (tempW / 2.0f);
 		laserY = y + (tempH / 3.5f);
@@ -346,6 +355,12 @@ int Ship::flakShoot(int ammo)
 	{
 		laserX = x + (tempW / 3.5f);
 		laserY = y + (tempH / 2.0f);
+	}
+	else
+	{
+		laserY = 0;
+		laserX = 0;
+		std::cout << rotation << "\n";
 	}
 
 	if (ammo > 0)
