@@ -14,10 +14,11 @@ const int WINDOW_HEIGHT = 600;
 
 Enemy::Enemy()
 {
-	sprite_.setRotation(180);
+	sprite_.setRotation(135);
 	sprite_.setOrigin(sf::Vector2f(56.5, 56.5));
 	sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-	sprite_.setPosition(sf::Vector2f(730, 530));
+	//sprite_.setPosition(sf::Vector2f(730, 530));
+	sprite_.setPosition(sf::Vector2f(500, 265));
 	assignTag("enemy");
 }
 
