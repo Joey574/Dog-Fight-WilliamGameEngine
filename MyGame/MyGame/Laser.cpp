@@ -30,6 +30,10 @@ void Laser::update(sf::Time& elapsed)
 	{
 		sprite_.setPosition(sf::Vector2f(pos.x + SPEED * msElapsed, pos.y));
 	}
+	else if (sprite_.getRotation() == 15)
+	{
+		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) * 0.965925826f )), pos.y + ((SPEED * msElapsed)) * 0.258819f));
+	}
 	else if (sprite_.getRotation() == 45)
 	{
 		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
@@ -57,6 +61,10 @@ void Laser::update(sf::Time& elapsed)
 	else if (sprite_.getRotation() == 315)
 	{
 		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) / 2.0f)), pos.y - ((SPEED * msElapsed)) / 2.0f));
+	}
+	else if (sprite_.getRotation() == 345)
+	{
+		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) * 0.965925826f)), pos.y - ((SPEED * msElapsed)) / 0.258819f));
 	}
 }
 
