@@ -1,4 +1,6 @@
+#define _USE_MATH_DEFINES
 #include "Laser.h"
+#include <math.h>
 
 const float SPEED = 1.3f;
 
@@ -30,7 +32,7 @@ void Laser::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 45)
 	{
-		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) / 2.0f)), pos.y + ((SPEED * msElapsed)) / 2.0f));
+		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 90)
 	{
@@ -65,6 +67,8 @@ sf::FloatRect Laser::getCollisionRect()
 
 void Laser::handleCollision(GameObject& otherGameObject)
 {
+	float dam = 1;
+
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 
 	sf::Vector2f pos = sprite_.getPosition();
