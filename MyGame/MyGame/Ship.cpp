@@ -92,8 +92,7 @@ void Ship::update(sf::Time& elapsed)
 
 		if (weapon_ == 1)
 		{
-			//ammoReturn = laserShoot(scene.getAmmo1());
-			ammoReturn = flakShoot(scene.getAmmo1());			
+			ammoReturn = laserShoot(scene.getAmmo1());
 		}
 		else if (weapon_ == 2)
 		{
