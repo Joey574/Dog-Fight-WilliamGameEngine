@@ -15,21 +15,41 @@
     </ClCompile>
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Explosion.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Ammo.cpp" />
-    <ClCompile Include="Ammo2.cpp" />
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Health1.cpp" />
-    <ClCompile Include="Health2.cpp" />
-    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffSpawner.cpp" />
     <ClCompile Include="Music.cpp" />
-    <ClCompile Include="Flak.cpp" />
-    <ClCompile Include="Pellet.cpp" />
+    <ClCompile Include="Ship.cpp">
+      <Filter>GShips</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GShips</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>GShips</Filter>
+    </ClCompile>
+    <ClCompile Include="Ammo.cpp">
+      <Filter>GStats</Filter>
+    </ClCompile>
+    <ClCompile Include="Ammo2.cpp">
+      <Filter>GStats</Filter>
+    </ClCompile>
+    <ClCompile Include="Health1.cpp">
+      <Filter>GStats</Filter>
+    </ClCompile>
+    <ClCompile Include="Health2.cpp">
+      <Filter>GStats</Filter>
+    </ClCompile>
+    <ClCompile Include="Flak.cpp">
+      <Filter>GAmmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Laser.cpp">
+      <Filter>GAmmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Pellet.cpp">
+      <Filter>GAmmo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -48,21 +68,41 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Ship.h" />
-    <ClInclude Include="Laser.h" />
     <ClInclude Include="Explosion.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Ammo.h" />
-    <ClInclude Include="Ammo2.h" />
     <ClInclude Include="Background.h" />
-    <ClInclude Include="Health1.h" />
-    <ClInclude Include="Health2.h" />
-    <ClInclude Include="AI.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffSpawner.h" />
     <ClInclude Include="Music.h" />
-    <ClInclude Include="Flak.h" />
-    <ClInclude Include="Pellet.h" />
+    <ClInclude Include="Ship.h">
+      <Filter>GShips</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GShips</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>GShips</Filter>
+    </ClInclude>
+    <ClInclude Include="Ammo.h">
+      <Filter>GStats</Filter>
+    </ClInclude>
+    <ClInclude Include="Ammo2.h">
+      <Filter>GStats</Filter>
+    </ClInclude>
+    <ClInclude Include="Health1.h">
+      <Filter>GStats</Filter>
+    </ClInclude>
+    <ClInclude Include="Health2.h">
+      <Filter>GStats</Filter>
+    </ClInclude>
+    <ClInclude Include="Flak.h">
+      <Filter>GAmmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.h">
+      <Filter>GAmmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Pellet.h">
+      <Filter>GAmmo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -70,6 +110,15 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{97d329b3-5b8c-40b4-8b65-6fbf428de7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GShips">
+      <UniqueIdentifier>{f5452fe4-7fc3-4d4f-a896-e9bee1e37e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GStats">
+      <UniqueIdentifier>{2c6786a2-0bdf-4a22-92ed-aa1d2ea60e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GAmmo">
+      <UniqueIdentifier>{f0b77fc7-8f95-4355-ac94-866674cf93bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
