@@ -70,7 +70,7 @@ void Flak::update(sf::Time& elapsed)
 	//////////////
 	else if (sprite_.getRotation() == 80)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * acos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 85)
 	{
@@ -95,7 +95,7 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 130)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * (M_PI) / 180.0)), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 135)
 	{
