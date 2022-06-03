@@ -6,7 +6,7 @@ const float SPEED = 1.3f;
 
 Flak::Flak(sf::Vector2f pos, int rot)
 {
-	sprite_.setTexture(GAME.getTexture("Resources/laser.png"));
+	sprite_.setTexture(GAME.getTexture("Resources/flak.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
 	assignTag("flak");
@@ -28,11 +28,11 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 350)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0),pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 355)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 0)
 	{
@@ -40,20 +40,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 5)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 10)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	/////////////
 	else if (sprite_.getRotation() == 35)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 40)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 45)
 	{
@@ -61,11 +61,11 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 50)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 55)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	//////////////
 	else if (sprite_.getRotation() == 80)
@@ -74,7 +74,7 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 85)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 90)
 	{
@@ -82,20 +82,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 95)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 100)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	//////////////
 	else if (sprite_.getRotation() == 125)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 130)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * (M_PI) / 180.0)), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 135)
 	{
@@ -103,20 +103,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 140)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 145)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	///////////////
 	else if (sprite_.getRotation() == 170)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 175)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 180)
 	{
@@ -124,20 +124,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 185)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 190)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	///////////
 	else if (sprite_.getRotation() == 215)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 220)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 225)
 	{
@@ -145,20 +145,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 230)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 235)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	////////////
 	else if (sprite_.getRotation() == 260)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 265)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x -= SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 270)
 	{
@@ -166,20 +166,20 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 275)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 280)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	////////
 	else if (sprite_.getRotation() == 305)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 310)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 315)
 	{
@@ -187,11 +187,11 @@ void Flak::update(sf::Time& elapsed)
 	}
 	else if (sprite_.getRotation() == 320)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 	else if (sprite_.getRotation() == 325)
 	{
-	sprite_.setPosition(sf::Vector2f(pos.x += SPEED * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
+	sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
 	}
 }
 
@@ -213,13 +213,13 @@ void Flak::handleCollision(GameObject& otherGameObject)
 	if (otherGameObject.hasTag("ship"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth1();
+		scene.decreaseHealth1(dam);
 	}
 
 	if (otherGameObject.hasTag("enemy"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth2();
+		scene.decreaseHealth2(dam);
 	}
 
 	makeDead();

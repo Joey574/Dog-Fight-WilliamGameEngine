@@ -23,9 +23,9 @@ class GameScene : public Scene {
 
   int getHealth2();
 
-  void decreaseHealth1();
+  void decreaseHealth1(float b);
 
-  void decreaseHealth2();
+  void decreaseHealth2(float b);
   
   void increaseHealth1();
 
@@ -35,8 +35,8 @@ class GameScene : public Scene {
 private:
 	int ammo1_ = 100;
 	int ammo2_ = 100;
-	int health1_ = 10;
-	int health2_ = 10;
+	float health1_ = 10.0;
+	float health2_ = 10.0;
 };
 
 typedef std::shared_ptr<GameScene> GameScenePtr;

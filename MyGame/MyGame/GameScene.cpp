@@ -78,9 +78,9 @@ int GameScene::getHealth1()
 	return health1_;
 }
 
-void GameScene::decreaseHealth1()
+void GameScene::decreaseHealth1(float b)
 {
-	health1_ --;
+	health1_ -= b;
 	if (health1_ < 0)
 	{
 		health1_ = 0;
@@ -101,9 +101,9 @@ int GameScene::getHealth2()
 	return health2_;
 }
 
-void GameScene::decreaseHealth2()
+void GameScene::decreaseHealth2(float b)
 {
-	health2_ --;
+	health2_ -= b;
 	if (health2_ < 0)
 	{
 		health2_ = 0;

@@ -108,6 +108,12 @@
     <Image Include="..\..\..\..\..\Downloads\Trishot.png">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="Resources\flak.png.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\pellet.png.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\boom.wav">
