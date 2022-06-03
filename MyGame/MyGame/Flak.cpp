@@ -6,7 +6,7 @@ const float SPEED = 1.3f;
 
 Flak::Flak(sf::Vector2f pos, int rot)
 {
-	sprite_.setTexture(GAME.getTexture("Resources/laser.png"));
+	sprite_.setTexture(GAME.getTexture("Resources/flak.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
 	assignTag("flak");
@@ -213,13 +213,13 @@ void Flak::handleCollision(GameObject& otherGameObject)
 	if (otherGameObject.hasTag("ship"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth1();
+		scene.decreaseHealth1(dam);
 	}
 
 	if (otherGameObject.hasTag("enemy"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth2();
+		scene.decreaseHealth2(dam);
 	}
 
 	makeDead();

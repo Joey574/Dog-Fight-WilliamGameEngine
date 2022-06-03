@@ -6,7 +6,7 @@ const float SPEED = 1.3f;
 
 Pellet::Pellet(sf::Vector2f pos, int rot)
 {
-	sprite_.setTexture(GAME.getTexture("Resources/laser.png"));
+	sprite_.setTexture(GAME.getTexture("Resources/pellet.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
 	assignTag("pellet");
@@ -213,13 +213,13 @@ void Pellet::handleCollision(GameObject& otherGameObject)
 	if (otherGameObject.hasTag("ship"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth1();
+		scene.decreaseHealth1(dam);
 	}
 
 	if (otherGameObject.hasTag("enemy"))
 	{
 		GAME.getCurrentScene().addGameObject(explosion);
-		scene.decreaseHealth2();
+		scene.decreaseHealth2(dam);
 	}
 
 	makeDead();
