@@ -136,12 +136,12 @@
     <Image Include="..\..\..\..\..\Downloads\Trishot.png" />
     <Image Include="Resources\Ammo.png" />
     <Image Include="Resources\explosion-spritesheet.png" />
-    <Image Include="Resources\flak.png.png" />
     <Image Include="Resources\Health.png" />
     <Image Include="Resources\laser.png" />
     <Image Include="Resources\meteor.png" />
     <Image Include="Resources\enemy.png" />
-    <Image Include="Resources\pellet.png.png" />
+    <Image Include="Resources\pellet.png" />
+    <Image Include="Resources\shell.png" />
     <Image Include="Resources\ship.png" />
   </ItemGroup>
   <ItemGroup>
