@@ -1,5 +1,6 @@
 #include "AI.h"
-
+#include "Flak.h"
+#include "Pellet.h"
 #include <memory>
 #include "Laser.h"
 #include "Ammo.h"
@@ -29,8 +30,8 @@ void AI::draw()
 
 void AI::update(sf::Time& elapsed)
 {
-
-	//sf::Vector2f ship = shipPos();
+	ShipPtr ship = std::make_shared<Ship>();
+	ship.get()->shipPos() = sf::Vector2f target;
 
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 	sf::Vector2f pos = sprite_.getPosition();
