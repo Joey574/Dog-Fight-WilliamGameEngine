@@ -118,3 +118,4 @@ void GameScene::increaseHealth2()
 		health2_ = 10;
 	}
 }
+
