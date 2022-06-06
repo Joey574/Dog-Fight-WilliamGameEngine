@@ -25,7 +25,6 @@ void Laser::update(sf::Time& elapsed)
 	int rotation = sprite_.getRotation();
 	sf::Vector2f pos = sprite_.getPosition();
 
-
 	if (pos.x > GAME.getRenderWindow().getSize().x || pos.y > GAME.getRenderWindow().getSize().y || pos.x < 0 || pos.y < 0)
 	{
 		makeDead();

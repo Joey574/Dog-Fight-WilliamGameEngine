@@ -313,47 +313,57 @@ int Ship::flakShoot(int ammo)
 	float tempH = bounds.height;
 	float tempW = bounds.width;
 
-	int temp = rand() % 3;
+	int rotationChange = 10;
 
-	if (temp == 0)
-	{
-		rotation += 15;
-	}
-	else if (temp == 1)
-	{
-		rotation -= 15;
-	}
-
-	if (rotation == 360)
-	{
-		rotation = 0;
-	}
-	if (rotation == -15)
-	{
-		rotation = 345;
-	}
+	int temp = rand() % 4;
 
 	rotationCheck(tempW, tempH, rotation);
 
 	if (rotation == 0 || rotation == 180)
 	{
-		laserX = x + (tempW / 2.0f);
+		laserX = x + (tempW / 1.75f);
 		laserY = y;
 	}
 	else if (rotation == 90 || rotation == 270)
 	{
 		laserX = x;
-		laserY = y + (tempH / 2.0f);
+		laserY = y + (tempH / 1.75f);
 	}
-	else if (rotation == 15 || rotation == 345)
+	else if (rotation > 0 && rotation < 90 || rotation > 270)
 	{
 		laserX = x + (tempW / 2.0f);
-		laserY = y;
+		laserY = y + (tempW / 2.0f);
 	}
-	else if (rotation == 135 || rotation == 315)
+	else if (rotation > 90 && rotation < 270)
 	{
-		laserX = x;
+		laserX = x + (tempW / 2.0f);
 		laserY = y + (tempH / 2.0f);
+	}
+
+	if (temp == 0)
+	{
+		rotation += 5;
+	}
+	else if (temp == 1)
+	{
+		rotation -= 5;
+	}
+	else if (temp == 2)
+	{
+		rotation -= 10;
+	}
+	else if (temp == 3)
+	{
+		rotation -= 10;
+	}
+
+	for (int i = 0; rotation > 360; i++)
+	{
+		rotation -= 360;
+	}
+	for (int i = 0; rotation < 360; i++)
+	{
+		rotation += 360;
 	}
 
 	if (ammo > 0)
@@ -366,7 +376,9 @@ int Ship::flakShoot(int ammo)
 	return ammo;
 
 }
+
 // Eric you are very cool :)
+
 int Ship::shotgunShoot(int ammo)
 {
 	sf::Vector2f pos = sprite_.getPosition();
@@ -383,7 +395,7 @@ int Ship::shotgunShoot(int ammo)
 	float tempH = bounds.height;
 	float tempW = bounds.width;
 
-	
+	int temp = 0;
 
 	if (temp == 0)
 	{
@@ -473,13 +485,13 @@ void Ship::rotationCheck(float& tempW, float& tempH, int rotation)
 	}
 	if (rotation == 225)
 	{
-		tempW *= -1;
 		tempH *= -1;
+		tempW *= -1;
 	}
 	if (rotation == 315)
 	{
 		tempH *= -1;
-	}
+	}	
 }
 
 void Ship::rotationSet(bool up, bool down, bool left, bool right)
