@@ -2,6 +2,8 @@
 
 #include <memory>
 #include "Laser.h"
+#include "Flak.h"
+#include "Pellet.h"
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
@@ -305,7 +307,7 @@ int Ship::flakShoot(int ammo)
 
 	sf::FloatRect bounds = sprite_.getGlobalBounds();
 
-	LaserPtr laser;
+	FlakPtr flak;
 
 	float laserX;
 	float laserY;
@@ -358,8 +360,8 @@ int Ship::flakShoot(int ammo)
 
 	if (ammo > 0)
 	{
-		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
-		GAME.getCurrentScene().addGameObject(laser);
+		flak = std::make_shared<Flak>(sf::Vector2f(laserX, laserY), rotation);
+		GAME.getCurrentScene().addGameObject(flak);
 		ammo--;
 	}
 
@@ -383,7 +385,7 @@ int Ship::shotgunShoot(int ammo)
 	float tempH = bounds.height;
 	float tempW = bounds.width;
 
-	
+	int temp = rand() % 3;
 
 	if (temp == 0)
 	{
