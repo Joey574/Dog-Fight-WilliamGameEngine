@@ -15,11 +15,6 @@
     </ClCompile>
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Explosion.cpp" />
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Buff.cpp" />
-    <ClCompile Include="BuffSpawner.cpp" />
-    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Ship.cpp">
       <Filter>GShips</Filter>
     </ClCompile>
@@ -50,6 +45,21 @@
     <ClCompile Include="Pellet.cpp">
       <Filter>GAmmo</Filter>
     </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffSpawner.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="Buff.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -68,11 +78,6 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Explosion.h" />
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="Buff.h" />
-    <ClInclude Include="BuffSpawner.h" />
-    <ClInclude Include="Music.h" />
     <ClInclude Include="Ship.h">
       <Filter>GShips</Filter>
     </ClInclude>
@@ -103,6 +108,21 @@
     <ClInclude Include="Pellet.h">
       <Filter>GAmmo</Filter>
     </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffSpawner.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="Buff.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -119,6 +139,9 @@
     </Filter>
     <Filter Include="GAmmo">
       <UniqueIdentifier>{f0b77fc7-8f95-4355-ac94-866674cf93bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ggameparts">
+      <UniqueIdentifier>{e76ed861-31f2-4ab7-8a71-e316c52817d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

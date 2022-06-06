@@ -369,6 +369,69 @@ int Ship::flakShoot(int ammo)
 // Eric you are very cool :)
 int Ship::shotgunShoot(int ammo)
 {
+	sf::Vector2f pos = sprite_.getPosition();
+	float x = pos.x;
+	float y = pos.y;
+
+	sf::FloatRect bounds = sprite_.getGlobalBounds();
+
+	LaserPtr laser;
+
+	float laserX;
+	float laserY;
+
+	float tempH = bounds.height;
+	float tempW = bounds.width;
+
+	
+
+	if (temp == 0)
+	{
+		rotation += 15;
+	}
+	else if (temp == 1)
+	{
+		rotation -= 15;
+	}
+
+	if (rotation == 360)
+	{
+		rotation = 0;
+	}
+	if (rotation == -15)
+	{
+		rotation = 345;
+	}
+
+	rotationCheck(tempW, tempH, rotation);
+
+	if (rotation == 0 || rotation == 180)
+	{
+		laserX = x + (tempW / 2.0f);
+		laserY = y;
+	}
+	else if (rotation == 90 || rotation == 270)
+	{
+		laserX = x;
+		laserY = y + (tempH / 2.0f);
+	}
+	else if (rotation == 15 || rotation == 345)
+	{
+		laserX = x + (tempW / 2.0f);
+		laserY = y;
+	}
+	else if (rotation == 135 || rotation == 315)
+	{
+		laserX = x;
+		laserY = y + (tempH / 2.0f);
+	}
+
+	if (ammo > 0)
+	{
+		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
+		GAME.getCurrentScene().addGameObject(laser);
+		ammo--;
+	}
 	return ammo;
 }
 
