@@ -87,14 +87,13 @@ void Ship::update(sf::Time& elapsed)
 		scene.increaseAmmo1();
 	}
 
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
 	{
 		fireTimer_ = FIRE_DELAY;
 
 		if (weapon_ == 1)
 		{
-			ammoReturn = flakShoot(scene.getAmmo1());
+			ammoReturn = laserShoot(scene.getAmmo1());
 		}
 		else if (weapon_ == 2)
 		{
@@ -115,7 +114,6 @@ void Ship::update(sf::Time& elapsed)
 
 int Ship::laserShoot(int ammo)
 {
-
 	sf::Vector2f pos = sprite_.getPosition();
 	float x = pos.x;
 	float y = pos.y;
@@ -160,7 +158,6 @@ int Ship::laserShoot(int ammo)
 		ammo--;
 	}
 
-
 	if (rotation == 0 || rotation == 180)
 	{
 		laserX = x + (tempW / 2.0f);
@@ -190,7 +187,6 @@ int Ship::laserShoot(int ammo)
 	}
 
 	return ammo;
-
 }
 
 int Ship::triLaserShoot(int ammo)
@@ -384,49 +380,6 @@ int Ship::flakShoot(int ammo)
 
 int Ship::shotgunShoot(int ammo)
 {
-	sf::Vector2f pos = sprite_.getPosition();
-	float x = pos.x;
-	float y = pos.y;
-
-	sf::FloatRect bounds = sprite_.getGlobalBounds();
-
-	LaserPtr laser;
-
-	float laserX;
-	float laserY;
-
-	float tempH = bounds.height;
-	float tempW = bounds.width;
-
-	rotationCheck(tempW, tempH, rotation);
-
-	if (rotation == 0 || rotation == 180)
-	{
-		laserX = x + (tempW / 2.0f);
-		laserY = y;
-	}
-	else if (rotation == 90 || rotation == 270)
-	{
-		laserX = x;
-		laserY = y + (tempH / 2.0f);
-	}
-	else if (rotation == 15 || rotation == 345)
-	{
-		laserX = x + (tempW / 2.0f);
-		laserY = y;
-	}
-	else if (rotation == 135 || rotation == 315)
-	{
-		laserX = x;
-		laserY = y + (tempH / 2.0f);
-	}
-
-	if (ammo > 0)
-	{
-		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
-		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
-	}
 	return ammo;
 }
 

@@ -6,7 +6,7 @@ const int SPAWN_DELAY = 5;
 void BuffSpawner::update(sf::Time& elapsed)
 {
 
-	double sElapsed = elapsed.asSeconds();
+	double sElapsed = elapsed.asMicroseconds();
 	timer_ -= sElapsed;
 
 	if (timer_ <= 0)

@@ -83,7 +83,9 @@ void AI::update(sf::Time& elapsed)
 		fireTimer_ -= msElapsed;
 	}
 
-	if (target.x -= 10 < pos.x < target.x += 10 && target.y -= 10 < pos.y < target.y += 10 && fireTimer_ <= 0 && scene.getAmmo2() > 0)
+	//target.x -= 10 < pos.x < target.x += 10 && target.y -= 10 < pos.y < target.y += 10 && fireTimer_ <= 0 && scene.getAmmo2() > 0
+
+	if (1)
 	{
 		int shotsf = 2;
 		scene.decreaseAmmo2(shotsf);
