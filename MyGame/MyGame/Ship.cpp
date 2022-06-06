@@ -94,7 +94,7 @@ void Ship::update(sf::Time& elapsed)
 
 		if (weapon_ == 1)
 		{
-			ammoReturn = laserShoot(scene.getAmmo1());
+			ammoReturn = flakShoot(scene.getAmmo1());
 		}
 		else if (weapon_ == 2)
 		{
@@ -315,9 +315,7 @@ int Ship::flakShoot(int ammo)
 	float tempH = bounds.height;
 	float tempW = bounds.width;
 
-	int rotationChange = 10;
-
-	int temp = rand() % 4;
+	int temp = rand() % 6;
 
 	rotationCheck(tempW, tempH, rotation);
 
@@ -331,15 +329,10 @@ int Ship::flakShoot(int ammo)
 		laserX = x;
 		laserY = y + (tempH / 1.75f);
 	}
-	else if (rotation > 0 && rotation < 90 || rotation > 270)
+	else
 	{
-		laserX = x + (tempW / 2.0f);
-		laserY = y + (tempW / 2.0f);
-	}
-	else if (rotation > 90 && rotation < 270)
-	{
-		laserX = x + (tempW / 2.0f);
-		laserY = y + (tempH / 2.0f);
+		laserX = x + (tempW / 3.5f);
+		laserY = y + (tempH / 3.5f);
 	}
 
 	if (temp == 0)
@@ -356,7 +349,15 @@ int Ship::flakShoot(int ammo)
 	}
 	else if (temp == 3)
 	{
-		rotation -= 10;
+		rotation += 10;
+	}
+	else if (temp == 4)
+	{
+		rotation -= 15;
+	}
+	else if (temp == 5)
+	{
+		rotation += 15;
 	}
 
 	for (int i = 0; rotation > 360; i++)
@@ -396,26 +397,6 @@ int Ship::shotgunShoot(int ammo)
 
 	float tempH = bounds.height;
 	float tempW = bounds.width;
-
-	int temp = 0;
-
-	if (temp == 0)
-	{
-		rotation += 15;
-	}
-	else if (temp == 1)
-	{
-		rotation -= 15;
-	}
-
-	if (rotation == 360)
-	{
-		rotation = 0;
-	}
-	if (rotation == -15)
-	{
-		rotation = 345;
-	}
 
 	rotationCheck(tempW, tempH, rotation);
 
