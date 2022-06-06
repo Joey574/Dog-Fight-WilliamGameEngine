@@ -180,10 +180,10 @@
     <Image Include="..\..\..\..\..\Downloads\Trishot.png">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="Resources\flak.png.png">
+    <Image Include="Resources\shell.png">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="Resources\pellet.png.png">
+    <Image Include="Resources\pellet.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
