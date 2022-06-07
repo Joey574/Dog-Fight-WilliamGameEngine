@@ -1,6 +1,4 @@
 #include "GameScene.h"
-#include "Ship.h"
-#include "Enemy.h"
 #include "AI.h"
 #include "Ammo.h"
 #include "Ammo2.h"
