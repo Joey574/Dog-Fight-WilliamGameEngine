@@ -60,6 +60,8 @@
     <ClCompile Include="Background.cpp">
       <Filter>Ggameparts</Filter>
     </ClCompile>
+    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="StartMessage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -123,6 +125,8 @@
     <ClInclude Include="Background.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
+    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="StartMessage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
