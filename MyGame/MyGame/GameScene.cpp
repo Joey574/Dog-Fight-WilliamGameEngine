@@ -9,7 +9,7 @@
 #include "Music.h"
 #include "Ships(plural).h"
 
-GameScene::GameScene()
+GameScene::GameScene(int player_)
 {
 	BackgroundPtr background = std::make_shared<Background>();
 	addGameObject(background);
@@ -37,6 +37,11 @@ GameScene::GameScene()
 
 	BuffSpawnerPtr buffspawner = std::make_shared<BuffSpawner>();
 	addGameObject(buffspawner);
+}
+
+int GameScene::players()
+{
+	return 0;
 }
 
 int GameScene::getAmmo1()

@@ -114,9 +114,6 @@
     <ClInclude Include="Background.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
-    <ClInclude Include="Ships(plural).h">
-      <Filter>GShips</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

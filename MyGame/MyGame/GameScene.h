@@ -5,7 +5,9 @@
 class GameScene : public Scene {
  public:
   // Creates our Scene.
-  GameScene();
+  GameScene(int player_);
+
+  int players();
 
   int getAmmo1();
 
