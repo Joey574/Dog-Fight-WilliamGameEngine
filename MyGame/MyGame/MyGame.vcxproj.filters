@@ -15,12 +15,6 @@
     </ClCompile>
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Ship.cpp">
-      <Filter>GShips</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>GShips</Filter>
-    </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>GShips</Filter>
     </ClCompile>
@@ -60,6 +54,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>Ggameparts</Filter>
     </ClCompile>
+    <ClCompile Include="Ships(plural).cpp">
+      <Filter>GShips</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -78,12 +75,6 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Ship.h">
-      <Filter>GShips</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>GShips</Filter>
-    </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>GShips</Filter>
     </ClInclude>
@@ -122,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="Ships(plural).h">
+      <Filter>GShips</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
