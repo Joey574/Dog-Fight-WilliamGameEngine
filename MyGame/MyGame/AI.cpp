@@ -1,3 +1,4 @@
+/*
 #include "AI.h"
 #include "Flak.h"
 #include "Pellet.h"
@@ -6,7 +7,6 @@
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
-#include "Ship.h"
 #include <iostream>
 
 const float SPEED = 0.4f;
@@ -274,3 +274,4 @@ void AI::rotationSet(bool up, bool down, bool left, bool right)
 		sprite_.setRotation(0);
 	}
 }
+*/
