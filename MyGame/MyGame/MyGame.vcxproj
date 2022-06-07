@@ -88,7 +88,6 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffSpawner.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine\AnimatedSprite.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
@@ -102,9 +101,7 @@
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Pellet.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="StartMessage.cpp" />
-    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="Ships(plural).cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -113,7 +110,6 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffSpawner.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine\AnimatedSprite.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameEngine.h" />
@@ -127,9 +123,7 @@
     <ClInclude Include="Laser.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Pellet.h" />
-    <ClInclude Include="Ship.h" />
-    <ClInclude Include="StartMessage.h" />
-    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="Ships(plural).h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\README.md" />

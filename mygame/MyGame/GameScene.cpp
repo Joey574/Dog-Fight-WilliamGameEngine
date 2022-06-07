@@ -1,6 +1,4 @@
 #include "GameScene.h"
-#include "Ship.h"
-#include "Enemy.h"
 #include "AI.h"
 #include "Ammo.h"
 #include "Ammo2.h"
@@ -9,6 +7,7 @@
 #include "Health2.h"
 #include "BuffSpawner.h"
 #include "Music.h"
+#include "Ships(plural).h"
 
 GameScene::GameScene(int player_)
 {
@@ -18,14 +17,11 @@ GameScene::GameScene(int player_)
 	MusicPtr music = std::make_shared<Music>();
 	addGameObject(music);
 
-	ShipPtr ship = std::make_shared<Ship>();
-	addGameObject(ship);
+	ShipsPtr ships = std::make_shared<Ships>();
+	addGameObject(ships);
 
-	//EnemyPtr enemy = std::make_shared<Enemy>();
-	//addGameObject(enemy);
-
-	AIPtr ai = std::make_shared<AI>();
-	addGameObject(ai);
+	//AIPtr ai = std::make_shared<AI>();
+	//addGameObject(ai);
 
 	AmmoPtr ammo = std::make_shared<Ammo>();
 	addGameObject(ammo);
