@@ -20,12 +20,6 @@ GameScene::GameScene()
 	ShipsPtr ships = std::make_shared<Ships>();
 	addGameObject(ships);
 
-	//ShipPtr ship = std::make_shared<Ship>();
-	//addGameObject(ship);
-
-	//EnemyPtr enemy = std::make_shared<Enemy>();
-	//addGameObject(enemy);
-
 	//AIPtr ai = std::make_shared<AI>();
 	//addGameObject(ai);
 
