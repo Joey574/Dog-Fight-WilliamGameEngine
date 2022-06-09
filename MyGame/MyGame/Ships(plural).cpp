@@ -128,9 +128,9 @@ void Ships::shipMove(int msElapsed)
 		}
 	}
 
-	rotationSet(up, down, left, right, 0);
+	rotationSet(up, down, left, right);
 
-	edgeCheck(x, y, 0);
+	edgeCheck(x, y);
 
 	if (fireTimer_ > 0)
 	{
@@ -164,19 +164,20 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				ammoReturn = laserShoot(scene.getAmmo1(), 0);
+				ammoReturn = shotgunShoot(scene.getAmmo1());
+				//ammoReturn = laserShoot(scene.getAmmo1());
 			}
 			else if (weapon_ == 2)
 			{
-				ammoReturn = flakShoot(scene.getAmmo1(), 0);
+				ammoReturn = flakShoot(scene.getAmmo1());
 			}
 			else if (weapon_ == 3)
 			{
-				ammoReturn = triLaserShoot(scene.getAmmo1(), 0);
+				ammoReturn = triLaserShoot(scene.getAmmo1());
 			}
 			else if (weapon_ == 4)
 			{
-				ammoReturn = shotgunShoot(scene.getAmmo1(), 0);
+				ammoReturn = shotgunShoot(scene.getAmmo1());
 			}
 
 			scene.decreaseAmmo1(scene.getAmmo1() - ammoReturn);
@@ -190,19 +191,19 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				ammoReturn = laserShoot(scene.getAmmo2(), 0);
+				ammoReturn = laserShoot(scene.getAmmo2());
 			}
 			else if (weapon_ == 2)
 			{
-				ammoReturn = flakShoot(scene.getAmmo2(), 0);
+				ammoReturn = flakShoot(scene.getAmmo2());
 			}
 			else if (weapon_ == 3)
 			{
-				ammoReturn = triLaserShoot(scene.getAmmo2(), 0);
+				ammoReturn = triLaserShoot(scene.getAmmo2());
 			}
 			else if (weapon_ == 4)
 			{
-				ammoReturn = shotgunShoot(scene.getAmmo2(), 0);
+				ammoReturn = shotgunShoot(scene.getAmmo2());
 			}
 
 			scene.decreaseAmmo2(scene.getAmmo2() - ammoReturn);
@@ -210,7 +211,7 @@ void Ships::shipMove(int msElapsed)
 	}
 }
 
-int Ships::laserShoot(int ammo, int ID)
+int Ships::laserShoot(int ammo)
 {
 	sf::Vector2f pos;
 
@@ -292,7 +293,7 @@ int Ships::laserShoot(int ammo, int ID)
 	return ammo;
 }
 
-int Ships::triLaserShoot(int ammo, int ID)
+int Ships::triLaserShoot(int ammo)
 {
 	LaserPtr laser;
 
@@ -403,7 +404,7 @@ int Ships::triLaserShoot(int ammo, int ID)
 
 }
 
-int Ships::flakShoot(int ammo, int ID)
+int Ships::flakShoot(int ammo)
 {
 	sf::Vector2f pos;
 
@@ -440,8 +441,8 @@ int Ships::flakShoot(int ammo, int ID)
 	}
 	else
 	{
-		laserX = x + (tempW / 3.0f);
-		laserY = y + (tempH / 3.0f);
+		laserX = x + (tempW / 2.5f);
+		laserY = y + (tempH / 2.5f);
 	}
 
 	if (temp == 0)
@@ -469,11 +470,11 @@ int Ships::flakShoot(int ammo, int ID)
 		rotation += 15;
 	}
 
-	for (int i = 0; rotation > 360; i++)
+	for (int x = 0; rotation > 360; x++)
 	{
 		rotation -= 360;
 	}
-	for (int i = 0; rotation < 360; i++)
+	for (int x = 0; rotation < 0; x++)
 	{
 		rotation += 360;
 	}
@@ -486,17 +487,72 @@ int Ships::flakShoot(int ammo, int ID)
 	}
 
 	return ammo;
-
 }
 
-int Ships::shotgunShoot(int ammo, int ID)
+int Ships::shotgunShoot(int ammo)
 {
+	sf::Vector2f pos;
+
+	pos = sprite_.getPosition();
+
+	float x = pos.x;
+	float y = pos.y;
+
+	sf::FloatRect bounds;
+
+	bounds = sprite_.getGlobalBounds();
+
+	PelletPtr pellet;
+
+	float laserX;
+	float laserY;
+
+	float tempH = bounds.height;
+	float tempW = bounds.width;
+
+	rotationCheck(tempW, tempH, rotation);
+
+	if (rotation == 0 || rotation == 180)
+	{
+		laserX = x + (tempW / 1.75f);
+		laserY = y;
+	}
+	else if (rotation == 90 || rotation == 270)
+	{
+		laserX = x;
+		laserY = y + (tempH / 1.75f);
+	}
+	else
+	{
+		laserX = x + (tempW / 2.5f);
+		laserY = y + (tempH / 2.5f);
+	}
+
+	for (int x = 0; rotation > 360; x++)
+	{
+		rotation -= 360;
+	}
+	for (int x = 0; rotation < 0; x++)
+	{
+		rotation += 360;
+	}
+
+	for (int i = rotation - 10; i < rotation + 11; i += 5)
+	{
+		if (ammo > 0)
+		{
+			pellet = std::make_shared<Pellet>(sf::Vector2f(laserX, laserY), i);
+			GAME.getCurrentScene().addGameObject(pellet);
+			ammo--;
+		}
+	}
+
 	return ammo;
 }
 
 // Eric you are very cool :)
 
-void Ships::edgeCheck(float x, float y, int ID)
+void Ships::edgeCheck(float x, float y)
 {
 	if (x - 42 > GAME.getRenderWindow().getSize().x)
 	{
@@ -543,7 +599,7 @@ void Ships::rotationCheck(float& tempW, float& tempH, int rotation)
 	}
 }
 
-void Ships::rotationSet(bool up, bool down, bool left, bool right, int ID)
+void Ships::rotationSet(bool up, bool down, bool left, bool right)
 {
 	if (up && left)
 	{

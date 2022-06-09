@@ -6,7 +6,7 @@ class Ships : public GameObject
 {
 public:
 
-	Ships(int ID);
+	Ships(int x);
 
 	void draw();
 	void update(sf::Time& elapsed);
@@ -16,16 +16,16 @@ public:
 	sf::FloatRect getCollisionRect();
 	sf::Vector2f Pos();
 
-	void edgeCheck(float x, float y, int ID);
+	void edgeCheck(float x, float y);
 	void rotationCheck(float& tempW, float& tempH, int rotation);
-	void rotationSet(bool up, bool down, bool left, bool right, int ID);
+	void rotationSet(bool up, bool down, bool left, bool right);
 
 	void handleCollision(GameObject& otherGameObject);
 
-	int laserShoot(int ammo, int ID); // weapon type 1
-	int shotgunShoot(int ammo, int ID); // weapon type = 4
-	int triLaserShoot(int ammo, int ID); // weapon type = 3
-	int flakShoot(int ammo, int ID); // weapon type = 2
+	int laserShoot(int ammo); // weapon type 1
+	int shotgunShoot(int ammo); // weapon type = 4
+	int triLaserShoot(int ammo); // weapon type = 3
+	int flakShoot(int ammo); // weapon type = 2
 
 private:
 
