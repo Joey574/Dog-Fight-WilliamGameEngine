@@ -17,7 +17,10 @@ GameScene::GameScene(int player_)
 	MusicPtr music = std::make_shared<Music>();
 	addGameObject(music);
 
-	ShipsPtr ships = std::make_shared<Ships>();
+	ShipsPtr ships = std::make_shared<Ships>(0);
+	addGameObject(ships);
+
+	ships = std::make_shared<Ships>(1);
 	addGameObject(ships);
 
 	//AIPtr ai = std::make_shared<AI>();
