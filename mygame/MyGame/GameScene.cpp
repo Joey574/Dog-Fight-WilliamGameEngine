@@ -8,6 +8,7 @@
 #include "BuffSpawner.h"
 #include "Music.h"
 #include "Ships(plural).h"
+#include "EndScene.h"
 
 GameScene::GameScene(int player_)
 {
@@ -19,9 +20,6 @@ GameScene::GameScene(int player_)
 
 	ShipsPtr ships = std::make_shared<Ships>();
 	addGameObject(ships);
-
-	//AIPtr ai = std::make_shared<AI>();
-	//addGameObject(ai);
 
 	AmmoPtr ammo = std::make_shared<Ammo>();
 	addGameObject(ammo);
@@ -37,6 +35,12 @@ GameScene::GameScene(int player_)
 
 	BuffSpawnerPtr buffspawner = std::make_shared<BuffSpawner>();
 	addGameObject(buffspawner);
+
+	if (health1_ <= 0 || health2_ <= 0)
+	{
+		EndScenePtr end = std::make_shared<EndScene>(player_, health1_, health2_);
+		GAME.setScene(end);
+	}
 }
 
 int GameScene::players()
