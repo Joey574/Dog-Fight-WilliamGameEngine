@@ -36,11 +36,11 @@ void EndMessage::draw()
 	GAME.getRenderWindow().draw(text_);
 }
 
-void EndMessage::update(sf::Time& time)
+void EndMessage::update(sf::Time& time, int player_)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		GameScenePtr scene = std::make_shared<GameScene>();
+		GameScenePtr scene = std::make_shared<GameScene>(player_);
 		GAME.setScene(scene);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))

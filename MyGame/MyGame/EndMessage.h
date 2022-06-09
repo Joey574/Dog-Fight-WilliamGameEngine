@@ -10,7 +10,7 @@ public:
 
 	// Functions overriden from GameObject:
 	void draw();
-	void update(sf::Time& elapsed);
+	void update(sf::Time& elapsed, int player_);
 
 private:
 	sf::Text text_;
