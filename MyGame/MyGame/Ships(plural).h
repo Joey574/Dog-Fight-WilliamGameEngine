@@ -6,24 +6,21 @@ class Ships : public GameObject
 {
 public:
 
-	Ships();
+	Ships(int ID);
 
 	void draw();
 	void update(sf::Time& elapsed);
 
 	void shipMove(int msElapsed);
-	void enemyMove(int msElapsed);
 
-	sf::FloatRect getShipCollisionRect();
-	sf::Vector2f shipPos();
-
-	sf::FloatRect getEnemyCollisionRect();
-	sf::Vector2f enemyPos();
+	sf::FloatRect getCollisionRect();
+	sf::Vector2f Pos();
 
 	void edgeCheck(float x, float y, int ID);
 	void rotationCheck(float& tempW, float& tempH, int rotation);
 	void rotationSet(bool up, bool down, bool left, bool right, int ID);
-	void handleCollision(GameObject& otherGameObject, int ID);
+
+	void handleCollision(GameObject& otherGameObject);
 
 	int laserShoot(int ammo, int ID); // weapon type 1
 	int shotgunShoot(int ammo, int ID); // weapon type = 4
@@ -32,20 +29,17 @@ public:
 
 private:
 
-	sf::Sprite sprite_1;
-	sf::Sprite sprite_2;
+	sf::Sprite sprite_;
 
-	int rotation1;
-	int rotation2;
+	int ID;
 
-	int fireTimer_1 = 0;
-	int fireTimer_2 = 0;
+	int rotation;
 
-	int FIRE_DELAY1 = 200;
-	int FIRE_DELAY2 = 200;
+	int fireTimer_ = 0;
 
-	int weapon_1 = 1;
-	int weapon_2 = 1;
+	int FIRE_DELAY = 200;
+
+	int weapon_ = 1;
 };
 
 typedef std::shared_ptr<Ships> ShipsPtr;

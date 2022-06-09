@@ -14,42 +14,48 @@ const float SPEED = 0.4f;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-Ships::Ships()
+Ships::Ships(int x)
 {
-	sprite_1.setOrigin(sf::Vector2f(42, 60));
-	sprite_2.setOrigin(sf::Vector2f(42, 60));
+	ID = x;
 
-	sprite_1.setTexture(GAME.getTexture("Resources/ship.png"));
-	sprite_2.setTexture(GAME.getTexture("Resources/enemy.png"));
+	sprite_.setOrigin(sf::Vector2f(42, 60));
 
-	sprite_1.setPosition(sf::Vector2f(100, 100));
-	sprite_2.setPosition(sf::Vector2f(730, 530));
+	if (ID == 0)
+	{
+		sprite_.setTexture(GAME.getTexture("Resources/ship.png"));
+		sprite_.setPosition(sf::Vector2f(100, 100));
 
-	assignTag("ship");
+		assignTag("ship");
+	}
+	else if (ID == 1)
+	{
+		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
+		sprite_.setPosition(sf::Vector2f(730, 530));
+
+		assignTag("enemy");
+	}	
 }
 
 void Ships::draw()
 {
-	GAME.getRenderWindow().draw(sprite_1);
-	GAME.getRenderWindow().draw(sprite_2);
+	GAME.getRenderWindow().draw(sprite_);
 }
 
 void Ships::update(sf::Time& elapsed)
 {
 	int msElapsed = elapsed.asMilliseconds();
 
-	rotation1 = sprite_1.getRotation();
-	rotation2 = sprite_2.getRotation();
+	rotation = sprite_.getRotation();
 
 	shipMove(msElapsed);
-
-	enemyMove(msElapsed);
 }
 
 void Ships::shipMove(int msElapsed)
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
-	sf::Vector2f pos = sprite_1.getPosition();
+
+	sf::Vector2f pos = sprite_.getPosition();
+
 	float x = pos.x;
 	float y = pos.y;
 
@@ -60,151 +66,147 @@ void Ships::shipMove(int msElapsed)
 	bool left = false;
 	bool right = false;
 
-	if (scene.getHealth1() < 1)
+	if (ID == 0)
 	{
-		makeDead();
+		if (scene.getHealth1() <= 0)
+		{
+			makeDead();
+		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	else if (ID == 1)
 	{
-		y -= SPEED * msElapsed;
-		up = true;
+		if (scene.getHealth2() <= 0)
+		{
+			makeDead();
+		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	
+	if (ID == 0)
 	{
-		y += SPEED * msElapsed;
-		down = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			y -= SPEED * msElapsed;
+			up = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			y += SPEED * msElapsed;
+			down = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			x -= SPEED * msElapsed;
+			left = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			x += SPEED * msElapsed;
+			right = true;
+		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (ID == 1)
 	{
-		x -= SPEED * msElapsed;
-		left = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		x += SPEED * msElapsed;
-		right = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			y -= SPEED * msElapsed;
+			up = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			y += SPEED * msElapsed;
+			down = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			x -= SPEED * msElapsed;
+			left = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			x += SPEED * msElapsed;
+			right = true;
+		}
 	}
 
 	rotationSet(up, down, left, right, 0);
 
 	edgeCheck(x, y, 0);
 
-	if (fireTimer_1 > 0)
+	if (fireTimer_ > 0)
 	{
-		fireTimer_1 -= msElapsed;
+		fireTimer_ -= msElapsed;
 	}
 
-	if (scene.getAmmo1() < 1 && weapon_1 != 1)
+	if (ID == 0)
 	{
-		FIRE_DELAY1 = 200;
-		weapon_1 = 1;
-		scene.increaseAmmo1();
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_1 <= 0 && scene.getAmmo1() > 0)
-	{
-		fireTimer_1 = FIRE_DELAY1;
-
-		if (weapon_1 == 1)
+		if (scene.getAmmo1() < 1 && weapon_ != 1)
 		{
-			ammoReturn = laserShoot(scene.getAmmo1(), 0);
+			FIRE_DELAY = 200;
+			weapon_ = 1;
+			scene.increaseAmmo1();
 		}
-		else if (weapon_1 == 2)
+	}
+	else if (ID == 1)
+	{
+		if (scene.getAmmo2() < 1 && weapon_ != 1)
 		{
-			ammoReturn = flakShoot(scene.getAmmo1(), 0);
+			FIRE_DELAY = 200;
+			weapon_ = 1;
+			scene.increaseAmmo2();
 		}
-		else if (weapon_1 == 3)
+	}
+	
+	if (ID == 0)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
 		{
-			ammoReturn = triLaserShoot(scene.getAmmo1(), 0);
+			fireTimer_ = FIRE_DELAY;
+
+			if (weapon_ == 1)
+			{
+				ammoReturn = laserShoot(scene.getAmmo1(), 0);
+			}
+			else if (weapon_ == 2)
+			{
+				ammoReturn = flakShoot(scene.getAmmo1(), 0);
+			}
+			else if (weapon_ == 3)
+			{
+				ammoReturn = triLaserShoot(scene.getAmmo1(), 0);
+			}
+			else if (weapon_ == 4)
+			{
+				ammoReturn = shotgunShoot(scene.getAmmo1(), 0);
+			}
+
+			scene.decreaseAmmo1(scene.getAmmo1() - ammoReturn);
 		}
-		else if (weapon_1 == 4)
+	}
+	else if (ID == 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 		{
-			ammoReturn = shotgunShoot(scene.getAmmo1(), 0);
+			fireTimer_ = FIRE_DELAY;
+
+			if (weapon_ == 1)
+			{
+				ammoReturn = laserShoot(scene.getAmmo2(), 0);
+			}
+			else if (weapon_ == 2)
+			{
+				ammoReturn = flakShoot(scene.getAmmo2(), 0);
+			}
+			else if (weapon_ == 3)
+			{
+				ammoReturn = triLaserShoot(scene.getAmmo2(), 0);
+			}
+			else if (weapon_ == 4)
+			{
+				ammoReturn = shotgunShoot(scene.getAmmo2(), 0);
+			}
+
+			scene.decreaseAmmo2(scene.getAmmo2() - ammoReturn);
 		}
-
-		scene.decreaseAmmo1(scene.getAmmo1() - ammoReturn);
-	}
-}
-
-void Ships::enemyMove(int msElapsed)
-{
-	GameScene& scene = (GameScene&)GAME.getCurrentScene();
-	sf::Vector2f pos = sprite_2.getPosition();
-	float x = pos.x;
-	float y = pos.y;
-
-	int ammoReturn;
-
-	bool up = false;
-	bool down = false;
-	bool left = false;
-	bool right = false;
-
-	if (scene.getHealth2() < 1)
-	{
-		makeDead();
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		y -= SPEED * msElapsed;
-		up = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		y += SPEED * msElapsed;
-		down = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		x -= SPEED * msElapsed;
-		left = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		x += SPEED * msElapsed;
-		right = true;
-	}
-
-	rotationSet(up, down, left, right, 1);
-
-	edgeCheck(x, y, 1);
-
-	if (fireTimer_2 > 0)
-	{
-		fireTimer_2 -= msElapsed;
-	}
-
-	if (scene.getAmmo2() < 1 && weapon_2 != 1)
-	{
-		FIRE_DELAY2 = 200;
-		weapon_2 = 1;
-		scene.increaseAmmo2();
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_2 <= 0 && scene.getAmmo2() > 0)
-	{
-		fireTimer_2 = FIRE_DELAY2;
-
-		if (weapon_2 == 1)
-		{
-			ammoReturn = laserShoot(scene.getAmmo2(), 1);
-		}
-		else if (weapon_2 == 2)
-		{
-			ammoReturn = flakShoot(scene.getAmmo2(), 1);
-		}
-		else if (weapon_2 == 3)
-		{
-			ammoReturn = triLaserShoot(scene.getAmmo2(), 1);
-		}
-		else if (weapon_2 == 4)
-		{
-			ammoReturn = shotgunShoot(scene.getAmmo2(), 1);
-		}
-
-		scene.decreaseAmmo2(scene.getAmmo2() - ammoReturn);
 	}
 }
 
@@ -212,28 +214,14 @@ int Ships::laserShoot(int ammo, int ID)
 {
 	sf::Vector2f pos;
 
-	if (ID == 0)
-	{
-		pos = sprite_1.getPosition();
-	}
-	else
-	{
-		pos = sprite_2.getPosition();
-	}
+	pos = sprite_.getPosition();
 
 	float x = pos.x;
 	float y = pos.y;
 
 	sf::FloatRect bounds;
 
-	if (ID == 0)
-	{
-		bounds = sprite_1.getGlobalBounds();
-	}
-	else
-	{
-		bounds = sprite_2.getGlobalBounds();
-	}
+	bounds = sprite_.getGlobalBounds();
 
 	LaserPtr laser;
 
@@ -242,17 +230,6 @@ int Ships::laserShoot(int ammo, int ID)
 
 	float tempH = bounds.height;
 	float tempW = bounds.width;
-
-	int rotation;
-
-	if (ID == 0)
-	{
-		rotation = sprite_1.getRotation();
-	}
-	else
-	{
-		rotation = sprite_2.getRotation();
-	}
 
 	rotationCheck(tempW, tempH, rotation);
 
@@ -321,45 +298,20 @@ int Ships::triLaserShoot(int ammo, int ID)
 
 	sf::Vector2f pos;
 
-	if (ID == 0)
-	{
-		pos = sprite_1.getPosition();
-	}
-	else
-	{
-		pos = sprite_2.getPosition();
-	}
+	pos = sprite_.getPosition();
 
 	float x = pos.x;
 	float y = pos.y;
 
 	sf::FloatRect bounds;
 
-	if (ID == 0)
-	{
-		bounds = sprite_1.getGlobalBounds();
-	}
-	else
-	{
-		bounds = sprite_2.getGlobalBounds();
-	}
+	bounds = sprite_.getGlobalBounds();
 
 	float laserX;
 	float laserY;
 
 	float tempH = bounds.height;
 	float tempW = bounds.width;
-
-	int rotation;
-
-	if (ID == 0)
-	{
-		rotation = sprite_1.getRotation();
-	}
-	else
-	{
-		rotation = sprite_2.getRotation();
-	}
 
 	rotationCheck(tempW, tempH, rotation);
 
@@ -455,28 +407,14 @@ int Ships::flakShoot(int ammo, int ID)
 {
 	sf::Vector2f pos;
 
-	if (ID == 0)
-	{
-		pos = sprite_1.getPosition();
-	}
-	else
-	{
-		pos = sprite_2.getPosition();
-	}
+	pos = sprite_.getPosition();
 
 	float x = pos.x;
 	float y = pos.y;
 
 	sf::FloatRect bounds;
 
-	if (ID == 0)
-	{
-		bounds = sprite_1.getGlobalBounds();
-	}
-	else
-	{
-		bounds = sprite_2.getGlobalBounds();
-	}
+	bounds = sprite_.getGlobalBounds();
 
 	FlakPtr flak;
 
@@ -487,17 +425,6 @@ int Ships::flakShoot(int ammo, int ID)
 	float tempW = bounds.width;
 
 	int temp = rand() % 6;
-
-	int rotation;
-
-	if (ID == 0)
-	{
-		rotation = sprite_1.getRotation();
-	}
-	else
-	{
-		rotation = sprite_2.getRotation();
-	}
 
 	rotationCheck(tempW, tempH, rotation);
 
@@ -588,15 +515,7 @@ void Ships::edgeCheck(float x, float y, int ID)
 		y += GAME.getRenderWindow().getSize().y + 60;
 	}
 
-	if (ID == 0)
-	{
-		sprite_1.setPosition(sf::Vector2f(x, y));
-
-	}
-	else
-	{
-		sprite_2.setPosition(sf::Vector2f(x, y));
-	}
+		sprite_.setPosition(sf::Vector2f(x, y));
 }
 
 void Ships::rotationCheck(float& tempW, float& tempH, int rotation)
@@ -628,98 +547,42 @@ void Ships::rotationSet(bool up, bool down, bool left, bool right, int ID)
 {
 	if (up && left)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(225);
-		}
-		else
-		{
-			sprite_2.setRotation(225);
-		}
+		sprite_.setRotation(225);
 	}
 	else if (up && right)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(315);
-		}
-		else
-		{
-			sprite_2.setRotation(315);
-		}
+		sprite_.setRotation(315);
 	}
 	else if (down && left)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(135);
-		}
-		else
-		{
-			sprite_2.setRotation(135);
-		}
+		sprite_.setRotation(135);
 	}
 	else if (down && right)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(45);
-		}
-		else
-		{
-			sprite_2.setRotation(45);
-		}
+		sprite_.setRotation(45);
 	}
 	else if (down)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(90);
-		}
-		else
-		{
-			sprite_2.setRotation(90);
-		}
+		sprite_.setRotation(90);
 	}
 	else if (up)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(270);
-		}
-		else
-		{
-			sprite_2.setRotation(270);
-		}
+		sprite_.setRotation(270);
 	}
 	else if (left)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(180);
-		}
-		else
-		{
-			sprite_2.setRotation(180);
-		}
+		sprite_.setRotation(180);
 	}
 	else if (right)
 	{
-		if (ID == 0)
-		{
-			sprite_1.setRotation(0);
-		}
-		else
-		{
-			sprite_2.setRotation(0);
-		}
+		sprite_.setRotation(0);
 	}
 }
 
-void Ships::handleCollision(GameObject& otherGameObject, int ID)
+void Ships::handleCollision(GameObject& otherGameObject)
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
-
+	
 	if (otherGameObject.hasTag("health+"))
 	{
 		if (ID == 0)
@@ -746,64 +609,33 @@ void Ships::handleCollision(GameObject& otherGameObject, int ID)
 	}
 	if (otherGameObject.hasTag("flak+"))
 	{
-		if (ID == 0)
-		{
-			FIRE_DELAY1 = 100;
-			weapon_1 = 2;
-		}
-		else
-		{
-			FIRE_DELAY2 = 100;
-			weapon_2 = 2;
-		}
+		FIRE_DELAY = 100;
+		weapon_ = 2;
+
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("barrels+"))
 	{
-		if (ID == 0)
-		{
-			FIRE_DELAY1 = 200;
-			weapon_1 = 3;
-		}
-		else
-		{
-			FIRE_DELAY2 = 200;
-			weapon_2 = 3;
-		}
+		FIRE_DELAY = 200;
+		weapon_ = 3;
+
 		otherGameObject.makeDead();
 	}
 	if (otherGameObject.hasTag("shotgun+"))
 	{
-		if (ID == 0)
-		{
-			FIRE_DELAY1 = 300;
-			weapon_1 = 4;
-		}
-		else
-		{
-			FIRE_DELAY2 = 300;
-			weapon_2 = 4;
-		}
+		FIRE_DELAY = 300;
+		weapon_ = 4;
+
 		otherGameObject.makeDead();
 	}
 }
 
-sf::FloatRect Ships::getShipCollisionRect()
+sf::FloatRect Ships::getCollisionRect()
 {
-	return sprite_1.getGlobalBounds();
+	return sprite_.getGlobalBounds();
 }
 
-sf::FloatRect Ships::getEnemyCollisionRect()
+sf::Vector2f Ships::Pos()
 {
-	return sprite_2.getGlobalBounds();
-}
-
-sf::Vector2f Ships::shipPos()
-{
-	return sprite_1.getPosition();
-}
-
-sf::Vector2f Ships::enemyPos()
-{
-	return sprite_2.getPosition();
+	return sprite_.getPosition();
 }

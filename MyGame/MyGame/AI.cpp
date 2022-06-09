@@ -1,3 +1,4 @@
+/*
 #include "AI.h"
 #include "Flak.h"
 #include "Pellet.h"
@@ -274,3 +275,4 @@ void AI::rotationSet(bool up, bool down, bool left, bool right)
 		sprite_.setRotation(0);
 	}
 }
+*/
