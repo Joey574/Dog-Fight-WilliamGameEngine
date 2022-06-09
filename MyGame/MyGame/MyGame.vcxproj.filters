@@ -65,8 +65,12 @@
     <ClCompile Include="StartMessage.cpp">
       <Filter>Ggameparts</Filter>
     </ClCompile>
-    <ClCompile Include="EndScene.cpp" />
-    <ClCompile Include="EndMessage.cpp" />
+    <ClCompile Include="EndScene.cpp">
+      <Filter>GScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="EndMessage.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -135,8 +139,12 @@
     <ClInclude Include="StartMessage.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
-    <ClInclude Include="EndScene.h" />
-    <ClInclude Include="EndMessage.h" />
+    <ClInclude Include="EndScene.h">
+      <Filter>GScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="EndMessage.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
