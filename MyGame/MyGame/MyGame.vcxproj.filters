@@ -14,7 +14,6 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="AI.cpp">
       <Filter>GShips</Filter>
     </ClCompile>
@@ -57,8 +56,17 @@
     <ClCompile Include="Ships(plural).cpp">
       <Filter>GShips</Filter>
     </ClCompile>
-    <ClCompile Include="StartMessage.cpp" />
-    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="GameScene.cpp">
+      <Filter>GScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>GScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMessage.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScene.cpp" />
+    <ClCompile Include="EndMessage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -76,7 +84,6 @@
     <ClInclude Include="Engine\Scene.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="AI.h">
       <Filter>GShips</Filter>
     </ClInclude>
@@ -119,8 +126,17 @@
     <ClInclude Include="Ships(plural).h">
       <Filter>GShips</Filter>
     </ClInclude>
-    <ClInclude Include="StartMessage.h" />
-    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="GameScene.h">
+      <Filter>GScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>GScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMessage.h">
+      <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h" />
+    <ClInclude Include="EndMessage.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -140,6 +156,9 @@
     </Filter>
     <Filter Include="Ggameparts">
       <UniqueIdentifier>{e76ed861-31f2-4ab7-8a71-e316c52817d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GScenes">
+      <UniqueIdentifier>{4097d0a3-53ae-4183-8072-91f9ce2a132c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
