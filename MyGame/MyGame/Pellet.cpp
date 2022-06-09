@@ -2,7 +2,7 @@
 #include "math.h"
 #include "Pellet.h"
 
-const float SPEED = 1.3f;
+const float SPEED = 0.3f;
 
 Pellet::Pellet(sf::Vector2f pos, int rot)
 {
@@ -20,178 +20,31 @@ void Pellet::draw()
 void Pellet::update(sf::Time& elapsed)
 {
 	int msElapsed = elapsed.asMilliseconds();
+
+	int rotation = sprite_.getRotation();
+
 	sf::Vector2f pos = sprite_.getPosition();
 
 	if (pos.x > GAME.getRenderWindow().getSize().x || pos.y > GAME.getRenderWindow().getSize().y || pos.x < 0 || pos.y < 0)
 	{
 		makeDead();
 	}
-	else if (sprite_.getRotation() == 350)
+
+	if (rotation == 0 || rotation == 180)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y));
 	}
-	else if (sprite_.getRotation() == 355)
+	else if (rotation == 90 || rotation == 270)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x, pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
 	}
-	else if (sprite_.getRotation() == 0)
+	else if (rotation > 0 && rotation < 90 || rotation > 270)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x + SPEED * msElapsed, pos.y));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
 	}
-	else if (sprite_.getRotation() == 5)
+	else if (rotation > 90 && rotation < 270)
 	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 10)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	/////////////
-	else if (sprite_.getRotation() == 35)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 40)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 45)
-	{
-		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) / 2.0f)), pos.y + ((SPEED * msElapsed)) / 2.0f));
-	}
-	else if (sprite_.getRotation() == 50)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 55)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	//////////////
-	else if (sprite_.getRotation() == 80)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += SPEED * acos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= SPEED * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 85)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 90)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x, pos.y + SPEED * msElapsed));
-	}
-	else if (sprite_.getRotation() == 95)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 100)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	//////////////
-	else if (sprite_.getRotation() == 125)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 130)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 135)
-	{
-		sprite_.setPosition(sf::Vector2f((pos.x - ((SPEED * msElapsed) / 2.0f)), pos.y + ((SPEED * msElapsed)) / 2.0f));
-	}
-	else if (sprite_.getRotation() == 140)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 145)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	///////////////
-	else if (sprite_.getRotation() == 170)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 175)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y -= (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 180)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x - SPEED * msElapsed, pos.y));
-	}
-	else if (sprite_.getRotation() == 185)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 190)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	///////////
-	else if (sprite_.getRotation() == 215)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 220)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 225)
-	{
-		sprite_.setPosition(sf::Vector2f((pos.x - ((SPEED * msElapsed) / 2.0f)), pos.y - ((SPEED * msElapsed)) / 2.0f));
-	}
-	else if (sprite_.getRotation() == 230)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 235)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	////////////
-	else if (sprite_.getRotation() == 260)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 265)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x -= (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 270)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x, pos.y - SPEED * msElapsed));
-	}
-	else if (sprite_.getRotation() == 275)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 280)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	////////
-	else if (sprite_.getRotation() == 305)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 310)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 315)
-	{
-		sprite_.setPosition(sf::Vector2f((pos.x + ((SPEED * msElapsed) / 2.0f)), pos.y - ((SPEED * msElapsed)) / 2.0f));
-	}
-	else if (sprite_.getRotation() == 320)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
-	}
-	else if (sprite_.getRotation() == 325)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((sprite_.getRotation() * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((sprite_.getRotation() * M_PI) / 180.0)));
+		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
 	}
 }
 
@@ -222,5 +75,8 @@ void Pellet::handleCollision(GameObject& otherGameObject)
 		scene.decreaseHealth2(dam);
 	}
 
-	makeDead();
+	if (!otherGameObject.hasTag("pellet"))
+	{
+		makeDead();
+	}
 }

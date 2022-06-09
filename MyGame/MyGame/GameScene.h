@@ -5,7 +5,9 @@
 class GameScene : public Scene {
  public:
   // Creates our Scene.
-  GameScene();
+  GameScene(int player_);
+
+  int players();
 
   int getAmmo1();
 
@@ -19,9 +21,9 @@ class GameScene : public Scene {
 
   void increaseAmmo2();
 
-  int getHealth1();
+  float getHealth1();
 
-  int getHealth2();
+  float getHealth2();
 
   void decreaseHealth1(float b);
 
@@ -35,8 +37,8 @@ class GameScene : public Scene {
 private:
 	int ammo1_ = 100;
 	int ammo2_ = 100;
-	float health1_ = 10.0;
-	float health2_ = 10.0;
+	float health1_ = 10.0f;
+	float health2_ = 10.0f;
 };
 
 typedef std::shared_ptr<GameScene> GameScenePtr;

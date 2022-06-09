@@ -1,3 +1,4 @@
+/*
 #include "AI.h"
 #include "Flak.h"
 #include "Pellet.h"
@@ -7,6 +8,7 @@
 #include "GameScene.h"
 #include <sstream>
 #include "Ship.h"
+#include <iostream>
 
 const float SPEED = 0.4f;
 const int FIRE_DELAY = 200;
@@ -33,6 +35,7 @@ void AI::update(sf::Time& elapsed)
 	ShipPtr ship = std::make_shared<Ship>();
 	sf::Vector2f target = ship.get()->shipPos();
 
+	std::cout << target.x << "\t" << target.y << "\n";
 
 	int weaptime;
 
@@ -53,12 +56,12 @@ void AI::update(sf::Time& elapsed)
 		makeDead();
 	}
 
-	if (target.y > pos.y)
+	if (target.y < pos.y)
 	{
 		y -= SPEED * msElapsed;
 		up = true;
 	}
-	if (target.y < pos.y)
+	if (target.y > pos.y)
 	{
 		y += SPEED * msElapsed;
 		down = true;
@@ -83,9 +86,8 @@ void AI::update(sf::Time& elapsed)
 		fireTimer_ -= msElapsed;
 	}
 
-	//target.x -= 10 < pos.x < target.x += 10 && target.y -= 10 < pos.y < target.y += 10 && fireTimer_ <= 0 && scene.getAmmo2() > 0
 
-	if (1)
+	if ((target.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 	{
 		int shotsf = 2;
 		scene.decreaseAmmo2(shotsf);
@@ -273,3 +275,4 @@ void AI::rotationSet(bool up, bool down, bool left, bool right)
 		sprite_.setRotation(0);
 	}
 }
+*/

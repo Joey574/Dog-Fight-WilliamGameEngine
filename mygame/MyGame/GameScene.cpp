@@ -1,6 +1,4 @@
 #include "GameScene.h"
-#include "Ship.h"
-#include "Enemy.h"
 #include "AI.h"
 #include "Ammo.h"
 #include "Ammo2.h"
@@ -9,8 +7,10 @@
 #include "Health2.h"
 #include "BuffSpawner.h"
 #include "Music.h"
+#include "Ships(plural).h"
+#include "EndScene.h"
 
-GameScene::GameScene()
+GameScene::GameScene(int player_)
 {
 	BackgroundPtr background = std::make_shared<Background>();
 	addGameObject(background);
@@ -18,14 +18,11 @@ GameScene::GameScene()
 	MusicPtr music = std::make_shared<Music>();
 	addGameObject(music);
 
-	ShipPtr ship = std::make_shared<Ship>();
-	addGameObject(ship);
+	ShipsPtr ships = std::make_shared<Ships>(0);
+	addGameObject(ships);
 
-	EnemyPtr enemy = std::make_shared<Enemy>();
-	addGameObject(enemy);
-
-	//AIPtr ai = std::make_shared<AI>();
-	//addGameObject(ai);
+	ships = std::make_shared<Ships>(1);
+	addGameObject(ships);
 
 	AmmoPtr ammo = std::make_shared<Ammo>();
 	addGameObject(ammo);
@@ -41,6 +38,17 @@ GameScene::GameScene()
 
 	BuffSpawnerPtr buffspawner = std::make_shared<BuffSpawner>();
 	addGameObject(buffspawner);
+
+	if (health1_ <= 0 || health2_ <= 0)
+	{
+		EndScenePtr end = std::make_shared<EndScene>(player_, health1_, health2_);
+		GAME.setScene(end);
+	}
+}
+
+int GameScene::players()
+{
+	return 0;
 }
 
 int GameScene::getAmmo1()
@@ -73,7 +81,7 @@ void GameScene::increaseAmmo2()
 	ammo2_ = 100;
 }
 
-int GameScene::getHealth1()
+float GameScene::getHealth1()
 {
 	return health1_;
 }
@@ -96,7 +104,7 @@ void GameScene::increaseHealth1()
 	}
 }
 
-int GameScene::getHealth2()
+float GameScene::getHealth2()
 {
 	return health2_;
 }
