@@ -440,8 +440,8 @@ int Ships::flakShoot(int ammo, int ID)
 	}
 	else
 	{
-		laserX = x + (tempW / 3.5f);
-		laserY = y + (tempH / 3.5f);
+		laserX = x + (tempW / 3.0f);
+		laserY = y + (tempH / 3.0f);
 	}
 
 	if (temp == 0)
