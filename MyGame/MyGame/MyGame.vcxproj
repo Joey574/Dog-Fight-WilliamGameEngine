@@ -102,6 +102,8 @@
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Ships(plural).cpp" />
+    <ClCompile Include="StartMessage.cpp" />
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -124,6 +126,8 @@
     <ClInclude Include="Music.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ships(plural).h" />
+    <ClInclude Include="StartMessage.h" />
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\README.md" />

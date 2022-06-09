@@ -57,6 +57,8 @@
     <ClCompile Include="Ships(plural).cpp">
       <Filter>GShips</Filter>
     </ClCompile>
+    <ClCompile Include="StartMessage.cpp" />
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -114,6 +116,11 @@
     <ClInclude Include="Background.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
+    <ClInclude Include="Ships(plural).h">
+      <Filter>GShips</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMessage.h" />
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
