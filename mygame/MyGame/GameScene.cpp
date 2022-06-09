@@ -74,7 +74,7 @@ void GameScene::increaseAmmo2()
 	ammo2_ = 100;
 }
 
-int GameScene::getHealth1()
+float GameScene::getHealth1()
 {
 	return health1_;
 }
@@ -97,7 +97,7 @@ void GameScene::increaseHealth1()
 	}
 }
 
-int GameScene::getHealth2()
+float GameScene::getHealth2()
 {
 	return health2_;
 }
