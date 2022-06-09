@@ -164,8 +164,7 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				ammoReturn = shotgunShoot(scene.getAmmo1());
-				//ammoReturn = laserShoot(scene.getAmmo1());
+				ammoReturn = laserShoot(scene.getAmmo1());
 			}
 			else if (weapon_ == 2)
 			{
@@ -524,8 +523,8 @@ int Ships::shotgunShoot(int ammo)
 	}
 	else
 	{
-		laserX = x + (tempW / 2.5f);
-		laserY = y + (tempH / 2.5f);
+		laserX = x + (tempW / 2.0f);
+		laserY = y + (tempH / 2.0f);
 	}
 
 	for (int x = 0; rotation > 360; x++)

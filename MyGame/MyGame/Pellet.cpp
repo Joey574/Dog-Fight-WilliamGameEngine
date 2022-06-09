@@ -2,7 +2,7 @@
 #include "math.h"
 #include "Pellet.h"
 
-const float SPEED = 0.3f;
+const float SPEED = 1.3f;
 
 Pellet::Pellet(sf::Vector2f pos, int rot)
 {
