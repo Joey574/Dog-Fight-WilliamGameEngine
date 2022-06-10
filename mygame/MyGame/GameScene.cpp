@@ -21,8 +21,17 @@ GameScene::GameScene(int player_)
 	ShipsPtr ships = std::make_shared<Ships>(0);
 	addGameObject(ships);
 
-	ships = std::make_shared<Ships>(1);
-	addGameObject(ships);
+
+	if (player_ == 1)
+	{
+		ships = std::make_shared<Ships>(2);
+		addGameObject(ships);
+	}
+	else if (player_ == 2)
+	{
+		ships = std::make_shared<Ships>(1);
+		addGameObject(ships);
+	}
 
 	AmmoPtr ammo = std::make_shared<Ammo>();
 	addGameObject(ammo);
@@ -39,16 +48,12 @@ GameScene::GameScene(int player_)
 	BuffSpawnerPtr buffspawner = std::make_shared<BuffSpawner>();
 	addGameObject(buffspawner);
 
-	if (health1_ <= 0 || health2_ <= 0)
-	{
-		EndScenePtr end = std::make_shared<EndScene>(player_, health1_, health2_);
-		GAME.setScene(end);
-	}
+	players(player_);
 }
 
-int GameScene::players()
+void GameScene::players(int player_)
 {
-	return 0;
+	player = player_;
 }
 
 int GameScene::getAmmo1()
@@ -93,6 +98,11 @@ void GameScene::decreaseHealth1(float b)
 	{
 		health1_ = 0;
 	}
+	if (health1_ <= 0 || health2_ <= 0)
+	{
+		EndScenePtr end = std::make_shared<EndScene>(player, health1_, health2_);
+		GAME.setScene(end);
+	}
 }
 
 void GameScene::increaseHealth1()
@@ -115,6 +125,11 @@ void GameScene::decreaseHealth2(float b)
 	if (health2_ < 0)
 	{
 		health2_ = 0;
+	}
+	if (health1_ <= 0 || health2_ <= 0)
+	{
+		EndScenePtr end = std::make_shared<EndScene>(player, health1_, health2_);
+		GAME.setScene(end);
 	}
 }
 
