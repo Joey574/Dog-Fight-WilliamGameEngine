@@ -4,12 +4,14 @@
 #include "Laser.h"
 #include "Flak.h"
 #include "Pellet.h"
+#include "Flares.h"
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
 #include <iostream>
 
 const float SPEED = 0.4f;
+const int FLARE_DELAY = 100;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
@@ -90,7 +92,7 @@ void Ships::shipMove(int msElapsed)
 			makeDead();
 		}
 	}
-	
+
 	if (ID == 0)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -147,13 +149,45 @@ void Ships::shipMove(int msElapsed)
 		fireTimer_ -= msElapsed;
 	}
 
+	if (flareTimer_ > 0)
+	{
+		flareTimer_ -= msElapsed;
+	}
+
 	if (ammo_ < 1 && weapon_ != 1)
 	{
 		FIRE_DELAY = 200;
 		weapon_ = 1;
+		ammo_ = 100;
+		
+		if (ID == 0)
+		{
+			scene.setAmmo1(100);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(100);
+		}
 	}
 	
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
+	if (ID == 0)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && flareTimer_ <= 0 && flares_ > 0)
+		{
+			flareShoot();
+		}
+	}
+	else if (ID == 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && flareTimer_ <= 0 && flares_ > 0)
+		{
+			flareShoot();
+		}
+	}
+
+	if (ID == 0)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
 			fireTimer_ = FIRE_DELAY;
 
@@ -174,8 +208,33 @@ void Ships::shipMove(int msElapsed)
 				shotgunShoot();
 			}
 		}
+	}
+	else if (ID == 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
+		{
+			fireTimer_ = FIRE_DELAY;
 
-	if (ID == 2)
+			if (weapon_ == 1)
+			{
+				laserShoot();
+			}
+			else if (weapon_ == 2)
+			{
+				flakShoot();
+			}
+			else if (weapon_ == 3)
+			{
+				triLaserShoot();
+			}
+			else if (weapon_ == 4)
+			{
+				shotgunShoot();
+			}
+		}
+	}
+
+	if (ID == 2) // AI
 	{
 		
 		//if ((.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
@@ -483,11 +542,11 @@ void Ships::flakShoot()
 	}
 	else if (temp == 4)
 	{
-		rotation -= 15;
+		rotation -= 8;
 	}
 	else if (temp == 5)
 	{
-		rotation += 15;
+		rotation += 8;
 	}
 
 	for (int x = 0; rotation > 360; x++)
@@ -582,6 +641,76 @@ void Ships::shotgunShoot()
 			else if (ID == 1)
 			{
 				scene.setAmmo2(ammo_);
+			}
+		}
+	}
+}
+
+void Ships::flareShoot()
+{
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
+	sf::Vector2f pos;
+
+	pos = sprite_.getPosition();
+
+	float x = pos.x;
+	float y = pos.y;
+
+	sf::FloatRect bounds;
+
+	bounds = sprite_.getGlobalBounds();
+
+	FlaresPtr flares;
+
+	float laserX;
+	float laserY;
+
+	float tempH = bounds.height;
+	float tempW = bounds.width;
+
+	rotationCheck(tempW, tempH, rotation);
+
+	if (rotation == 0 || rotation == 180)
+	{
+		laserX = x + (tempW / 1.75f);
+		laserY = y;
+	}
+	else if (rotation == 90 || rotation == 270)
+	{
+		laserX = x;
+		laserY = y + (tempH / 1.75f);
+	}
+	else
+	{
+		laserX = x + (tempW / 2.0f);
+		laserY = y + (tempH / 2.0f);
+	}
+
+	for (int x = 0; rotation > 360; x++)
+	{
+		rotation -= 360;
+	}
+	for (int x = 0; rotation < 0; x++)
+	{
+		rotation += 360;
+	}
+
+	for (int i = rotation - 10; i < rotation + 11; i += 5)
+	{
+		if (ammo_ > 0)
+		{
+			flares = std::make_shared<Flares>(sf::Vector2f(laserX, laserY), i);
+			GAME.getCurrentScene().addGameObject(flares);
+			flares_--;
+
+			if (ID == 0)
+			{
+				//scene.setAmmo1(ammo_);
+			}
+			else if (ID == 1)
+			{
+				//scene.setAmmo2(ammo_);
 			}
 		}
 	}
@@ -690,6 +819,8 @@ void Ships::handleCollision(GameObject& otherGameObject)
 	}
 	if (otherGameObject.hasTag("ammo+"))
 	{
+		ammo_ = 100;
+
 		if (ID == 0)
 		{
 			scene.setAmmo1(100);
@@ -702,7 +833,7 @@ void Ships::handleCollision(GameObject& otherGameObject)
 	}
 	if (otherGameObject.hasTag("flak+"))
 	{
-		FIRE_DELAY = 100;
+		FIRE_DELAY = 80;
 		weapon_ = 2;
 
 		otherGameObject.makeDead();
@@ -726,9 +857,4 @@ void Ships::handleCollision(GameObject& otherGameObject)
 sf::FloatRect Ships::getCollisionRect()
 {
 	return sprite_.getGlobalBounds();
-}
-
-sf::Vector2f Ships::Pos()
-{
-	return sprite_.getPosition();
 }

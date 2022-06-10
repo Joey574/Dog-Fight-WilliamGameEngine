@@ -96,6 +96,7 @@
     <ClCompile Include="Engine\Scene.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Flak.cpp" />
+    <ClCompile Include="Flares.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Engine\Scene.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Flak.h" />
+    <ClInclude Include="Flares.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
