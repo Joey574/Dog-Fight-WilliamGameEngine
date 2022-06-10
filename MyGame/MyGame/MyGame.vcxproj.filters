@@ -211,6 +211,12 @@
     <Image Include="Resources\pellet.png">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="Resources\missile.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\flare.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\boom.wav">
