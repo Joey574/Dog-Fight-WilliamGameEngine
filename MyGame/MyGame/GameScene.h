@@ -33,6 +33,13 @@ class GameScene : public Scene {
 
   void increaseHealth2();
 
+  void setShipPos(sf::Vector2f ship);
+
+  void setEnemyPos(sf::Vector2f enemy);
+
+  sf::Vector2f getShipPos();
+
+  sf::Vector2f getEnemyPos();
 
 private:
 	int player;
@@ -40,6 +47,10 @@ private:
 	int ammo2_ = 100;
 	float health1_ = 10.0f;
 	float health2_ = 10.0f;
+
+	sf::Vector2f shipPos;
+	sf::Vector2f enemyPos;
+
 };
 
 typedef std::shared_ptr<GameScene> GameScenePtr;

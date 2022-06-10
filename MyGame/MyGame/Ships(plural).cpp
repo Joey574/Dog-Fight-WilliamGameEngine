@@ -31,6 +31,7 @@ Ships::Ships(int x)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
 		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setRotation(180);
 
 		assignTag("enemy");
 	}	
@@ -43,9 +44,20 @@ void Ships::draw()
 
 void Ships::update(sf::Time& elapsed)
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
 	int msElapsed = elapsed.asMilliseconds();
 
 	rotation = sprite_.getRotation();
+
+	if (hasTag("ship"))
+	{
+		scene.setShipPos(sprite_.getPosition());
+	}
+	if (hasTag("enemy"))
+	{
+		scene.setEnemyPos(sprite_.getPosition());
+	}
 
 	shipMove(msElapsed);
 }
