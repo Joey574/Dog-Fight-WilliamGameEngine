@@ -153,8 +153,6 @@ void Ships::shipMove(int msElapsed)
 		weapon_ = 1;
 	}
 	
-	if (ID == 0)
-	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
 			fireTimer_ = FIRE_DELAY;
@@ -176,8 +174,8 @@ void Ships::shipMove(int msElapsed)
 				shotgunShoot();
 			}
 		}
-	}
-	else if (ID == 2)
+
+	if (ID == 2)
 	{
 		
 		//if ((.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)

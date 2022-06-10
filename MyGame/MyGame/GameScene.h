@@ -13,6 +13,10 @@ class GameScene : public Scene {
   
   void setAmmo2(int a);
 
+  int getAmmo1();
+
+  int getAmmo2();
+
   float getHealth1();
 
   float getHealth2();
