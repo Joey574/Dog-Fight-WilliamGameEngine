@@ -9,17 +9,9 @@ class GameScene : public Scene {
 
   void players(int player_);
 
-  int getAmmo1();
-
-  int getAmmo2();
-
-  void decreaseAmmo1(int a);
-
-  void decreaseAmmo2(int a);
-
-  void increaseAmmo1();
-
-  void increaseAmmo2();
+  void setAmmo1(int a);
+  
+  void setAmmo2(int a);
 
   float getHealth1();
 
@@ -43,8 +35,10 @@ class GameScene : public Scene {
 
 private:
 	int player;
+
 	int ammo1_ = 100;
 	int ammo2_ = 100;
+
 	float health1_ = 10.0f;
 	float health2_ = 10.0f;
 

@@ -22,10 +22,10 @@ public:
 
 	void handleCollision(GameObject& otherGameObject);
 
-	int laserShoot(int ammo); // weapon type 1
-	int shotgunShoot(int ammo); // weapon type = 4
-	int triLaserShoot(int ammo); // weapon type = 3
-	int flakShoot(int ammo); // weapon type = 2
+	void laserShoot(); // weapon type 1
+	void shotgunShoot(); // weapon type = 4
+	void triLaserShoot(); // weapon type = 3
+	void flakShoot(); // weapon type = 2
 
 private:
 
@@ -40,6 +40,8 @@ private:
 	int FIRE_DELAY = 200;
 
 	int weapon_ = 1;
+
+	int ammo_ = 100;
 };
 
 typedef std::shared_ptr<Ships> ShipsPtr;

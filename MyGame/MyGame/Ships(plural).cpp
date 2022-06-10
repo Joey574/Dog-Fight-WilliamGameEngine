@@ -71,8 +71,6 @@ void Ships::shipMove(int msElapsed)
 	float x = pos.x;
 	float y = pos.y;
 
-	int ammoReturn;
-
 	bool up = false;
 	bool down = false;
 	bool left = false;
@@ -149,75 +147,34 @@ void Ships::shipMove(int msElapsed)
 		fireTimer_ -= msElapsed;
 	}
 
-	if (ID == 0)
+	if (ammo_ < 1 && weapon_ != 1)
 	{
-		if (scene.getAmmo1() < 1 && weapon_ != 1)
-		{
-			FIRE_DELAY = 200;
-			weapon_ = 1;
-			scene.increaseAmmo1();
-		}
-	}
-	else if (ID == 1)
-	{
-		if (scene.getAmmo2() < 1 && weapon_ != 1)
-		{
-			FIRE_DELAY = 200;
-			weapon_ = 1;
-			scene.increaseAmmo2();
-		}
+		FIRE_DELAY = 200;
+		weapon_ = 1;
 	}
 	
 	if (ID == 0)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && scene.getAmmo1() > 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
 			fireTimer_ = FIRE_DELAY;
 
 			if (weapon_ == 1)
 			{
-				ammoReturn = laserShoot(scene.getAmmo1());
+				laserShoot();
 			}
 			else if (weapon_ == 2)
 			{
-				ammoReturn = flakShoot(scene.getAmmo1());
+				flakShoot();
 			}
 			else if (weapon_ == 3)
 			{
-				ammoReturn = triLaserShoot(scene.getAmmo1());
+				triLaserShoot();
 			}
 			else if (weapon_ == 4)
 			{
-				ammoReturn = shotgunShoot(scene.getAmmo1());
+				shotgunShoot();
 			}
-
-			scene.decreaseAmmo1(scene.getAmmo1() - ammoReturn);
-		}
-	}
-	else if (ID == 1)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
-		{
-			fireTimer_ = FIRE_DELAY;
-
-			if (weapon_ == 1)
-			{
-				ammoReturn = laserShoot(scene.getAmmo2());
-			}
-			else if (weapon_ == 2)
-			{
-				ammoReturn = flakShoot(scene.getAmmo2());
-			}
-			else if (weapon_ == 3)
-			{
-				ammoReturn = triLaserShoot(scene.getAmmo2());
-			}
-			else if (weapon_ == 4)
-			{
-				ammoReturn = shotgunShoot(scene.getAmmo2());
-			}
-
-			scene.decreaseAmmo2(scene.getAmmo2() - ammoReturn);
 		}
 	}
 	else if (ID == 2)
@@ -230,8 +187,10 @@ void Ships::shipMove(int msElapsed)
 	}
 }
 
-int Ships::laserShoot(int ammo)
+void Ships::laserShoot()
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
 	sf::Vector2f pos;
 
 	pos = sprite_.getPosition();
@@ -274,11 +233,20 @@ int Ships::laserShoot(int ammo)
 		laserY = y + (tempH / 3.5f);
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
 	}
 
 	if (rotation == 0 || rotation == 180)
@@ -302,18 +270,27 @@ int Ships::laserShoot(int ammo)
 		laserY = y + (tempH / 2.0f);
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
-	}
+		ammo_--;
 
-	return ammo;
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
+	}
 }
 
-int Ships::triLaserShoot(int ammo)
+void Ships::triLaserShoot()
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
 	LaserPtr laser;
 
 	sf::Vector2f pos;
@@ -356,11 +333,20 @@ int Ships::triLaserShoot(int ammo)
 		laserY = y + (tempH / 3.5f);
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
 	}
 
 	if (rotation == 0 || rotation == 180)
@@ -384,11 +370,20 @@ int Ships::triLaserShoot(int ammo)
 		laserY = y + (tempH / 2.0f);
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
 	}
 
 	if (rotation == 0 || rotation == 180)
@@ -412,19 +407,27 @@ int Ships::triLaserShoot(int ammo)
 		laserY = y + (tempH / 2.0f);
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		laser = std::make_shared<Laser>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(laser);
-		ammo--;
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
 	}
-
-	return ammo;
-
 }
 
-int Ships::flakShoot(int ammo)
+void Ships::flakShoot()
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
 	sf::Vector2f pos;
 
 	pos = sprite_.getPosition();
@@ -498,18 +501,28 @@ int Ships::flakShoot(int ammo)
 		rotation += 360;
 	}
 
-	if (ammo > 0)
+	if (ammo_ > 0)
 	{
 		flak = std::make_shared<Flak>(sf::Vector2f(laserX, laserY), rotation);
 		GAME.getCurrentScene().addGameObject(flak);
-		ammo--;
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1)
+		{
+			scene.setAmmo2(ammo_);
+		}
 	}
 
-	return ammo;
 }
 
-int Ships::shotgunShoot(int ammo)
+void Ships::shotgunShoot()
 {
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
 	sf::Vector2f pos;
 
 	pos = sprite_.getPosition();
@@ -558,15 +571,22 @@ int Ships::shotgunShoot(int ammo)
 
 	for (int i = rotation - 10; i < rotation + 11; i += 5)
 	{
-		if (ammo > 0)
+		if (ammo_ > 0)
 		{
 			pellet = std::make_shared<Pellet>(sf::Vector2f(laserX, laserY), i);
 			GAME.getCurrentScene().addGameObject(pellet);
-			ammo--;
+			ammo_--;
+
+			if (ID == 0)
+			{
+				scene.setAmmo1(ammo_);
+			}
+			else if (ID == 1)
+			{
+				scene.setAmmo2(ammo_);
+			}
 		}
 	}
-
-	return ammo;
 }
 
 // Eric you are very cool :)
@@ -674,11 +694,11 @@ void Ships::handleCollision(GameObject& otherGameObject)
 	{
 		if (ID == 0)
 		{
-			scene.increaseAmmo1();
+			scene.setAmmo1(100);
 		}
 		else
 		{
-			scene.increaseAmmo2();
+			scene.setAmmo2(100);
 		}
 		otherGameObject.makeDead();
 	}
