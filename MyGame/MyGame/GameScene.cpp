@@ -142,3 +142,23 @@ void GameScene::increaseHealth2()
 	}
 }
 
+void GameScene::setShipPos(sf::Vector2f ship)
+{
+	shipPos = ship;
+}
+
+void GameScene::setEnemyPos(sf::Vector2f enemy)
+{
+	enemyPos = enemy;
+}
+
+sf::Vector2f GameScene::getShipPos()
+{
+	return shipPos;
+}
+
+sf::Vector2f GameScene::getEnemyPos()
+{
+	return enemyPos;
+}
+
