@@ -6,6 +6,7 @@
 
 EndMessage::EndMessage(int player_, float health1_, float health2_)
 {
+	player(player_);
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
 	text_.setPosition(sf::Vector2f(50.0f, 50.0f));
 	text_.setCharacterSize(48);
@@ -34,29 +35,30 @@ EndMessage::EndMessage(int player_, float health1_, float health2_)
 
 }
 
+void EndMessage::player(int player_)
+{
+	playercount = player_;
+}
+
 void EndMessage::draw()
 {
 	GAME.getRenderWindow().draw(text_);
 }
 
-void EndMessage::update(sf::Time& time, int player_)
+void EndMessage::update(sf::Time& time)
 {
-	std::cout << "T1\n";
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		std::cout << "T2\n";
-		GameScenePtr scene = std::make_shared<GameScene>(player_);
+		GameScenePtr scene = std::make_shared<GameScene>(playercount);
 		GAME.setScene(scene);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		std::cout << "T3\n";
 		StartScenePtr start = std::make_shared<StartScene>();
 		GAME.setScene(start);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
-		std::cout << "T4\n";
 		exit(0);
 	}
 }

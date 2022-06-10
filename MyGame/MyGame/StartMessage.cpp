@@ -1,9 +1,11 @@
 #include "StartMessage.h"
 #include "GameScene.h"
 #include <sstream>
+#include <Windows.h>
 
 StartMessage::StartMessage()
 {
+	Sleep(500);
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
 	text_.setPosition(sf::Vector2f(50.0f, 50.0f));
 	text_.setCharacterSize(48);
