@@ -208,6 +208,14 @@ void Ships::shipMove(int msElapsed)
 			scene.decreaseAmmo2(scene.getAmmo2() - ammoReturn);
 		}
 	}
+	else if (ID == 2)
+	{
+		
+		//if ((.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
+		{
+
+		}
+	}
 }
 
 int Ships::laserShoot(int ammo)

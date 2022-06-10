@@ -7,7 +7,7 @@ class GameScene : public Scene {
   // Creates our Scene.
   GameScene(int player_);
 
-  int players();
+  void players(int player_);
 
   int getAmmo1();
 
@@ -35,6 +35,7 @@ class GameScene : public Scene {
 
 
 private:
+	int player;
 	int ammo1_ = 100;
 	int ammo2_ = 100;
 	float health1_ = 10.0f;
