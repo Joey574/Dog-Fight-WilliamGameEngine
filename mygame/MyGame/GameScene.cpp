@@ -56,34 +56,15 @@ void GameScene::players(int player_)
 	player = player_;
 }
 
-int GameScene::getAmmo1()
+
+void GameScene::setAmmo1(int a)
 {
-	return ammo1_;
+	ammo1_ = a;
 }
 
-void GameScene::decreaseAmmo1(int a)
+void GameScene::setAmmo2(int a)
 {
-	ammo1_ -= a;
-}
-
-void GameScene::increaseAmmo1()
-{
-	ammo1_ = 100;
-}
-
-int GameScene::getAmmo2()
-{
-	return ammo2_;
-}
-
-void GameScene::decreaseAmmo2(int a)
-{
-	ammo2_ -= a;
-}
-
-void GameScene::increaseAmmo2()
-{
-	ammo2_ = 100;
+	ammo2_ = a;
 }
 
 float GameScene::getHealth1()
@@ -140,5 +121,25 @@ void GameScene::increaseHealth2()
 	{
 		health2_ = 10;
 	}
+}
+
+void GameScene::setShipPos(sf::Vector2f ship)
+{
+	shipPos = ship;
+}
+
+void GameScene::setEnemyPos(sf::Vector2f enemy)
+{
+	enemyPos = enemy;
+}
+
+sf::Vector2f GameScene::getShipPos()
+{
+	return shipPos;
+}
+
+sf::Vector2f GameScene::getEnemyPos()
+{
+	return enemyPos;
 }
 
