@@ -9,10 +9,12 @@ public:
 	EndMessage(int player_, float health1_, float health2_);
 
 	// Functions overriden from GameObject:
+	void player(int player_);
 	void draw();
-	void update(sf::Time& elapsed, int player_);
+	void update(sf::Time& elapsed);
 
 private:
+	int playercount;
 	sf::Text text_;
 };
 
