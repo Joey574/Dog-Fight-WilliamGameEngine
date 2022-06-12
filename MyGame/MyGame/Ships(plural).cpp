@@ -4,7 +4,7 @@
 #include "Laser.h"
 #include "Flak.h"
 #include "Pellet.h"
-#include "Flares.h"
+#include "Flare.h"
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
@@ -207,6 +207,10 @@ void Ships::shipMove(int msElapsed)
 			{
 				shotgunShoot();
 			}
+			else if (weapon_ == 5)
+			{
+				missileshoot();
+			}
 		}
 	}
 	else if (ID == 1)
@@ -230,6 +234,10 @@ void Ships::shipMove(int msElapsed)
 			else if (weapon_ == 4)
 			{
 				shotgunShoot();
+			}
+			else if (weapon_ == 5)
+			{
+				missileshoot();
 			}
 		}
 	}
@@ -646,6 +654,11 @@ void Ships::shotgunShoot()
 	}
 }
 
+void Ships::missileshoot()
+{
+
+}
+
 void Ships::flareShoot()
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
@@ -661,7 +674,7 @@ void Ships::flareShoot()
 
 	bounds = sprite_.getGlobalBounds();
 
-	FlaresPtr flares;
+	FlarePtr flares;
 
 	float laserX;
 	float laserY;
@@ -700,7 +713,7 @@ void Ships::flareShoot()
 	{
 		if (ammo_ > 0)
 		{
-			flares = std::make_shared<Flares>(sf::Vector2f(laserX, laserY), i);
+			flares = std::make_shared<Flare>(sf::Vector2f(laserX, laserY), i);
 			GAME.getCurrentScene().addGameObject(flares);
 			flares_--;
 
@@ -845,10 +858,17 @@ void Ships::handleCollision(GameObject& otherGameObject)
 
 		otherGameObject.makeDead();
 	}
+	//if (otherGameObject.hasTag("shotgun+"))
+	//{
+	//	FIRE_DELAY = 300;
+	//	weapon_ = 4;
+
+	//	otherGameObject.makeDead();
+	//}
 	if (otherGameObject.hasTag("shotgun+"))
 	{
-		FIRE_DELAY = 300;
-		weapon_ = 4;
+		FIRE_DELAY = 500;
+		weapon_ = 5;
 
 		otherGameObject.makeDead();
 	}

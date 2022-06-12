@@ -1,27 +1,31 @@
 #define _USE_MATH_DEFINES
-#include "Flares.h"
-#include <math.h>
+#include "math.h"
+#include "Missile.h"
 
 const float SPEED = 1.3f;
 
-Flares::Flares(sf::Vector2f pos, int rot)
+Missile::Missile(sf::Vector2f pos, int rot)
 {
-	sprite_.setTexture(GAME.getTexture("Resources/pellet.png"));
+	sprite_.setTexture(GAME.getTexture("Resources/missile.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
-	assignTag("flares");
+	assignTag("missile");
 }
 
-void Flares::draw()
+void Missile::draw()
 {
 	GAME.getRenderWindow().draw(sprite_);
 }
 
-void Flares::update(sf::Time& elapsed)
+void Missile::update(sf::Time& elapsed)
 {
-	int rotation = sprite_.getRotation();
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
+	sf::Vector2f Target;
 
 	int msElapsed = elapsed.asMilliseconds();
+
+	int rotation = sprite_.getRotation();
 
 	sf::Vector2f pos = sprite_.getPosition();
 
@@ -48,21 +52,42 @@ void Flares::update(sf::Time& elapsed)
 	}
 }
 
-sf::FloatRect Flares::getCollisionRect()
+sf::FloatRect Missile::getCollisionRect()
 {
 	return sprite_.getGlobalBounds();
 }
 
-void Flares::handleCollision(GameObject& otherGameObject)
+void Missile::handleCollision(GameObject& otherGameObject)
 {
+	float dam = 3;
+
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 
 	sf::Vector2f pos = sprite_.getPosition();
 
-	if (otherGameObject.hasTag("missile"))
+	ExplosionPtr explosion = std::make_shared<Explosion>(sprite_.getPosition());
+
+	if (otherGameObject.hasTag("ship"))
 	{
-		otherGameObject.makeDead();
+		GAME.getCurrentScene().addGameObject(explosion);
+		scene.decreaseHealth1(dam);
 	}
 
-	makeDead();
+	if (otherGameObject.hasTag("enemy"))
+	{
+		GAME.getCurrentScene().addGameObject(explosion);
+		scene.decreaseHealth2(dam);
+	}
+
+	if (otherGameObject.hasTag("flare"))
+	{
+		GAME.getCurrentScene().addGameObject(explosion);
+		otherGameObject.makeDead();
+		makeDead();
+	}
+
+	if (!otherGameObject.hasTag("Missile"))
+	{
+		makeDead();
+	}
 }

@@ -25,6 +25,8 @@ public:
 	void shotgunShoot(); // weapon type = 4
 	void triLaserShoot(); // weapon type = 3
 	void flakShoot(); // weapon type = 2
+	void flareshoot();
+	void missileshoot(); //weapon type = 5
 
 	void flareShoot();
 

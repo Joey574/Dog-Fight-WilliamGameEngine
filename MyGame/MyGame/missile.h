@@ -5,10 +5,10 @@
 #include "GameScene.h"
 #include "Explosion.h"
 
-class Flares : public GameObject
+class Missile : public GameObject
 {
 public:
-	Flares(sf::Vector2f pos, int rot);
+	Missile(sf::Vector2f pos, int rot);
 
 	void draw();
 	void update(sf::Time& elapsed);
@@ -19,4 +19,4 @@ private:
 	sf::Sprite sprite_;
 };
 
-typedef std::shared_ptr<Flares> FlaresPtr;
+typedef std::shared_ptr<Missile> MissilePtr;
