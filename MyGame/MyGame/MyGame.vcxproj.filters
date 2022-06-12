@@ -229,6 +229,9 @@
     <Media Include="Resources\Awesome Music.wav">
       <Filter>Resources</Filter>
     </Media>
+    <Media Include="Resources\pew 2.wav">
+      <Filter>Resources</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Courneuf-Regular.ttf">

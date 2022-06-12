@@ -25,7 +25,6 @@ public:
 	void shotgunShoot(); // weapon type = 4
 	void triLaserShoot(); // weapon type = 3
 	void flakShoot(); // weapon type = 2
-	void flareshoot();
 	void missileshoot(); //weapon type = 5
 
 	void flareShoot();
@@ -49,6 +48,8 @@ private:
 	int ammo_ = 100;
 
 	int flares_ = 3;
+
+	sf::Sound pew_;
 };
 
 typedef std::shared_ptr<Ships> ShipsPtr;
