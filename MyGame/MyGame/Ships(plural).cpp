@@ -33,7 +33,7 @@ Ships::Ships(int x)
 	else if (ID == 1)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
 		sprite_.setRotation(180);
 
 		assignTag("enemy");
@@ -41,7 +41,7 @@ Ships::Ships(int x)
 	else if (ID == 2)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
 		sprite_.setRotation(180);
 
 		assignTag("enemy");
