@@ -1,5 +1,5 @@
 #define _USE_MATH_DEFINES
-#include "math.h"
+#include <math.h>
 #include "Missile.h"
 
 const float SPEED = 0.5f;
@@ -59,12 +59,14 @@ void Missile::update(sf::Time& elapsed)
 		makeDead();
 	}
 
-	if (Target.y - tBounds.width < pos.y)
+	if (abs(Target.y - y) + abs(Target.x - x))
+
+	if (Target.y - tBounds.height < pos.y)
 	{
 		y -= SPEED * msElapsed;
 		up = true;
 	}
-	if (Target.y - tBounds.width > pos.y)
+	if (Target.y + tBounds.height > pos.y)
 	{
 		y += SPEED * msElapsed;
 		down = true;
@@ -74,7 +76,7 @@ void Missile::update(sf::Time& elapsed)
 		x -= SPEED * msElapsed;
 		left = true;
 	}
-	if (Target.x - tBounds.width > pos.x)
+	if (Target.x + tBounds.width > pos.x)
 	{
 		x += SPEED * msElapsed;
 		right = true;
