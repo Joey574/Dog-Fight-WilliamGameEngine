@@ -151,6 +151,7 @@
     <Image Include="Resources\laser.png" />
     <Image Include="Resources\meteor.png" />
     <Image Include="Resources\enemy.png" />
+    <Image Include="Resources\Missile+.png" />
     <Image Include="Resources\missile.png" />
     <Image Include="Resources\pellet.png" />
     <Image Include="Resources\shell.png" />

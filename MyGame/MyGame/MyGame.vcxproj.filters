@@ -71,8 +71,12 @@
     <ClCompile Include="EndMessage.cpp">
       <Filter>Ggameparts</Filter>
     </ClCompile>
-    <ClCompile Include="Flare.cpp" />
-    <ClCompile Include="missile.cpp" />
+    <ClCompile Include="missile.cpp">
+      <Filter>GAmmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Flare.cpp">
+      <Filter>GAmmo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -147,8 +151,12 @@
     <ClInclude Include="EndMessage.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
-    <ClInclude Include="Flare.h" />
-    <ClInclude Include="missile.h" />
+    <ClInclude Include="missile.h">
+      <Filter>GAmmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Flare.h">
+      <Filter>GAmmo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -219,6 +227,9 @@
       <Filter>Resources</Filter>
     </Image>
     <Image Include="Resources\flare.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\Missile+.png">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
