@@ -33,7 +33,7 @@ Ships::Ships(int x)
 	else if (ID == 1)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
 		sprite_.setRotation(180);
 
 		assignTag("enemy");
@@ -41,7 +41,7 @@ Ships::Ships(int x)
 	else if (ID == 2)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
 		sprite_.setRotation(180);
 
 		assignTag("enemy");
@@ -975,17 +975,28 @@ void Ships::handleCollision(GameObject& otherGameObject)
 
 		otherGameObject.makeDead();
 	}
-	//if (otherGameObject.hasTag("shotgun+"))
-	//{
-	//	FIRE_DELAY = 300;
-	//	weapon_ = 4;
-
-	//	otherGameObject.makeDead();
-	//}
 	if (otherGameObject.hasTag("shotgun+"))
+	{
+		FIRE_DELAY = 300;
+		weapon_ = 4;
+
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("missile+"))
 	{
 		FIRE_DELAY = 500;
 		weapon_ = 5;
+
+		ammo_ = 5;
+		
+		if (ID == 0)
+		{
+			scene.setAmmo1(5);
+		}
+		else if (ID == 1 || ID == 2)
+		{
+			scene.setAmmo2(5);
+		}
 
 		otherGameObject.makeDead();
 	}

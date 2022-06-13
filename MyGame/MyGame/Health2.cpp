@@ -5,7 +5,7 @@
 Health2::Health2()
 {
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
-	text_.setPosition(670, 5);
+	text_.setPosition(1150, 5);
 	text_.setCharacterSize(24);
 	text_.setFillColor(sf::Color::Red);
 	assignTag("health2");
@@ -19,7 +19,6 @@ void Health2::draw()
 void Health2::update(sf::Time& elapsed)
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
-
 	std::stringstream stream;
 	stream << "HP: " << scene.getHealth2();
 
