@@ -56,7 +56,6 @@ void GameScene::players(int player_)
 	player = player_;
 }
 
-
 void GameScene::setAmmo1(int a)
 {
 	ammo1_ = a;

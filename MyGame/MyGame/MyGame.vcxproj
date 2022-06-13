@@ -96,10 +96,12 @@
     <ClCompile Include="Engine\Scene.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Flak.cpp" />
+    <ClCompile Include="Flare.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="missile.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Pellet.cpp" />
@@ -123,10 +125,12 @@
     <ClInclude Include="Engine\Scene.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Flak.h" />
+    <ClInclude Include="Flare.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
     <ClInclude Include="Laser.h" />
+    <ClInclude Include="missile.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ships(plural).h" />
@@ -142,10 +146,12 @@
     <Image Include="..\..\..\..\..\Downloads\Trishot.png" />
     <Image Include="Resources\Ammo.png" />
     <Image Include="Resources\explosion-spritesheet.png" />
+    <Image Include="Resources\flare.png" />
     <Image Include="Resources\Health.png" />
     <Image Include="Resources\laser.png" />
     <Image Include="Resources\meteor.png" />
     <Image Include="Resources\enemy.png" />
+    <Image Include="Resources\missile.png" />
     <Image Include="Resources\pellet.png" />
     <Image Include="Resources\shell.png" />
     <Image Include="Resources\ship.png" />
@@ -153,6 +159,7 @@
   <ItemGroup>
     <Media Include="Resources\Awesome Music.wav" />
     <Media Include="Resources\boom.wav" />
+    <Media Include="Resources\pew 2.wav" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Courneuf-Regular.ttf" />
