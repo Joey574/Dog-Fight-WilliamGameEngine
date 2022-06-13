@@ -62,20 +62,20 @@
     <ClCompile Include="StartScene.cpp">
       <Filter>GScenes</Filter>
     </ClCompile>
-    <ClCompile Include="StartMessage.cpp">
-      <Filter>Ggameparts</Filter>
-    </ClCompile>
     <ClCompile Include="EndScene.cpp">
       <Filter>GScenes</Filter>
-    </ClCompile>
-    <ClCompile Include="EndMessage.cpp">
-      <Filter>Ggameparts</Filter>
     </ClCompile>
     <ClCompile Include="missile.cpp">
       <Filter>GAmmo</Filter>
     </ClCompile>
     <ClCompile Include="Flare.cpp">
       <Filter>GAmmo</Filter>
+    </ClCompile>
+    <ClCompile Include="EndMessage.cpp">
+      <Filter>GMessages</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMessage.cpp">
+      <Filter>GMessages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,20 +142,20 @@
     <ClInclude Include="StartScene.h">
       <Filter>GScenes</Filter>
     </ClInclude>
-    <ClInclude Include="StartMessage.h">
-      <Filter>Ggameparts</Filter>
-    </ClInclude>
     <ClInclude Include="EndScene.h">
       <Filter>GScenes</Filter>
-    </ClInclude>
-    <ClInclude Include="EndMessage.h">
-      <Filter>Ggameparts</Filter>
     </ClInclude>
     <ClInclude Include="missile.h">
       <Filter>GAmmo</Filter>
     </ClInclude>
     <ClInclude Include="Flare.h">
       <Filter>GAmmo</Filter>
+    </ClInclude>
+    <ClInclude Include="EndMessage.h">
+      <Filter>GMessages</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMessage.h">
+      <Filter>GMessages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +179,9 @@
     </Filter>
     <Filter Include="GScenes">
       <UniqueIdentifier>{4097d0a3-53ae-4183-8072-91f9ce2a132c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GMessages">
+      <UniqueIdentifier>{ee302d11-008c-4b6c-bc17-a7ea65b3d6bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

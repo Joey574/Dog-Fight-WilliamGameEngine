@@ -974,17 +974,28 @@ void Ships::handleCollision(GameObject& otherGameObject)
 
 		otherGameObject.makeDead();
 	}
-	//if (otherGameObject.hasTag("shotgun+"))
-	//{
-	//	FIRE_DELAY = 300;
-	//	weapon_ = 4;
-
-	//	otherGameObject.makeDead();
-	//}
 	if (otherGameObject.hasTag("shotgun+"))
+	{
+		FIRE_DELAY = 300;
+		weapon_ = 4;
+
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("missile+"))
 	{
 		FIRE_DELAY = 500;
 		weapon_ = 5;
+
+		ammo_ = 5;
+		
+		if (ID == 0)
+		{
+			scene.setAmmo1(5);
+		}
+		else if (ID == 1 || ID == 2)
+		{
+			scene.setAmmo2(5);
+		}
 
 		otherGameObject.makeDead();
 	}
