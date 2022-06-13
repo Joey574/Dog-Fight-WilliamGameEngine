@@ -218,6 +218,7 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
+			pew_.setVolume(10);
 			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
 			pew_.play();
 			fireTimer_ = FIRE_DELAY;
