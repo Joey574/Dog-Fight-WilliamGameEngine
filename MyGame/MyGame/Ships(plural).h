@@ -47,7 +47,7 @@ private:
 
 	int ammo_ = 100;
 
-	int flares_ = 3;
+	int flares_ = 10;
 
 	sf::Sound pew_;
 };

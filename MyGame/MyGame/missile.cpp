@@ -1,8 +1,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Missile.h"
+#include <iostream>
 
-const float SPEED = 0.5f;
+const float SPEED = 0.65f;
 
 Missile::Missile(sf::Vector2f pos, int rot, int ID, sf::FloatRect bounds)
 {
@@ -45,6 +46,15 @@ void Missile::update(sf::Time& elapsed)
 	bool left = false;
 	bool right = false;
 
+	int errorRange = 80;
+
+	if (forwardTime > 0)
+	{
+		forwardTime -= msElapsed;
+	}
+
+	std::cout << forwardTime << "\n";
+
 	if (ID_ == 0)
 	{
 		Target = scene.getEnemyPos();
@@ -59,27 +69,56 @@ void Missile::update(sf::Time& elapsed)
 		makeDead();
 	}
 
-	if (abs(Target.y - y) + abs(Target.x - x))
+	if (abs(Target.y - y) + abs(Target.x - x) < 200)
+	{
+		errorRange = 0;
+	}
+	else
+	{
+		errorRange = 80;
+	}
 
-	if (Target.y - tBounds.height < pos.y)
+	if (forwardTime <= 0)
 	{
-		y -= SPEED * msElapsed;
-		up = true;
+		if (rotation == 0 || rotation == 180)
+		{
+			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y));
+		}
+		else if (rotation == 90 || rotation == 270)
+		{
+			sprite_.setPosition(sf::Vector2f(pos.x, pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+		}
+		else if (rotation > 0 && rotation < 90 || rotation > 270)
+		{
+			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+		}
+		else if (rotation > 90 && rotation < 270)
+		{
+			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+		}
 	}
-	if (Target.y + tBounds.height > pos.y)
+	else
 	{
-		y += SPEED * msElapsed;
-		down = true;
-	}
-	if (Target.x - tBounds.width < pos.x)
-	{
-		x -= SPEED * msElapsed;
-		left = true;
-	}
-	if (Target.x + tBounds.width > pos.x)
-	{
-		x += SPEED * msElapsed;
-		right = true;
+		if (Target.y - errorRange < pos.y)
+		{
+			y -= SPEED * msElapsed;
+			up = true;
+		}
+		if (Target.y + errorRange > pos.y)
+		{
+			y += SPEED * msElapsed;
+			down = true;
+		}
+		if (Target.x - errorRange < pos.x)
+		{
+			x -= SPEED * msElapsed;
+			left = true;
+		}
+		if (Target.x + errorRange > pos.x)
+		{
+			x += SPEED * msElapsed;
+			right = true;
+		}
 	}
 
 	rotationSet(up, down, left, right);

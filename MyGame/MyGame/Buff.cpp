@@ -11,7 +11,7 @@ Buff::Buff()
 	pos.y = 20 + rand() % size.y - 60;
 	
 	sprite_.setPosition(pos);
-	type = 6;//(rand() % 6) + 1;
+	type = (rand() % 6) + 1;
 
 	if (type == 1)
 	{

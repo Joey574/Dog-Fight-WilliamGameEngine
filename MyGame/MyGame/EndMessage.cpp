@@ -10,24 +10,32 @@ EndMessage::EndMessage(int player_, float health1_, float health2_)
 	text_.setFont(GAME.getFont("Resources/Courneuf-Regular.ttf"));
 	text_.setPosition(sf::Vector2f(50.0f, 50.0f));
 	text_.setCharacterSize(48);
-	text_.setFillColor(sf::Color::Red);
-
 
 	std::stringstream stream;
-	if (health1_ <= 0 && player_ == 1)
+
+	if (health1_ <= 0 && health2_ <= 0)
 	{
+		text_.setFillColor(sf::Color::Green);
+		stream << "A Tie.\nPress 1 to play again\nPress 2 to return to start.\nPress 3 to quit";
+	}
+	else if (health1_ <= 0 && player_ == 1)
+	{
+		text_.setFillColor(sf::Color::Red);
 		stream << "You Lose.\nPress 1 to play again\nPress 2 to return to start.\nPress 3 to quit";
 	}
-	if (health1_ <= 0 && player_ == 2)
+	else if (health1_ <= 0 && player_ == 2)
 	{
+		text_.setFillColor(sf::Color::Red);
 		stream << "Player 2 Wins!\nPress 1 to play again\nPress 2 to return to start.\nPress 3 to quit";
 	}
-	if (health2_ <= 0 && player_ == 1)
+	else if (health2_ <= 0 && player_ == 1)
 	{
+		text_.setFillColor(sf::Color::Blue);
 		stream << "You Win!\nPress 1 to play again\nPress 2 to return to start.\nPress 3 to quit";
 	}
-	if (health2_ <= 0 && player_ == 2)
+	else if (health2_ <= 0 && player_ == 2)
 	{
+		text_.setFillColor(sf::Color::Blue);
 		stream << "Player 1 Wins!\nPress 1 to play again\nPress 2 to return to start.\nPress 3 to quit";
 	}
 

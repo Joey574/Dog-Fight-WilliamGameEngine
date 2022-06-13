@@ -24,6 +24,8 @@ private:
 
 	int rotation;
 
+	int forwardTime = 800;
+
 	sf::FloatRect tBounds;
 };
 
