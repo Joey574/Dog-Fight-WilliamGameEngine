@@ -4,7 +4,8 @@
 #include "Laser.h"
 #include "Flak.h"
 #include "Pellet.h"
-#include "Flares.h"
+#include "Flare.h"
+#include "missile.h"
 #include "Ammo.h"
 #include "GameScene.h"
 #include <sstream>
@@ -32,11 +33,19 @@ Ships::Ships(int x)
 	else if (ID == 1)
 	{
 		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
-		sprite_.setPosition(sf::Vector2f(730, 530));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
 		sprite_.setRotation(180);
 
 		assignTag("enemy");
 	}	
+	else if (ID == 2)
+	{
+		sprite_.setTexture(GAME.getTexture("Resources/enemy.png"));
+		sprite_.setPosition(sf::Vector2f(1170, 630));
+		sprite_.setRotation(180);
+
+		assignTag("enemy");
+	}
 }
 
 void Ships::draw()
@@ -139,6 +148,31 @@ void Ships::shipMove(int msElapsed)
 			right = true;
 		}
 	}
+	else if (ID == 2)
+	{
+		GameScene& scene = (GameScene&)GAME.getCurrentScene();
+		sf::Vector2f target = scene.getShipPos();
+		if (target.y < pos.y)
+		{
+			y -= SPEED * msElapsed;
+			up = true;
+		}
+		if (target.y > pos.y)
+		{
+			y += SPEED * msElapsed;
+			down = true;
+		}
+		if (target.x < pos.x)
+		{
+			x -= SPEED * msElapsed;
+			left = true;
+		}
+		if (target.x > pos.x)
+		{
+			x += SPEED * msElapsed;
+			right = true;
+		}
+	}
 
 	rotationSet(up, down, left, right);
 
@@ -147,11 +181,6 @@ void Ships::shipMove(int msElapsed)
 	if (fireTimer_ > 0)
 	{
 		fireTimer_ -= msElapsed;
-	}
-
-	if (flareTimer_ > 0)
-	{
-		flareTimer_ -= msElapsed;
 	}
 
 	if (ammo_ < 1 && weapon_ != 1)
@@ -189,6 +218,9 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
+			pew_.setVolume(10);
+			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
+			pew_.play();
 			fireTimer_ = FIRE_DELAY;
 
 			if (weapon_ == 1)
@@ -206,6 +238,10 @@ void Ships::shipMove(int msElapsed)
 			else if (weapon_ == 4)
 			{
 				shotgunShoot();
+			}
+			else if (weapon_ == 5)
+			{
+				missileshoot();
 			}
 		}
 	}
@@ -213,6 +249,8 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
+			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
+			pew_.play();
 			fireTimer_ = FIRE_DELAY;
 
 			if (weapon_ == 1)
@@ -231,15 +269,44 @@ void Ships::shipMove(int msElapsed)
 			{
 				shotgunShoot();
 			}
+			else if (weapon_ == 5)
+			{
+				missileshoot();
+			}
 		}
 	}
 
 	if (ID == 2) // AI
 	{
-		
-		//if ((.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
+		GameScene& scene = (GameScene&)GAME.getCurrentScene();
+		sf::Vector2f target = scene.getShipPos();
+		if ((target.x - 10.0f) < pos.x < (target.x + 10.0f) && (target.y - 10.0f) < pos.y < (target.y + 10.0f) && fireTimer_ <= 0 && scene.getAmmo2() > 0)
 		{
+			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
+			pew_.play();
 
+			fireTimer_ = FIRE_DELAY;
+
+			if (weapon_ == 1)
+			{
+				laserShoot();
+			}
+			else if (weapon_ == 2)
+			{
+				flakShoot();
+			}
+			else if (weapon_ == 3)
+			{
+				triLaserShoot();
+			}
+			else if (weapon_ == 4)
+			{
+				shotgunShoot();
+			}
+			else if (weapon_ == 5)
+			{
+				missileshoot();
+			}
 		}
 	}
 }
@@ -300,7 +367,7 @@ void Ships::laserShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID == 1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -337,7 +404,7 @@ void Ships::laserShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID == 1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -400,7 +467,7 @@ void Ships::triLaserShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID ==1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -437,7 +504,7 @@ void Ships::triLaserShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID == 1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -474,7 +541,7 @@ void Ships::triLaserShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID == 1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -568,7 +635,7 @@ void Ships::flakShoot()
 		{
 			scene.setAmmo1(ammo_);
 		}
-		else if (ID == 1)
+		else if (ID == 1 || ID == 2)
 		{
 			scene.setAmmo2(ammo_);
 		}
@@ -638,10 +705,73 @@ void Ships::shotgunShoot()
 			{
 				scene.setAmmo1(ammo_);
 			}
-			else if (ID == 1)
+			else if (ID == 1 || ID == 2)
 			{
 				scene.setAmmo2(ammo_);
 			}
+		}
+	}
+}
+
+void Ships::missileshoot()
+{
+	GameScene& scene = (GameScene&)GAME.getCurrentScene();
+
+	MissilePtr missile;
+
+	sf::Vector2f pos;
+
+	pos = sprite_.getPosition();
+
+	float x = pos.x;
+	float y = pos.y;
+
+	sf::FloatRect bounds;
+
+	bounds = sprite_.getGlobalBounds();
+
+	float laserX;
+	float laserY;
+
+	float tempH = bounds.height;
+	float tempW = bounds.width;
+
+	rotationCheck(tempW, tempH, rotation);
+
+	if (rotation == 0 || rotation == 180)
+	{
+		laserX = x + (tempW / 2.0f);
+		laserY = y + (tempH / 3.5f);
+	}
+	else if (rotation == 90 || rotation == 270)
+	{
+		laserX = x + (tempW / 3.5f);
+		laserY = y + (tempH / 2.0f);
+	}
+	else if (rotation == 45 || rotation == 225)
+	{
+		laserX = x + (tempW / 3.5f);
+		laserY = y + (tempH / 2.0f);
+	}
+	else if (rotation == 135 || rotation == 315)
+	{
+		laserX = x + (tempW / 2.0f);
+		laserY = y + (tempH / 3.5f);
+	}
+
+	if (ammo_ > 0)
+	{
+		missile = std::make_shared<Missile>(sf::Vector2f(laserX, laserY), rotation, ID, bounds);
+		GAME.getCurrentScene().addGameObject(missile);
+		ammo_--;
+
+		if (ID == 0)
+		{
+			scene.setAmmo1(ammo_);
+		}
+		else if (ID == 1 || ID == 2)
+		{
+			scene.setAmmo2(ammo_);
 		}
 	}
 }
@@ -661,7 +791,7 @@ void Ships::flareShoot()
 
 	bounds = sprite_.getGlobalBounds();
 
-	FlaresPtr flares;
+	FlarePtr flares;
 
 	float laserX;
 	float laserY;
@@ -700,7 +830,7 @@ void Ships::flareShoot()
 	{
 		if (ammo_ > 0)
 		{
-			flares = std::make_shared<Flares>(sf::Vector2f(laserX, laserY), i);
+			flares = std::make_shared<Flare>(sf::Vector2f(laserX, laserY), i);
 			GAME.getCurrentScene().addGameObject(flares);
 			flares_--;
 
@@ -849,6 +979,24 @@ void Ships::handleCollision(GameObject& otherGameObject)
 	{
 		FIRE_DELAY = 300;
 		weapon_ = 4;
+
+		otherGameObject.makeDead();
+	}
+	if (otherGameObject.hasTag("missile+"))
+	{
+		FIRE_DELAY = 500;
+		weapon_ = 5;
+
+		ammo_ = 5;
+		
+		if (ID == 0)
+		{
+			scene.setAmmo1(5);
+		}
+		else if (ID == 1 || ID == 2)
+		{
+			scene.setAmmo2(5);
+		}
 
 		otherGameObject.makeDead();
 	}

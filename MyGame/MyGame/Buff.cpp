@@ -11,7 +11,7 @@ Buff::Buff()
 	pos.y = 20 + rand() % size.y - 60;
 	
 	sprite_.setPosition(pos);
-	type = (rand() % 5) + 1;
+	type = 6;//(rand() % 6) + 1;
 
 	if (type == 1)
 	{
@@ -37,6 +37,11 @@ Buff::Buff()
 	{
 		assignTag("shotgun+");
 		sprite_.setTexture(GAME.getTexture("Resources/Shotgun.png"));
+	}
+	else if (type == 6)
+	{
+		assignTag("missile+");
+		sprite_.setTexture(GAME.getTexture("Resources/Missile+.png"));
 	}
 }
 
