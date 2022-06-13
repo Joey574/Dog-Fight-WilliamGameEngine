@@ -67,6 +67,16 @@ void GameScene::setAmmo2(int a)
 	ammo2_ = a;
 }
 
+int GameScene::getAmmo1()
+{
+	return ammo1_;
+}
+
+int GameScene::getAmmo2()
+{
+	return ammo2_;
+}
+
 float GameScene::getHealth1()
 {
 	return health1_;
