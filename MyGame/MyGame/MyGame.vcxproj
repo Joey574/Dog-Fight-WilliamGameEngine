@@ -101,7 +101,7 @@
     <ClCompile Include="Health1.cpp" />
     <ClCompile Include="Health2.cpp" />
     <ClCompile Include="Laser.cpp" />
-    <ClCompile Include="missile.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="MyGame.cpp" />
     <ClCompile Include="Pellet.cpp" />
@@ -130,7 +130,7 @@
     <ClInclude Include="Health1.h" />
     <ClInclude Include="Health2.h" />
     <ClInclude Include="Laser.h" />
-    <ClInclude Include="missile.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ships(plural).h" />

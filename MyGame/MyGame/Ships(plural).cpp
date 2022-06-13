@@ -761,7 +761,7 @@ void Ships::missileshoot()
 
 	if (ammo_ > 0)
 	{
-		missile = std::make_shared<Missile>(sf::Vector2f(laserX, laserY), rotation, ID);
+		missile = std::make_shared<Missile>(sf::Vector2f(laserX, laserY), rotation, ID, bounds);
 		GAME.getCurrentScene().addGameObject(missile);
 		ammo_--;
 

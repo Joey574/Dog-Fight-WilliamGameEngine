@@ -71,7 +71,7 @@
     <ClCompile Include="EndMessage.cpp">
       <Filter>Ggameparts</Filter>
     </ClCompile>
-    <ClCompile Include="missile.cpp">
+    <ClCompile Include="Missile.cpp">
       <Filter>GAmmo</Filter>
     </ClCompile>
     <ClCompile Include="Flare.cpp">
@@ -151,7 +151,7 @@
     <ClInclude Include="EndMessage.h">
       <Filter>Ggameparts</Filter>
     </ClInclude>
-    <ClInclude Include="missile.h">
+    <ClInclude Include="Missile.h">
       <Filter>GAmmo</Filter>
     </ClInclude>
     <ClInclude Include="Flare.h">

@@ -4,13 +4,15 @@
 
 const float SPEED = 0.5f;
 
-Missile::Missile(sf::Vector2f pos, int rot, int ID)
+Missile::Missile(sf::Vector2f pos, int rot, int ID, sf::FloatRect bounds)
 {
 	sprite_.setTexture(GAME.getTexture("Resources/missile.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
 	assignTag("missile");
 	setID(ID);
+
+	tBounds = bounds;
 }
 
 void Missile::setID(int ID)
@@ -29,18 +31,9 @@ void Missile::update(sf::Time& elapsed)
 
 	sf::Vector2f Target;
 
-	if (ID_ == 0)
-	{
-		Target = scene.getEnemyPos();
-	}
-	else if (ID_ == 1 || ID_ == 2)
-	{
-		Target = scene.getShipPos();
-	}
+	rotation = sprite_.getRotation();
 
 	int msElapsed = elapsed.asMilliseconds();
-
-	int rotation = sprite_.getRotation();
 
 	sf::Vector2f pos = sprite_.getPosition();
 
@@ -52,50 +45,44 @@ void Missile::update(sf::Time& elapsed)
 	bool left = false;
 	bool right = false;
 
+	if (ID_ == 0)
+	{
+		Target = scene.getEnemyPos();
+	}
+	else if (ID_ == 1 || ID_ == 2)
+	{
+		Target = scene.getShipPos();
+	}
+
 	if (pos.x > GAME.getRenderWindow().getSize().x || pos.y > GAME.getRenderWindow().getSize().y || pos.x < 0 || pos.y < 0)
 	{
 		makeDead();
 	}
 
-	if (Target.y < pos.y)
+	if (Target.y - tBounds.width < pos.y)
 	{
 		y -= SPEED * msElapsed;
 		up = true;
 	}
-	if (Target.y > pos.y)
+	if (Target.y - tBounds.width > pos.y)
 	{
 		y += SPEED * msElapsed;
 		down = true;
 	}
-	if (Target.x < pos.x)
+	if (Target.x - tBounds.width < pos.x)
 	{
 		x -= SPEED * msElapsed;
 		left = true;
 	}
-	if (Target.x > pos.x)
+	if (Target.x - tBounds.width > pos.x)
 	{
 		x += SPEED * msElapsed;
 		right = true;
 	}
 
 	rotationSet(up, down, left, right);
+
 	sprite_.setPosition(x, y);
-	/*if (rotation == 0 || rotation == 180)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y));
-	}
-	else if (rotation == 90 || rotation == 270)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x, pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
-	}
-	else if (rotation > 0 && rotation < 90 || rotation > 270)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
-	}
-	else if (rotation > 90 && rotation < 270)
-	{
-		sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
-	}*/
 }
 
 sf::FloatRect Missile::getCollisionRect()
