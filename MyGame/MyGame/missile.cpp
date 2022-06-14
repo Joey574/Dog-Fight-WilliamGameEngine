@@ -3,17 +3,15 @@
 #include "Missile.h"
 #include <iostream>
 
-const float SPEED = 0.65f;
-
-Missile::Missile(sf::Vector2f pos, int rot, int ID, sf::FloatRect bounds)
+Missile::Missile(sf::Vector2f pos, int rot, int ID)
 {
+	SPEED = 1.0f;
+
 	sprite_.setTexture(GAME.getTexture("Resources/missile.png"));
 	sprite_.setPosition(pos);
 	sprite_.setRotation(rot);
 	assignTag("missile");
 	setID(ID);
-
-	tBounds = bounds;
 }
 
 void Missile::setID(int ID)
@@ -48,13 +46,6 @@ void Missile::update(sf::Time& elapsed)
 
 	int errorRange = 80;
 
-	if (forwardTime > 0)
-	{
-		forwardTime -= msElapsed;
-	}
-
-	std::cout << forwardTime << "\n";
-
 	if (ID_ == 0)
 	{
 		Target = scene.getEnemyPos();
@@ -78,8 +69,15 @@ void Missile::update(sf::Time& elapsed)
 		errorRange = 80;
 	}
 
+	if (forwardTime <= 0)
+	{
+		SPEED = 0.5f;
+	}
+
 	if (forwardTime >= 0)
 	{
+		forwardTime -= msElapsed;
+
 		if (rotation == 0 || rotation == 180)
 		{
 			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
