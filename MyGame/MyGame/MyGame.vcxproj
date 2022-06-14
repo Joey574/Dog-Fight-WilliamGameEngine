@@ -146,6 +146,7 @@
     <Image Include="..\..\..\..\..\Downloads\Trishot.png" />
     <Image Include="Resources\Ammo.png" />
     <Image Include="Resources\explosion-spritesheet.png" />
+    <Image Include="Resources\Flare+.png" />
     <Image Include="Resources\flare.png" />
     <Image Include="Resources\Health.png" />
     <Image Include="Resources\laser.png" />
