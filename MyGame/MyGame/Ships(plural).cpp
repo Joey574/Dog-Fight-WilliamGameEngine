@@ -974,6 +974,11 @@ void Ships::handleCollision(GameObject& otherGameObject)
 
 		otherGameObject.makeDead();
 	}
+	if (otherGameObject.hasTag("flare+"))
+	{
+		flares_ = 5;
+		otherGameObject.makeDead();
+	}
 }
 
 sf::FloatRect Ships::getCollisionRect()

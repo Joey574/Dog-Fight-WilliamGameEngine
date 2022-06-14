@@ -241,6 +241,9 @@
     <Image Include="Resources\Missile+.png">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="Resources\Flare+.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\boom.wav">
