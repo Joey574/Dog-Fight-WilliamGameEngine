@@ -19,8 +19,9 @@ void Flare::draw()
 
 void Flare::update(sf::Time& elapsed)
 {
-	timer_ -= 1;
-	if (timer_ > 60)
+	int msElapsed = elapsed.asMilliseconds();
+	timer_ -= msElapsed;
+	if (timer_ > 900)
 	{
 		move(elapsed);
 	}

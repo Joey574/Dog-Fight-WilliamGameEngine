@@ -795,21 +795,8 @@ void Ships::flareShoot()
 
 	rotationCheck(tempW, tempH, rotation);
 
-	if (rotation == 0 || rotation == 180)
-	{
-		laserX = x + (tempW / 1.75f);
-		laserY = y;
-	}
-	else if (rotation == 90 || rotation == 270)
-	{
-		laserX = x;
-		laserY = y + (tempH / 1.75f);
-	}
-	else
-	{
-		laserX = x + (tempW / 2.0f);
-		laserY = y + (tempH / 2.0f);
-	}
+	laserX = x;
+	laserY = y;
 
 	for (int x = 0; rotation > 360; x++)
 	{
@@ -820,24 +807,16 @@ void Ships::flareShoot()
 		rotation += 360;
 	}
 
-	for (int i = rotation - 10; i < rotation + 11; i += 5)
+	for (int i = rotation - 180; i < rotation + 181; i += 15)
 	{
-		if (ammo_ > 0)
+		if (flares_ > 0)
 		{
 			flares = std::make_shared<Flare>(sf::Vector2f(laserX, laserY), i);
 			GAME.getCurrentScene().addGameObject(flares);
-			flares_--;
-
-			if (ID == 0)
-			{
-				//scene.setAmmo1(ammo_);
-			}
-			else if (ID == 1)
-			{
-				//scene.setAmmo2(ammo_);
-			}
 		}
 	}
+	flares_--;
+
 }
 
 // Eric you are very cool :)
