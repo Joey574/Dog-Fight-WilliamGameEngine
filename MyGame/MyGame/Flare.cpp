@@ -2,7 +2,7 @@
 #include "math.h"
 #include "Flare.h"
 
-const float SPEED = 1.3f;
+const float SPEED = 0.8f;
 
 Flare::Flare(sf::Vector2f pos, int rot)
 {
@@ -21,7 +21,7 @@ void Flare::update(sf::Time& elapsed)
 {
 	int msElapsed = elapsed.asMilliseconds();
 	timer_ -= msElapsed;
-	if (timer_ > 900)
+	if (timer_ > 1500)
 	{
 		move(elapsed);
 	}

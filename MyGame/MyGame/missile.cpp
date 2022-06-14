@@ -5,7 +5,7 @@
 
 Missile::Missile(sf::Vector2f pos, int rot, int ID)
 {
-	SPEED = 1.0f;
+	SPEED = 1.25f;
 
 	sprite_.setTexture(GAME.getTexture("Resources/missile.png"));
 	sprite_.setPosition(pos);
@@ -71,7 +71,7 @@ void Missile::update(sf::Time& elapsed)
 
 	if (forwardTime <= 0)
 	{
-		SPEED = 0.5f;
+		SPEED = 0.4f;
 	}
 
 	if (forwardTime >= 0)
