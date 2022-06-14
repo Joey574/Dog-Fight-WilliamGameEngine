@@ -218,8 +218,7 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				missileshoot();
-				//laserShoot();
+				laserShoot();
 			}
 			else if (weapon_ == 2)
 			{

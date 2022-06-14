@@ -8,7 +8,7 @@
 class Missile : public GameObject
 {
 public:
-	Missile(sf::Vector2f pos, int rot, int ID, sf::FloatRect bounds);
+	Missile(sf::Vector2f pos, int rot, int ID);
 
 	void setID(int ID);
 	void draw();
@@ -20,11 +20,13 @@ public:
 private:
 	sf::Sprite sprite_;
 	
+	float SPEED;
+
 	int ID_;
 
 	int rotation;
 
-	int forwardTime = 800;
+	int forwardTime = 300;
 
 	sf::FloatRect tBounds;
 };
