@@ -78,23 +78,25 @@ void Missile::update(sf::Time& elapsed)
 		errorRange = 80;
 	}
 
-	if (forwardTime <= 0)
+	if (forwardTime >= 0)
 	{
 		if (rotation == 0 || rotation == 180)
 		{
-			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y));
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 		}
 		else if (rotation == 90 || rotation == 270)
 		{
-			sprite_.setPosition(sf::Vector2f(pos.x, pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 		}
 		else if (rotation > 0 && rotation < 90 || rotation > 270)
 		{
-			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 		}
 		else if (rotation > 90 && rotation < 270)
 		{
-			sprite_.setPosition(sf::Vector2f(pos.x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0), pos.y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0)));
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 		}
 	}
 	else
