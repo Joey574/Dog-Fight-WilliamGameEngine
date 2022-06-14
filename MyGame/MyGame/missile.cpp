@@ -50,7 +50,7 @@ void Missile::update(sf::Time& elapsed)
 	{
 		Target = scene.getEnemyPos();
 	}
-	else if (ID_ == 1 || ID_ == 2)
+	else if (ID_ == 1 || ID_ == 2) //Hi Joey!!!!!!!!!!!!!!!!!!!! You are silly
 	{
 		Target = scene.getShipPos();
 	}
