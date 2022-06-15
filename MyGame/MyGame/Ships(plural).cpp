@@ -1,5 +1,8 @@
 #include "Ships(plural).h"
 
+#define _USE_MATH_DEFINES
+
+#include <math.h>
 #include <memory>
 #include "Laser.h"
 #include "Flak.h"
@@ -12,7 +15,6 @@
 #include <iostream>
 
 const float SPEED = 0.4f;
-const int FLARE_DELAY = 800;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
@@ -98,22 +100,22 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
-			y -= SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			up = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			y += SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			down = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			x -= SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			left = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			x += SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			right = true;
 		}
 	}
@@ -121,22 +123,22 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
-			y -= SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			up = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
-			y += SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			down = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			x -= SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			left = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			x += SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			right = true;
 		}
 	}
@@ -146,22 +148,22 @@ void Ships::shipMove(int msElapsed)
 		sf::Vector2f target = scene.getShipPos();
 		if (target.y < pos.y)
 		{
-			y -= SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			up = true;
 		}
 		if (target.y > pos.y)
 		{
-			y += SPEED * msElapsed;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 			down = true;
 		}
 		if (target.x < pos.x)
 		{
-			x -= SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			left = true;
 		}
 		if (target.x > pos.x)
 		{
-			x += SPEED * msElapsed;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 			right = true;
 		}
 	}
@@ -173,6 +175,11 @@ void Ships::shipMove(int msElapsed)
 	if (fireTimer_ > 0)
 	{
 		fireTimer_ -= msElapsed;
+	}
+
+	if (flareTimer_ > 0)
+	{
+		flareTimer_ -= msElapsed;
 	}
 
 	if (ammo_ < 1 && weapon_ != 1)
@@ -196,6 +203,7 @@ void Ships::shipMove(int msElapsed)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && flareTimer_ <= 0 && flares_ > 0)
 		{
 			flareShoot();
+			flareTimer_ = FLARE_DELAY;
 		}
 	}
 	else if (ID == 1)
@@ -203,6 +211,7 @@ void Ships::shipMove(int msElapsed)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && flareTimer_ <= 0 && flares_ > 0)
 		{
 			flareShoot();
+			flareTimer_ = FLARE_DELAY;
 		}
 	}
 
@@ -210,7 +219,7 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
-			pew_.setVolume(20);
+			pew_.setVolume(30);
 			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
 			pew_.play();
 
@@ -218,7 +227,8 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				laserShoot();
+				missileShoot();
+				//laserShoot();
 			}
 			else if (weapon_ == 2)
 			{
@@ -234,7 +244,7 @@ void Ships::shipMove(int msElapsed)
 			}
 			else if (weapon_ == 5)
 			{
-				missileshoot();
+				missileShoot();
 			}
 		}
 	}
@@ -242,6 +252,7 @@ void Ships::shipMove(int msElapsed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl) && fireTimer_ <= 0 && ammo_ > 0)
 		{
+			pew_.setVolume(30);
 			pew_.setBuffer(GAME.getSoundBuffer("Resources/pew 2.wav"));
 			pew_.play();
 			fireTimer_ = FIRE_DELAY;
@@ -264,12 +275,11 @@ void Ships::shipMove(int msElapsed)
 			}
 			else if (weapon_ == 5)
 			{
-				missileshoot();
+				missileShoot();
 			}
 		}
 	}
-
-	if (ID == 2) // AI
+	else if (ID == 2) // AI
 	{
 		GameScene& scene = (GameScene&)GAME.getCurrentScene();
 		sf::Vector2f target = scene.getShipPos();
@@ -298,7 +308,7 @@ void Ships::shipMove(int msElapsed)
 			}
 			else if (weapon_ == 5)
 			{
-				missileshoot();
+				missileShoot();
 			}
 		}
 	}
@@ -706,7 +716,7 @@ void Ships::shotgunShoot()
 	}
 }
 
-void Ships::missileshoot()
+void Ships::missileShoot()
 {
 	GameScene& scene = (GameScene&)GAME.getCurrentScene();
 

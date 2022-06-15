@@ -25,7 +25,7 @@ public:
 	void shotgunShoot(); // weapon type = 4
 	void triLaserShoot(); // weapon type = 3
 	void flakShoot(); // weapon type = 2
-	void missileshoot(); //weapon type = 5
+	void missileShoot(); //weapon type = 5
 
 	void flareShoot();
 
@@ -43,11 +43,13 @@ private:
 
 	int FIRE_DELAY = 200;
 
+	int FLARE_DELAY = 1000;
+
 	int weapon_ = 1;
 
 	int ammo_ = 100;
 
-	int flares_ = 10;
+	int flares_ = 5;
 
 	sf::Sound pew_;
 };
