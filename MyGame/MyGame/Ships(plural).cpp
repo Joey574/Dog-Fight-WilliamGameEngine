@@ -12,7 +12,7 @@
 #include <iostream>
 
 const float SPEED = 0.4f;
-const int FLARE_DELAY = 100;
+const int FLARE_DELAY = 800;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
@@ -248,8 +248,7 @@ void Ships::shipMove(int msElapsed)
 
 			if (weapon_ == 1)
 			{
-				//laserShoot();
-				missileshoot();
+				laserShoot();
 			}
 			else if (weapon_ == 2)
 			{
@@ -722,8 +721,6 @@ void Ships::missileshoot()
 
 	sf::FloatRect bounds;
 
-	bounds = sprite_.getGlobalBounds();
-
 	float laserX;
 	float laserY;
 
@@ -755,7 +752,7 @@ void Ships::missileshoot()
 
 	if (ammo_ > 0)
 	{
-		missile = std::make_shared<Missile>(sf::Vector2f(laserX, laserY), rotation, ID, bounds);
+		missile = std::make_shared<Missile>(sf::Vector2f(laserX, laserY), rotation, ID);
 		GAME.getCurrentScene().addGameObject(missile);
 		ammo_--;
 
@@ -783,8 +780,6 @@ void Ships::flareShoot()
 
 	sf::FloatRect bounds;
 
-	bounds = sprite_.getGlobalBounds();
-
 	FlarePtr flares;
 
 	float laserX;
@@ -798,16 +793,7 @@ void Ships::flareShoot()
 	laserX = x;
 	laserY = y;
 
-	for (int x = 0; rotation > 360; x++)
-	{
-		rotation -= 360;
-	}
-	for (int x = 0; rotation < 0; x++)
-	{
-		rotation += 360;
-	}
-
-	for (int i = rotation - 180; i < rotation + 181; i += 15)
+	for (int i = rotation + 30; i < rotation - 31 + 360; i += 15)
 	{
 		if (flares_ > 0)
 		{

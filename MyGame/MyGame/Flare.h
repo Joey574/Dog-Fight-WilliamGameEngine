@@ -17,7 +17,7 @@ public:
 
 private:
 	sf::Sprite sprite_;
-	int timer_ = 1050;
+	int timer_ = 1700;
 };
 
 typedef std::shared_ptr<Flare> FlarePtr;
