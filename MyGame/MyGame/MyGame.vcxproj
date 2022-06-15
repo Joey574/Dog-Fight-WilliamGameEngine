@@ -107,6 +107,7 @@
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Ships(plural).cpp" />
     <ClCompile Include="StartMessage.cpp" />
+    <ClCompile Include="StartMusic.cpp" />
     <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,7 @@
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ships(plural).h" />
     <ClInclude Include="StartMessage.h" />
+    <ClInclude Include="StartMusic.h" />
     <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +161,8 @@
     <Image Include="Resources\ship.png" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\..\..\..\..\Downloads\Flare sound.wav" />
+    <Media Include="Resources\30 second music clip.wav" />
     <Media Include="Resources\Awesome Music.wav" />
     <Media Include="Resources\boom.wav" />
     <Media Include="Resources\pew 2.wav" />

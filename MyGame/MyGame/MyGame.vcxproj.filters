@@ -80,6 +80,9 @@
     <ClCompile Include="StartMessage.cpp">
       <Filter>GMessages</Filter>
     </ClCompile>
+    <ClCompile Include="StartMusic.cpp">
+      <Filter>Ggameparts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\AnimatedSprite.h">
@@ -162,6 +165,9 @@
     </ClInclude>
     <ClInclude Include="StartMessage.h">
       <Filter>GMessages</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMusic.h">
+      <Filter>Ggameparts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +259,12 @@
       <Filter>Resources</Filter>
     </Media>
     <Media Include="Resources\pew 2.wav">
+      <Filter>Resources</Filter>
+    </Media>
+    <Media Include="Resources\30 second music clip.wav">
+      <Filter>Resources</Filter>
+    </Media>
+    <Media Include="..\..\..\..\..\Downloads\Flare sound.wav">
       <Filter>Resources</Filter>
     </Media>
   </ItemGroup>
