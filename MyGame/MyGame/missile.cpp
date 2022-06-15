@@ -39,11 +39,6 @@ void Missile::update(sf::Time& elapsed)
 	float x = pos.x;
 	float y = pos.y;
 
-	bool up = false;
-	bool down = false;
-	bool left = false;
-	bool right = false;
-
 	int errorRange = 80;
 
 	if (ID_ == 0)
@@ -66,7 +61,7 @@ void Missile::update(sf::Time& elapsed)
 	}
 	else
 	{
-		errorRange = 80;
+		errorRange = 0;
 	}
 
 	if (forwardTime <= 0)
@@ -74,7 +69,7 @@ void Missile::update(sf::Time& elapsed)
 		SPEED = 0.4f;
 	}
 
-	if (forwardTime >= 0)
+	if (forwardTime > 0)
 	{
 		forwardTime -= msElapsed;
 
@@ -101,27 +96,23 @@ void Missile::update(sf::Time& elapsed)
 	{
 		if (Target.y - errorRange < pos.y)
 		{
-			y -= SPEED * msElapsed;
-			up = true;
+			y -= (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 		}
 		if (Target.y + errorRange > pos.y)
 		{
-			y += SPEED * msElapsed;
-			down = true;
+			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 		}
 		if (Target.x - errorRange < pos.x)
 		{
-			x -= SPEED * msElapsed;
-			left = true;
+			x -= (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 		}
 		if (Target.x + errorRange > pos.x)
 		{
-			x += SPEED * msElapsed;
-			right = true;
+			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
 		}
 	}
 
-	rotationSet(up, down, left, right);
+	rotationSet(x, y);
 
 	sprite_.setPosition(x, y);
 }
@@ -166,38 +157,12 @@ void Missile::handleCollision(GameObject& otherGameObject)
 	}
 }
 
-void Missile::rotationSet(bool up, bool down, bool left, bool right)
+void Missile::rotationSet(float x, float y)
 {
-	if (up && left)
-	{
-		sprite_.setRotation(225);
-	}
-	else if (up && right)
-	{
-		sprite_.setRotation(315);
-	}
-	else if (down && left)
-	{
-		sprite_.setRotation(135);
-	}
-	else if (down && right)
-	{
-		sprite_.setRotation(45);
-	}
-	else if (down)
-	{
-		sprite_.setRotation(90);
-	}
-	else if (up)
-	{
-		sprite_.setRotation(270);
-	}
-	else if (left)
-	{
-		sprite_.setRotation(180);
-	}
-	else if (right)
-	{
-		sprite_.setRotation(0);
-	}
+	sf::Vector2f pos = sprite_.getPosition();
+
+	float xDif = abs(pos.x - x);
+	float yDif = abs(pos.y - y);
+
+	sprite_.setRotation(atan(((yDif / xDif) * M_PI) / 180.0));
 }

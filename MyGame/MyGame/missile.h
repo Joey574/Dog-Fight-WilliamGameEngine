@@ -15,7 +15,7 @@ public:
 	void update(sf::Time& elapsed);
 	sf::FloatRect getCollisionRect();
 	void handleCollision(GameObject& otherGameObject);
-	void rotationSet(bool up, bool down, bool left, bool right);
+	void rotationSet(float x, float y);
 
 private:
 	sf::Sprite sprite_;
