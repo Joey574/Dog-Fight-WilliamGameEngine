@@ -21,7 +21,6 @@ GameScene::GameScene(int player_)
 	ShipsPtr ships = std::make_shared<Ships>(0);
 	addGameObject(ships);
 
-
 	if (player_ == 1)
 	{
 		ships = std::make_shared<Ships>(2);
