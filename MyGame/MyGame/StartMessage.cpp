@@ -1,5 +1,6 @@
 #include "StartMessage.h"
 #include "GameScene.h"
+#include "Credits.h"
 #include <sstream>
 #include <Windows.h>
 
@@ -12,7 +13,7 @@ StartMessage::StartMessage()
 	text_.setFillColor(sf::Color::Red);
 
 	std::stringstream stream;
-	stream << "1. Single Player \n\n 2. Multiplayer Player";
+	stream << "1. Single Player \n\n2. Multiplayer Player\n\n3. Credits Player";
 
 	text_.setString(stream.str());
 }
@@ -37,6 +38,13 @@ void StartMessage::update(sf::Time& time)
 		player_ = 2;
 		GameScenePtr scene = std::make_shared<GameScene>(player_);
 		GAME.setScene(scene);
+		return;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		CreditsPtr credits = std::make_shared<Credits>();
+		GAME.getCurrentScene().addGameObject(credits);
+		makeDead();
 		return;
 	}
 }

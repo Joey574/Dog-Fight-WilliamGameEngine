@@ -88,6 +88,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="BuffSpawner.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="EndMessage.cpp" />
     <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="Engine\AnimatedSprite.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="BuffSpawner.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="EndMessage.h" />
     <ClInclude Include="EndScene.h" />
     <ClInclude Include="Engine\AnimatedSprite.h" />

@@ -5,7 +5,7 @@
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
 
-const std::string WINDOW_TITLE = "My VERY Awesome Game";
+const std::string WINDOW_TITLE = "tWO mANS sKY";
 
 int main()
 {

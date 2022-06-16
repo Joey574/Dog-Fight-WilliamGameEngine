@@ -65,9 +65,6 @@
     <ClCompile Include="EndScene.cpp">
       <Filter>GScenes</Filter>
     </ClCompile>
-    <ClCompile Include="EndMessage.cpp">
-      <Filter>Ggameparts</Filter>
-    </ClCompile>
     <ClCompile Include="Missile.cpp">
       <Filter>GAmmo</Filter>
     </ClCompile>
@@ -82,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="StartMusic.cpp">
       <Filter>Ggameparts</Filter>
+    </ClCompile>
+    <ClCompile Include="EndMessage.cpp">
+      <Filter>GMessages</Filter>
+    </ClCompile>
+    <ClCompile Include="Credits.cpp">
+      <Filter>GMessages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +154,6 @@
     <ClInclude Include="EndScene.h">
       <Filter>GScenes</Filter>
     </ClInclude>
-    <ClInclude Include="EndMessage.h">
-      <Filter>Ggameparts</Filter>
-    </ClInclude>
     <ClInclude Include="Missile.h">
       <Filter>GAmmo</Filter>
     </ClInclude>
@@ -168,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="StartMusic.h">
       <Filter>Ggameparts</Filter>
+    </ClInclude>
+    <ClInclude Include="EndMessage.h">
+      <Filter>GMessages</Filter>
+    </ClInclude>
+    <ClInclude Include="Credits.h">
+      <Filter>GMessages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
