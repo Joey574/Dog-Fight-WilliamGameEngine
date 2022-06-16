@@ -14,7 +14,7 @@ Credits::Credits()
 	text_.setFillColor(sf::Color::Red);
 
 	std::stringstream stream;
-	stream << "Two Mans Sky\n\nProgrammers\n\nEric Pace\nJoseph Saroka\n\nIdeas by\n\nEric Pace\n\nStolen by Joseph Saroka\n\nSound Design\n\nJoseph Saroka\nBrooks Sammarco\nSlater Swart\n\nSpecial Thanks\n\nMicheal T. Miyoshi";
+	stream << "Two Mans Sky\n\nProgrammers\n\nEric Pace\nJoseph Soroka\n\nIdeas by\n\nEric Pace\n\nStolen by Joseph Soroka\n\nSound Design\n\nJoseph Soroka\nBrooks Sammarco\nSlater Swart\n\nSpecial Thanks\n\nMicheal T. Miyoshi\nJackson Heckert";
 
 	text_.setString(stream.str());
 }

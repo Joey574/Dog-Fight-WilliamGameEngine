@@ -11,10 +11,14 @@ public:
 	Missile(sf::Vector2f pos, int rot, int ID);
 
 	void setID(int ID);
+
 	void draw();
 	void update(sf::Time& elapsed);
+
 	sf::FloatRect getCollisionRect();
+
 	void handleCollision(GameObject& otherGameObject);
+
 	void rotationSet(float x, float y);
 
 private:

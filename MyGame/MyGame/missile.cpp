@@ -69,6 +69,8 @@ void Missile::update(sf::Time& elapsed)
 		SPEED = 0.4f;
 	}
 
+	rotationSet(x, y);
+
 	if (forwardTime > 0)
 	{
 		forwardTime -= msElapsed;
@@ -94,13 +96,21 @@ void Missile::update(sf::Time& elapsed)
 	}
 	else
 	{
-		if (Target.y - errorRange < pos.y)
+		if (Target.y < pos.y)
 		{
+			std::cout << "Target Y is less than y\n";
+			std::cout << "Y before: " << y << "\n";
 			y -= (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
+			std::cout << "Calculation y output: " << (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0) << "\n";
+			std::cout << "Y after: " << y << "\n";
 		}
-		if (Target.y + errorRange > pos.y)
+		if (Target.y > pos.y)
 		{
+			std::cout << "Target Y is greater than y\n";
+			std::cout << "Y before: " << y << "\n";
 			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
+			std::cout << "Calculation y output: " << (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0) << "\n";
+			std::cout << "Y after: " << y << "\n";
 		}
 		if (Target.x - errorRange < pos.x)
 		{
@@ -161,8 +171,12 @@ void Missile::rotationSet(float x, float y)
 {
 	sf::Vector2f pos = sprite_.getPosition();
 
+	std::cout << "pos.x: " << pos.x << "\npos.y: " << pos.y << "\nx: " << x << "\ny: " << y << "\n";
+
 	float xDif = abs(pos.x - x);
 	float yDif = abs(pos.y - y);
+
+	std::cout << "X: " << xDif << "\nY: " << yDif << "\nCalculation output : " << atan(((yDif / xDif) * M_PI) / 180.0) << "\n";
 
 	sprite_.setRotation(atan(((yDif / xDif) * M_PI) / 180.0));
 }
