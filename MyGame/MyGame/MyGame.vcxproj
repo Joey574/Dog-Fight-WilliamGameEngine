@@ -108,7 +108,6 @@
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Ships(plural).cpp" />
     <ClCompile Include="StartMessage.cpp" />
-    <ClCompile Include="StartMusic.cpp" />
     <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +137,6 @@
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="Ships(plural).h" />
     <ClInclude Include="StartMessage.h" />
-    <ClInclude Include="StartMusic.h" />
     <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>

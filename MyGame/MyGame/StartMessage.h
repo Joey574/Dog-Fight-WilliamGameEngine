@@ -14,6 +14,7 @@ public:
 
 private:
 	sf::Text text_;
+	sf::Sound music_;
 };
 
 typedef std::shared_ptr<StartMessage> StartMessagePtr;
