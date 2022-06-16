@@ -19,7 +19,7 @@ public:
 
 	void handleCollision(GameObject& otherGameObject);
 
-	void rotationSet(float x, float y);
+	void rotationSet(sf::Vector2f pos, sf::Vector2f Target);
 
 private:
 	sf::Sprite sprite_;
@@ -30,7 +30,7 @@ private:
 
 	int rotation;
 
-	int forwardTime = 300;
+	int forwardTime = 200;
 
 	sf::FloatRect tBounds;
 };

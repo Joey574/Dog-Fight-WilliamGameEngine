@@ -39,8 +39,6 @@ void Missile::update(sf::Time& elapsed)
 	float x = pos.x;
 	float y = pos.y;
 
-	int errorRange = 80;
-
 	if (ID_ == 0)
 	{
 		Target = scene.getEnemyPos();
@@ -55,74 +53,25 @@ void Missile::update(sf::Time& elapsed)
 		makeDead();
 	}
 
-	if (abs(Target.y - y) + abs(Target.x - x) < 200)
-	{
-		errorRange = 0;
-	}
-	else
-	{
-		errorRange = 0;
-	}
-
 	if (forwardTime <= 0)
 	{
 		SPEED = 0.4f;
 	}
 
-	rotationSet(x, y);
-
 	if (forwardTime > 0)
 	{
 		forwardTime -= msElapsed;
 
-		if (rotation == 0 || rotation == 180)
-		{
-			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
-		}
-		else if (rotation == 90 || rotation == 270)
-		{
-			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
-		}
-		else if (rotation > 0 && rotation < 90 || rotation > 270)
-		{
-			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
-			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
-		}
-		else if (rotation > 90 && rotation < 270)
-		{
-			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
-			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
-		}
+		x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
+		y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
 	}
 	else
 	{
-		if (Target.y < pos.y)
-		{
-			std::cout << "Target Y is less than y\n";
-			std::cout << "Y before: " << y << "\n";
-			y -= (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
-			std::cout << "Calculation y output: " << (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0) << "\n";
-			std::cout << "Y after: " << y << "\n";
-		}
-		if (Target.y > pos.y)
-		{
-			std::cout << "Target Y is greater than y\n";
-			std::cout << "Y before: " << y << "\n";
-			y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
-			std::cout << "Calculation y output: " << (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0) << "\n";
-			std::cout << "Y after: " << y << "\n";
-		}
-		if (Target.x - errorRange < pos.x)
-		{
-			x -= (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
-		}
-		if (Target.x + errorRange > pos.x)
-		{
-			x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
-		}
-	}
+		rotationSet(pos, Target);
 
-	rotationSet(x, y);
+		y += (SPEED * msElapsed) * sin((rotation * M_PI) / 180.0);
+		x += (SPEED * msElapsed) * cos((rotation * M_PI) / 180.0);
+	}
 
 	sprite_.setPosition(x, y);
 }
@@ -167,16 +116,14 @@ void Missile::handleCollision(GameObject& otherGameObject)
 	}
 }
 
-void Missile::rotationSet(float x, float y)
-{
-	sf::Vector2f pos = sprite_.getPosition();
+void Missile::rotationSet(sf::Vector2f pos, sf::Vector2f Target)
+{	
+	float xDif = (pos.x - Target.x);
+	float yDif = (pos.y - Target.y);
 
-	std::cout << "pos.x: " << pos.x << "\npos.y: " << pos.y << "\nx: " << x << "\ny: " << y << "\n";
+	float rotationSet = atan((xDif / yDif) * M_PI / 180.0f);
 
-	float xDif = abs(pos.x - x);
-	float yDif = abs(pos.y - y);
+	std::cout << "\nRotation difference (in degrees): " << atan((yDif / xDif)) << "\nRotation difference (in radians): " << rotationSet;
 
-	std::cout << "X: " << xDif << "\nY: " << yDif << "\nCalculation output : " << atan(((yDif / xDif) * M_PI) / 180.0) << "\n";
-
-	sprite_.setRotation(atan(((yDif / xDif) * M_PI) / 180.0));
+	sprite_.setRotation(rotationSet);
 }
