@@ -7,6 +7,7 @@ class StartScene : public Scene
 public:
 	// Creates our Scene.
 	StartScene();
+private:
 
 };
 

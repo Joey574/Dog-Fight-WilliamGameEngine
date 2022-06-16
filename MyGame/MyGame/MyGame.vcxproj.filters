@@ -77,9 +77,6 @@
     <ClCompile Include="StartMessage.cpp">
       <Filter>GMessages</Filter>
     </ClCompile>
-    <ClCompile Include="StartMusic.cpp">
-      <Filter>Ggameparts</Filter>
-    </ClCompile>
     <ClCompile Include="EndMessage.cpp">
       <Filter>GMessages</Filter>
     </ClCompile>
@@ -165,9 +162,6 @@
     </ClInclude>
     <ClInclude Include="StartMessage.h">
       <Filter>GMessages</Filter>
-    </ClInclude>
-    <ClInclude Include="StartMusic.h">
-      <Filter>Ggameparts</Filter>
     </ClInclude>
     <ClInclude Include="EndMessage.h">
       <Filter>GMessages</Filter>
