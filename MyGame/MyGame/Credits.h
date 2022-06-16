@@ -14,7 +14,7 @@ public:
 
 private:
 	sf::Text text_;
-	int timer_ = 1;
+	float timer_ = 21;
 };
 
 typedef std::shared_ptr<Credits> CreditsPtr;

@@ -4,7 +4,7 @@
 #include <sstream>
 #include <Windows.h>
 
-const float SPEED = 0.05f;
+const float SPEED = 0.1f;
 
 Credits::Credits()
 {
@@ -26,8 +26,9 @@ void Credits::draw()
 
 void Credits::update(sf::Time& elapsed)
 {
-	int sElapsed = elapsed.asSeconds();
-	int msElapsed = elapsed.asMilliseconds();
+	float sElapsed = elapsed.asSeconds();
+	float msElapsed = elapsed.asMilliseconds();
+
 	timer_ -= sElapsed;
 	sf::Vector2f pos;
 	pos = text_.getPosition();
